@@ -17,6 +17,10 @@ const ProductSchema = new Schema({
         required: true,
         min: 0,
     },
+    "dicount": {
+        "type" : "Number",
+        required: true
+    },
     "description": {
         "type": "String",
         required: true,
