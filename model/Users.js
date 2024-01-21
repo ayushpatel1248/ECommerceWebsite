@@ -6,15 +6,19 @@ const UsersSchema = new Schema({
 
     
     "username": {
-        "type":"string",
+        "type":String,
         required : true
     },
     "password":{
-        "type": "string",
+        "type":String,
         required : true
+    }, 
+    "mobileNUmber" : {
+        "type" : Number,
+        required: true
     },
     "email":{
-        "type":"string",
+        "type":String,
         required : true
     }
     
