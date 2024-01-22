@@ -5,7 +5,7 @@ const {Schema} = mongoose;
 const UsersSchema = new Schema({
 
     
-    "username": {
+    "userName": {
         "type":String,
         required : true
     },
@@ -13,8 +13,8 @@ const UsersSchema = new Schema({
         "type":String,
         required : true
     }, 
-    "mobileNUmber" : {
-        "type" : Number,
+    "mobileNumber" : {
+        "type" : String,
         required: true
     },
     "email":{

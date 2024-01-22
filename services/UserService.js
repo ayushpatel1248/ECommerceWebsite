@@ -1,16 +1,14 @@
-// ********************************************example service**************************************************************8
 
+const User = require("../model/Users")
 
+const UserService = {}
 
+ UserService.findUserWithEmail = async (email) => {
+     return (await User.findOne({email}))
+ }
+ UserService.registerUser = async (userName , email , mobileNumber, password)=>{
+    let a =  await User.create({userName, email , mobileNumber , password})
+    return a
+ }
 
-
-
-// const UserS = require('../model/UserS')
-
-// const UserService = {}
-
- // UserService.registerUser = async (username, password, email) => {
- //     // ********************write your whole logic code here and instead of res.send just return object from here**************************
- // }
-
-// module.exports = UserService
+module.exports = UserService

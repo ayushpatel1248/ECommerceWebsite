@@ -3,6 +3,6 @@ const route = express.Router()
 
 
 const RegisterController = require("../controllers/RegisterController")
-route.post("/",RegisterController.create);
+route.post("/register",RegisterController.create);
 
 module.exports = route

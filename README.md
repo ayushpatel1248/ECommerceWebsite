@@ -7,7 +7,7 @@ ECommercewebsite backend using nodejs  , is fully functional website
     status : "ok" || "err", <br>
     mess : "message that you want to send with response .", <br>
     data : "response Data", <br>
-    err : null || err, <br>
+    
   }
 </p>
 
