@@ -16,6 +16,9 @@ app.use(bodyParser.json())
 const UserRegrestrationRoute = require("./routes/UserRegrestrationRoute")
 app.use("/",UserRegrestrationRoute)
 
+//-----------------------Cart Route---------------------------------
+const CartRoutes = require('./routes/CartRoutes')
+app.use("/cart", CartRoutes)
 
 
 app.listen(9999, ()=>{
