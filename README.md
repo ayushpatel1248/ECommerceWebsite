@@ -5,9 +5,12 @@ ECommercewebsite backend using nodejs  , is fully functional website
  <p>
   {
     status : "ok" || "err", <br>
-    mess : "message that you want to send with response .", <br>
+    msg : "message that you want to send with response .", <br>
     data : "response Data", <br>
+<<<<<<< HEAD
     
+=======
+>>>>>>> ec716b6cdccdc4939d780d268b92195447289f2d
   }
 </p>
 
