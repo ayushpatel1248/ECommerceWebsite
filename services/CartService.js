@@ -11,8 +11,8 @@ CartServices.addToCart = async (userid, items) => {
 
         // checking wheather item is available 
         const isItemAvailble = await Products.findOne({ "_id": productid });
-        console.log(isItemAvailble)
-        if (isItemAvailble == null) {
+        console.log("is item available = " , isItemAvailble)
+        if (!isItemAvailble) {
             return {
                 status: "ERR",
                 msg: "Product is unavailble",
@@ -161,32 +161,35 @@ CartServices.updateCart = async (userid, productid, updation) => {
             "userid": userid,
             "items.productid": productid
         }
+        console.log(cartDetail)
 
         const updateQuantity = updation == "inc" ? 1 : -1;
 
         const updatedCart = await Cart.findOneAndUpdate(cartDetail, { $inc: { "items.$.quantity": updateQuantity } })
-        if(updatedCart){
-            return{
-                status:"err",
-                msg:"unable to update the cart",
-                data:null
+        console.log("updated cart = ", updatedCart)
+
+        if (!updatedCart) {
+            return {
+                status: "err",
+                msg: "unable to update the cart",
+                data: null
             }
         }
-        else{
-            return{
-                status:"OK",
-                msg:"cart updated successfully",
-                data:updatedCart
+        else {
+            return {
+                status: "OK",
+                msg: "cart updated successfully",
+                data: updatedCart
             }
         }
     }
-    catch{
+    catch {
         return {
-            status:"err", 
-            msg:"server error",
-            data :null
+            status: "err",
+            msg: "server error",
+            data: null
         }
-    }   
+    }
 
 }
 
