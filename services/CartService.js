@@ -44,7 +44,7 @@ CartServices.addToCart = async (userid, items) => {
         }
         else {
             console.log("we are in else condition")
-            var updatedCart = await Cart.findOneAndUpdate(cartDetail, { $inc: { "items.$.quantity": quantity } })
+            const updatedCart = await Cart.findOneAndUpdate(cartDetail, { $inc: { "items.$.quantity": quantity } })
             console.log(updatedCart)
             if (updatedCart) {
                 return {
@@ -83,28 +83,28 @@ CartServices.addToCart = async (userid, items) => {
 
 CartServices.viewCart = async (userid) => {
     try {
-        const isCartAvailble = await Cart.findOne({userid});
+        const isCartAvailble = await Cart.findOne({ userid });
         console.log("cartdata = ", isCartAvailble)
-        if(isCartAvailble){
-            return{
-                status:"OK",
-                msg:"cart data send successfully",
-                data:isCartAvailble.items
+        if (isCartAvailble) {
+            return {
+                status: "OK",
+                msg: "cart data send successfully",
+                data: isCartAvailble.items
             }
         }
-        else{
-            return{
-                status:"err",
-                msg:"no cart available / cart is empty",
-                data:null
+        else {
+            return {
+                status: "err",
+                msg: "no cart available / cart is empty",
+                data: null
             }
         }
     }
-    catch{
+    catch {
         return {
-            status:"500",
-            msg:"server error",
-            data:null
+            status: "500",
+            msg: "server error",
+            data: null
         }
     }
 
@@ -116,38 +116,78 @@ CartServices.viewCart = async (userid) => {
 // ------------------------------------------remove  product from cart -------------------------------------------------------
 
 
-CartServices.removeProduct = async (userid, productid)=>{
-    try{
+CartServices.removeProduct = async (userid, productid) => {
+    try {
         let cartDetail = {
             "userid": userid,
             "items.productid": productid
         }
 
         //checking if product is available and if available in cart removing it and updating the cart
-        const updatedCart = await Cart.findOneAndUpdate(cartDetail,  { $pull: { "items": { "productid": productid } } } )
+        const updatedCart = await Cart.findOneAndUpdate(cartDetail, { $pull: { "items": { "productid": productid } } })
 
+        if (updatedCart) {
+            return {
+                status: "OK",
+                msg: "product removed from the cart successfully",
+                data: updatedCart
+            }
+        }
+        else {
+            return {
+                status: "err",
+                msg: "no such product available to be removed",
+                data: null
+            }
+        }
+    }
+    catch {
+        return {
+            status: "500",
+            msg: "server error",
+            data: null
+        }
+    }
+}
+
+
+//-------------------------------------------update cart by 1 or -1-----------------------------------------------------------------------
+
+
+CartServices.updateCart = async (userid, productid, updation) => {
+    try {
+
+        let cartDetail = {
+            "userid": userid,
+            "items.productid": productid
+        }
+
+        const updateQuantity = updation == "inc" ? 1 : -1;
+
+        const updatedCart = await Cart.findOneAndUpdate(cartDetail, { $inc: { "items.$.quantity": updateQuantity } })
         if(updatedCart){
             return{
-                status:"OK",
-                msg:"product removed from the cart successfully",
-                data:updatedCart
+                status:"err",
+                msg:"unable to update the cart",
+                data:null
             }
         }
         else{
             return{
-                status:"err",
-                msg:"no such product available to be removed",
-                data:null
+                status:"OK",
+                msg:"cart updated successfully",
+                data:updatedCart
             }
         }
     }
     catch{
-        return{
-            status:"500",
+        return {
+            status:"err", 
             msg:"server error",
-            data:null
+            data :null
         }
-    }
-} 
+    }   
+
+}
 
 module.exports = CartServices

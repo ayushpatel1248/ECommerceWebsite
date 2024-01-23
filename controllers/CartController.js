@@ -11,7 +11,7 @@ CartController.addToCart = async (req, res)=>{
     res.send(result)
 }
 
-// ---------------------------------------------------------------------------------------------------
+// ----------------------------------------------------------------------------------------------------------------
 
 CartController.viewCart = async (req, res)=>{
     const {userid} = req.body;
@@ -25,6 +25,14 @@ CartController.removeProduct = async (req, res)=>{
     const {userid, productid} = req.body;
     const result = await CartServices.removeProduct(userid, productid);
     res.send(result);
+}
+
+//  ------------------------------------------------------------------------------------------------------------------
+
+CartController.updateCart = async (req, res)=>{
+    const {userid, productid, updation} = req.body;
+    const result = await CartServices.updateCart(userid, productid, updation);
+    res.send(result)
 }
 
 
