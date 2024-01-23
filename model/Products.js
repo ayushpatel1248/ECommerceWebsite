@@ -8,6 +8,10 @@ const ProductSchema = new Schema({
         "type": "String",
         required: true,
     },
+    "description" : {
+        "type": "String",
+        required : true
+    },
     "brand": {
         "type": "String",
         required: true,
@@ -21,8 +25,8 @@ const ProductSchema = new Schema({
         "type" : "Number",
         required: true
     },
-    "description": {
-        "type": "String",
+    "stock": {
+        "type": "number",
         required: true,
     },
     "volume": {
@@ -33,16 +37,17 @@ const ProductSchema = new Schema({
     "gender": {
         "type": "String", // 'Male', 'Female', 'Unisex', etc.
     },
-    "packaging": {
-        "type": "String", // 'Bottle', 'Spray', etc.
-    },
     "rating": {
         "type": "Number",
         min: 0,
         max: 5,
     },
-    "imageUrl": {
+    "thumbnail": {
         "type": "String",
+        required : true
+    },
+    "images" : {
+        "type":["String"]
     },
     "ingredients": {
         "type": ["String"],
