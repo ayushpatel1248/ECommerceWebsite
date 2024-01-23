@@ -16,7 +16,7 @@ app.use(bodyParser.json())
 const UserRegrestrationRoute = require("./routes/UserRegrestrationRoute")
 app.use("/",UserRegrestrationRoute)
 
-//----------------------------Login Route
+//----------------------------Login Route----------------------------
 
 const UserLoginRoute = require("./routes/UserLoginRoute")
 app.use("/",UserLoginRoute)
