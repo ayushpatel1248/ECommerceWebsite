@@ -25,6 +25,10 @@ app.use("/",UserLoginRoute)
 const CartRoutes = require('./routes/CartRoutes')
 app.use("/cart", CartRoutes)
 
+//--------------------------get products ----------------------
+const getProductsRoute = require("./routes/getProductsRoute")
+app.use("/",getProductsRoute)
+
 
 app.listen(9999, ()=>{
   console.log("server is running on port : ", 9999)

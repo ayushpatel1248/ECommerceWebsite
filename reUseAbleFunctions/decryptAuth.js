@@ -9,6 +9,5 @@ const decryptAuth = (token)=>{
     catch(err){
         return null;
     }
-    
 }
 module.exports = decryptAuth
