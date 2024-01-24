@@ -28,8 +28,7 @@ try{
         res.send({
             status:"ok",
             msg: "user regrestration sucessfully complete",
-            authToken: token,
-            data : a
+            data : {"authToken": token , "userdata":a}
         })
      }
      else{

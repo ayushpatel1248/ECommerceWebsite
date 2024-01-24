@@ -3,7 +3,8 @@ const SECRET_KEY = "hehehehe"
 
 const decryptAuth = (token)=>{
     try{
-        const {_id} = jwt.verify(authorization, SECRET_KEY);
+        const {_id} = jwt.verify(token, SECRET_KEY);
+        console.log(jwt.verify(token, SECRET_KEY))
         return _id;
     }
     catch(err){
