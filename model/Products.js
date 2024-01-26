@@ -12,7 +12,9 @@ const ProductSchema = new Schema({
         "type": "String",
         required : true
     },
-    "brand": {   "type": mongoose.Types.ObjectId, //isko alag krna he iska alag model 
+    "brand": {  
+        //  "type": "String", 
+         "type": "String", 
         required: true,
     },
     "price": {

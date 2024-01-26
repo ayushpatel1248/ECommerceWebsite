@@ -29,6 +29,10 @@ app.use("/cart", CartRoutes)
 const getProductsRoute = require("./routes/getProductsRoute")
 app.use("/",getProductsRoute)
 
+//--------------------------- insert brand------------------
+const BrandAdd = require("./routes/BrandAdd")
+app.use("/",BrandAdd)
+
 
 app.listen(9999, ()=>{
   console.log("server is running on port : ", 9999)

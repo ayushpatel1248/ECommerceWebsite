@@ -13,11 +13,13 @@ UserLoginController.login = async (req, res) => {
             var passwordCheck = await bcrypt.compareSync(password, foundedUser.password);
             if(passwordCheck){    
                 let token = await jwt.sign({ _id: foundedUser._id }, SECRET_KEY);
+                let deepcopy = JSON.parse(JSON.stringify(foundedUser))
+                delete deepcopy["password"]
                 res.send({
                     status: "ok",
                     msg: "sucessfully login",           
                     authToken: token,
-                    data: foundedUser 
+                    data: deepcopy 
                 })
             }else{
                 res.send({

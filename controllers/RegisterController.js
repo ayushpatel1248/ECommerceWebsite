@@ -21,14 +21,16 @@ try{
     await schema.validateAsync({userName , email , mobileNumber, password});
     const foundUser = await UserService.findUserWithEmail(email)
     console.log("in try" , foundUser)
-    if(foundUser == null){
+    if(foundUser == null){ 
         hash = bcrypt.hashSync(password, SALT_ROUND);
-        let  a = await UserService.registerUser(userName , email , mobileNumber, hash)
+        var  a = await UserService.registerUser(userName , email , mobileNumber, hash)
         const token = jwt.sign({_id:a._id},SECRET_KEY);
+        let deepcopy = JSON.parse(JSON.stringify(a))
+        delete deepcopy["password"] 
         res.send({
             status:"ok",
             msg: "user regrestration sucessfully complete",
-            data : {"authToken": token , "userdata":a}
+            data : {"authToken": token , "userdata":deepcopy}
         })
      }
      else{
@@ -42,7 +44,7 @@ try{
 catch(err){
     res.send({
         status : "err", 
-        msg : err.details[0].message, 
+        msg : " comes at server side in register controller...", 
         data : err, 
     })
 }
