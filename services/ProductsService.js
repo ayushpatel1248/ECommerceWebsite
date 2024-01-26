@@ -3,7 +3,7 @@ const Products = require('../model/Products')
 const ProductServices = {};
 
 ProductServices.getProduct = async (skip, limit) => {
-
+    
     let numberOfSkip = (skip - 1) * limit ;
 
     return ( await Products.aggregate( [
@@ -12,7 +12,6 @@ ProductServices.getProduct = async (skip, limit) => {
         { $limit: limit }
     ])
     )
-
 }
 module.exports = ProductServices;
 
