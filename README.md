@@ -14,3 +14,41 @@ ECommercewebsite backend using nodejs  , is fully functional website
   }
 </p>
 
+
+<!-- const mongoose = require("mongoose");
+
+const { Schema } = mongoose;
+
+const BrandSchema = new Schema({
+    name: {
+        type: String,
+        required: true,
+        unique: true,
+    },
+    description: {
+        type: String,
+    },
+    country: {
+        type: String,
+    },
+    website: {
+        type: String,
+    },
+    foundedYear: {
+        type: Number,
+    },
+    logoUrl: {
+        type: String,
+    },
+    products: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "Product",
+        },
+    ],
+    // Add any other relevant fields as per your requirements
+});
+
+const Brand = mongoose.model("Brand", BrandSchema);
+
+module.exports = Brand; -->
