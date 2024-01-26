@@ -26,6 +26,11 @@ const CartRoutes = require('./routes/CartRoutes')
 app.use("/cart", CartRoutes)
 
 
+//-----------------------password routes------------------------
+const PasswordRoutes =  require('./routes/PasswordRoutes')
+app.use("/password", PasswordRoutes)
+
+
 app.listen(9999, ()=>{
   console.log("server is running on port : ", 9999)
 });
