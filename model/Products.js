@@ -22,7 +22,7 @@ const ProductSchema = new Schema({
         required: true,
         min: 0,
     },
-    "dicount": {
+    "discount": {
         "type" : "Number",
         required: true
     },

@@ -29,6 +29,11 @@ app.use("/cart", CartRoutes)
 const getProductsRoute = require("./routes/getProductsRoute")
 app.use("/",getProductsRoute)
 
+
+//--------------------------Product-Description------------------
+const ProductDescRoute = require("./routes/ProductDescRoute")
+app.use("/",ProductDescRoute)
+
 //--------------------------- insert brand------------------
 const BrandAdd = require("./routes/BrandAdd")
 app.use("/",BrandAdd)
