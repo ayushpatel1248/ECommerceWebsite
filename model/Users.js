@@ -38,13 +38,14 @@ const UsersSchema = new Schema({
             "type": String
         },
         "country": {
-            "type": String
-        },
-        "role": {
             "type": String,
-            enum: ['user', 'admin']
+            enum:['india']
         },
     },
+    "role": {
+        "type": String,
+        enum: ['user', 'admin']
+    }
 
 })
 
