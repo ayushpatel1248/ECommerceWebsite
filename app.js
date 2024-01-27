@@ -29,6 +29,11 @@ app.use("/cart", CartRoutes)
 const getProductsRoute = require("./routes/getProductsRoute")
 app.use("/",getProductsRoute)
 
+
+//--------------------------Product-Description------------------
+const ProductDescRoute = require("./routes/ProductDescRoute")
+app.use("/",ProductDescRoute)
+
 //--------------------------- insert brand------------------
 const BrandAdd = require("./routes/BrandAdd");
 app.use("/",BrandAdd);
@@ -41,6 +46,11 @@ app.use("/password", PasswordRoutes);
 //--------------------filters--------------------
 const filterRoute = require("./routes/filterRoute");
 app.use("/",filterRoute);
+
+
+//----------------------user routes-------------------------
+const UserRoutes = require('./routes/UserRoutes')
+app.use("/user", UserRoutes)
 
 
 app.listen(9999, ()=>{

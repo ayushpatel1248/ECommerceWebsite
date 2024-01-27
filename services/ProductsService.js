@@ -16,6 +16,10 @@ ProductServices.getProduct = async (skip, limit) => {
         { $limit: limit }
       ]))
 }
+
+ProductServices.getProductDesc = async(_id)=>{
+  return (await Products.find({_id}))
+}
 module.exports = ProductServices;
 
 
