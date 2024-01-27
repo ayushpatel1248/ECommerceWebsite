@@ -44,6 +44,11 @@ const PasswordRoutes =  require('./routes/PasswordRoutes')
 app.use("/password", PasswordRoutes)
 
 
+//----------------------user routes-------------------------
+const UserRoutes = require('./routes/UserRoutes')
+app.use("/user", UserRoutes)
+
+
 app.listen(9999, ()=>{
   console.log("server is running on port : ", 9999)
 });

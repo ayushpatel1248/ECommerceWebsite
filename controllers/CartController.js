@@ -3,7 +3,6 @@ const verifyAuth = require("../reUseAbleFunctions/decryptAuth")
 
 const CartController = {}
 
-// for authorization token will be writing login later write now direcly taking userid in body
 
 CartController.addToCart = async (req, res) => {
     const { items } = req.body;
