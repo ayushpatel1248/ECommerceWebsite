@@ -16,21 +16,12 @@ AddBrandController.add = async(req ,res)=>{
             })
         }else{
             if(foundedYear==null || typeof(foundedYear) == "number"){
-                const foundBrand = await BrandService.findBrand(name)
-                if(foundBrand == null){
                    const addBand  = await BrandService.add(name,description,foundedYear,logoUrl); 
                    res.send({
                     status : "ok",
                     msg:"band add sucesfully",
                     data : addBand
                    })
-                }else{
-                    res.send({
-                        status: "err",
-                        msg:"Brand already exist with entered brand name",
-                        data : null
-                    })
-                }
             }else{
                 res.send({
                     status:"err",

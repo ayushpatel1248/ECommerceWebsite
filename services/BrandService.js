@@ -19,6 +19,6 @@ if(description != null && foundedYear == null){
 }
 
 BrandService.findBrand = async(name)=>{
-   return await Brand.findOne({name})
+   return await Brand.find({name})
 }
 module.exports = BrandService
