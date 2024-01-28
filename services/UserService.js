@@ -16,8 +16,8 @@ UserService.registerUser = async (userName, email, mobileNumber, password) => {
 UserService.addProfileInfo = async (_id, dateOfBirth, address, role) => {
     //checking if updation is possible then updating 
     try {
-        let updatedInfo = await User.findOneAndUpdate({ _id }, { dateOfBirth, address, role })
-        console.log(updatedInfo);
+        let updatedInfo = await User.findOneAndUpdate({ _id }, { dateOfBirth, address, role }, { new: true, runValidators: true })
+        console.log("this = ", updatedInfo);
         if (updatedInfo) {
             return {
                 status: "OK",
@@ -36,7 +36,7 @@ UserService.addProfileInfo = async (_id, dateOfBirth, address, role) => {
     catch {
         return {
             status: "err",
-            msg: "server error",
+            msg: "error occured may be you entered incorrect input",
             data: null
         }
     }
