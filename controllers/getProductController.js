@@ -23,4 +23,6 @@ const getProductController =  {}
    }
 }
 
+
+
 module.exports = getProductController 

@@ -47,6 +47,10 @@ app.use("/password", PasswordRoutes);
 const filterRoute = require("./routes/filterRoute");
 app.use("/",filterRoute);
 
+//----------------------Reviews----------------------
+const reviewRoute = require("./routes/reviewRoute")
+app.use("/review",reviewRoute)
+
 
 //----------------------user routes-------------------------
 const UserRoutes = require('./routes/UserRoutes')
