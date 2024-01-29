@@ -51,6 +51,10 @@ app.use("/",filterRoute);
 const reviewRoute = require("./routes/reviewRoute")
 app.use("/review",reviewRoute)
 
+//----------------------search----------------------
+const SearchRoute = require("./routes/SearchRoute")
+app.use("/search",SearchRoute)
+
 
 //----------------------user routes-------------------------
 const UserRoutes = require('./routes/UserRoutes')
