@@ -4,7 +4,8 @@ const { Schema } = mongoose;
 
 const ReviewSchema = new Schema({
     userID: {
-        type: mongoose.Schema.Types.ObjectId,
+        // type: mongoose.Schema.Types.ObjectId,
+        type: String,
         required: true,
       },
       productID: {
@@ -13,10 +14,13 @@ const ReviewSchema = new Schema({
       },
       rating: {
         type: Number,
+        min:0,
+        max:5,
         required: true,
       },
       comment: {
         type: String,
+        required: true
       },
       timestamp: {
         type: Date,

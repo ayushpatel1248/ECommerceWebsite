@@ -18,7 +18,25 @@ ProductServices.getProduct = async (skip, limit) => {
 }
 
 ProductServices.getProductDesc = async(_id)=>{
-  return (await Products.find({_id}))
+  console.log("product id is =>",typeof(_id))
+  return (await Products.findOne({_id}))
+}
+ProductServices.getProductById = async(_id)=>{
+  try{
+    const foundedProducts = await Products.findOne({_id})
+    return({
+      status:"ok",
+      msg:"product is sucessfully found by id",
+      data : foundedProducts
+    })
+  }catch(err){
+    return({
+      status:"err",
+      msg:"invalid product id or no product is available with given id",
+      data : err
+    })
+  }
+  
 }
 module.exports = ProductServices;
 

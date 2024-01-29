@@ -36,7 +36,7 @@ app.use("/",ProductDescRoute)
 
 //--------------------------- insert brand------------------
 const BrandAdd = require("./routes/BrandAdd");
-app.use("/",BrandAdd);
+app.use("/brand",BrandAdd);
 
 //-----------------------password routes------------------------
 const PasswordRoutes =  require('./routes/PasswordRoutes');
