@@ -60,6 +60,10 @@ app.use("/search",SearchRoute)
 const UserRoutes = require('./routes/UserRoutes')
 app.use("/user", UserRoutes)
 
+//---------------------admin routes--------------------
+const AdminRoutes =  require('./routes/AdminRoutes')
+app.use("/admin", AdminRoutes)
+
 
 app.listen(9999, ()=>{
   console.log("server is running on port : ", 9999)
