@@ -2,11 +2,11 @@ const { decrypt } = require("dotenv");
 const AdminService = require("../services/AdminService")
 const joi = require('joi');
 const jwt = require('jsonwebtoken')
-// this is schema for validatiing the data came from admin side at the time of registering 
 
 const secretKey = "hahaha"  //key for decrypting admin side auth 
 
 
+// this is schema for validatiing the data came from admin side at the time of registering 
 const schema = joi.object({
     username: joi.string().min(4).max(40).required(),
     contactEmail: joi.string().email().required(),
