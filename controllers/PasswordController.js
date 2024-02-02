@@ -3,17 +3,19 @@ const PasswordService = require("../services/PasswordService")
 const PasswordController = {};
 
 PasswordController.otpForforgotPassword = async (req, res) => {
-    const { email } = req.body;
-    const result = await PasswordService.otpForforgotPassword(email);
+    const { email, role } = req.body;
+    console.log(role)
+    const result = await PasswordService.otpForforgotPassword(email, role);
     res.send(result);
 }
 
 // ---------------------------------------------------------------------------
 
 PasswordController.verifyOtpAndSetPassword = async (req, res)=>{
-    const {otpToBeVerified, newPassword, email} = req.body;
+    const {otpToBeVerified, newPassword, email, role} = req.body;
+    console.log(role)
     console.log({otpToBeVerified, newPassword, email})
-    const result = await PasswordService.verifyOtpAndSetPassword(otpToBeVerified, newPassword, email);
+    const result = await PasswordService.verifyOtpAndSetPassword(otpToBeVerified, newPassword, email, role);
     res.send(result);
 }
 

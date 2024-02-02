@@ -9,14 +9,14 @@ const secretKey = "hahaha"  //key for decrypting admin side auth
 // this is schema for validatiing the data came from admin side at the time of registering 
 const schema = joi.object({
     username: joi.string().min(4).max(40).required(),
-    contactEmail: joi.string().email().required(),
+    email: joi.string().email().required(),
     contactPhoneNumber: joi.string().regex(/^[0-9]{10}$/).messages({ 'string.pattern.base': `Phone number must have 10 digits.` }).required(),
     password: joi.string().min(4).regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/).messages({ "string.pattern.base": "min 8 char 1 upper case 1 lower case and one special character" }).required(),
     companyName: joi.string().min(1).required()
 })
 
 const loginSchema = joi.object({
-    contactEmail: joi.string().email().required(),
+    email: joi.string().email().required(),
     password: joi.string().min(4).required(),
 })
 
@@ -25,10 +25,10 @@ const loginSchema = joi.object({
 const adminController = {};
 
 adminController.register = async (req, res) => {
-    const { username, contactEmail, contactPhoneNumber, password, companyName } = req.body;
+    const { username, email, contactPhoneNumber, password, companyName } = req.body;
     try {
-        await schema.validateAsync({ username, contactEmail, contactPhoneNumber, password, companyName })
-        const result = await AdminService.register(username, password, contactEmail, companyName, contactPhoneNumber);
+        await schema.validateAsync({ username, email, contactPhoneNumber, password, companyName })
+        const result = await AdminService.register(username, password, email, companyName, contactPhoneNumber);
         res.send(result)
     }
     catch (err) {
@@ -41,10 +41,10 @@ adminController.register = async (req, res) => {
 }
 
 adminController.login = async (req, res) => {
-    const { contactEmail, password } = req.body;
+    const { email, password } = req.body;
     try {
-        await loginSchema.validateAsync({ contactEmail, password })
-        const result = await AdminService.login(contactEmail, password);
+        await loginSchema.validateAsync({ email, password })
+        const result = await AdminService.login(email, password);
         res.send(result)
     }
     catch (err) {

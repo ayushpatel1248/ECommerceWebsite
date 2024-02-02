@@ -22,3 +22,8 @@ ECommercewebsite backend using nodejs  , is fully functional website
 =======
 >>>>>>> 480892d6f1a40531d4342dd82bc3bdfd8577e8f4
 <!-- { new: true, runValidators: true } -->
+
+
+<!-- while sending parameter in paswword services define role from this only [Admin, Users]  this are case sensitive  -->
+
+<!-- password contoller validation lagane he  -->

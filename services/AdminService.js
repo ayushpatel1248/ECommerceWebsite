@@ -9,21 +9,22 @@ const saltRounds = 10;
 const secretKey = "hahaha"
 // ---------------------------------------------------------------------------------------------------------------------
 
-AdminService.register = async (username, password, contactEmail, companyName, contactPhoneNumber) => {
+AdminService.register = async (username, password, email, companyName, contactPhoneNumber) => {
     try {
         const adminFound = await Admin.findOne({
             $or: [
                 { username },
-                { contactEmail },
+                { email },
             ],
         });
+        console.log("this is admin =", adminFound )
 
         if (!adminFound) {
             const hashPassword = bcrypt.hashSync(password, saltRounds);
-            const singleAdminData = { username, password: hashPassword, contactEmail, companyName, contactPhoneNumber };
+            const singleAdminData = { username, password: hashPassword, email, companyName, contactPhoneNumber };
             console.log("single admin data = ", singleAdminData)
-            const registeredAdmin = await Admin.create(singleAdminData, { new: true, runValidators: true })
-            console.log("above auth")
+            const registeredAdmin = await Admin.create(singleAdminData)
+            console.log("registered admin = ", registeredAdmin)
             var authorization = jwt.sign({ adminId: registeredAdmin._id }, secretKey)
             delete registeredAdmin._doc.password    //in mongodb prop stored in doc 
             console.log("here")
@@ -52,9 +53,9 @@ AdminService.register = async (username, password, contactEmail, companyName, co
 
 }
 
-AdminService.login = async (contactEmail, password) => {
+AdminService.login = async (email, password) => {
     try {
-        const adminFound = await Admin.findOne({ contactEmail });
+        const adminFound = await Admin.findOne({ email });
         if (adminFound) {
             const passwordCheck = bcrypt.compareSync(password, adminFound.password);
             delete adminFound._doc.password

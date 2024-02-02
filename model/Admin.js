@@ -12,7 +12,7 @@ const sellerSchema = new Schema({
         type: String,
         required: true,
     },
-    contactEmail: {
+    email: {
         type: String,
         required: true,
         unique: true
@@ -21,7 +21,7 @@ const sellerSchema = new Schema({
         type: String,
         required: true,
     },
-    companyLogo: String,
+    companyLogo: { type: String },
     companyAddress: {
         street: { type: String },
         city: { type: String },

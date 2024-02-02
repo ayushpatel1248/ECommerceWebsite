@@ -1,4 +1,5 @@
 const Users = require("../model/Users")
+const Admin = require("../model/Admin")
 const bcrypt = require('bcrypt');
 var nodemailer = require('nodemailer');
 
@@ -20,9 +21,18 @@ const transporter = nodemailer.createTransport({
 // ----------------------------------------------for sending otp  for new password--------------------------------------------------
 var otp;
 
-PasswordService.otpForforgotPassword = async (email) => {
+PasswordService.otpForforgotPassword = async (email, role) => {
     try {
-        const userFound = await Users.findOne({ "email": email });
+        let model = null;
+        if (role == "Admin" || role == "admin") {
+            model = Admin
+        }
+        else if (role == "Users" || role == "users" || role == "user") {
+            model = Users
+        }
+        const userFound = await model.findOne({ "email": email });
+        console.log(userFound)
+
         //checking if user exist with this email
         if (userFound) {
             otp = Math.random().toString().substr(2, 6);
@@ -44,11 +54,11 @@ PasswordService.otpForforgotPassword = async (email) => {
             // from below code otp will automatically expire after 20 seconds
             setTimeout(() => {
                 otp = `${Math.random().toString().substr(2, 6)}`
-            }, 20000);
+            }, 40000);
             return {
                 status: "OK",
                 msg: "otp send successfully",
-                data: otp
+                data: null
             }
         }
         else {
@@ -59,24 +69,34 @@ PasswordService.otpForforgotPassword = async (email) => {
             }
         }
     }
-    catch {
+    catch (err) {
         return {
             status: "err",
             msg: "error occured",
-            data: null
+            data: err
         }
     }
 }
 
 
-PasswordService.verifyOtpAndSetPassword = async (otpToBeVerified, newPassword, email) => {
+PasswordService.verifyOtpAndSetPassword = async (otpToBeVerified, newPassword, email, role) => {
     console.log("above try")
     try {
+        let model = null;
+        if (role == "Admin" || role == "admin") {
+            model = Admin
+        }
+        else if (role == "Users" || role == "users" || role == "user") {
+            model = Users
+        }
         // checking if otp is same 
+        console.log("thi is otp form user =",otpToBeVerified)
+        console.log("this is real otp", otp)
         if (otp == otpToBeVerified) {
+            console.log("inside if of otp verfication")
             const newHashPassword = bcrypt.hashSync(newPassword, saltRounds);
-            const updatedPass = await Users.findOneAndUpdate({ "email": email }, { "password": newHashPassword })
-            console.log(updatedPass)
+            const updatedPass = await model.findOneAndUpdate({ "email": email }, { "password": newHashPassword })
+            console.log("updated is == ",updatedPass)
             return {
                 status: "OK",
                 msg: "password changed successfully",
@@ -110,19 +130,19 @@ PasswordService.resetPassword = async (email, oldPassword, newPassword) => {
             console.log("here")
             const check = bcrypt.compareSync(oldPassword, userFound.password);
             console.log(check)
-            if(check){
-                const updatedPass = await Users.findOneAndUpdate({ "email": email}, { "password": newHashPassword })
-                return{
-                    status:"OK",
-                    msg:"password changed successfully",
-                    data:updatedPass
+            if (check) {
+                const updatedPass = await Users.findOneAndUpdate({ "email": email }, { "password": newHashPassword })
+                return {
+                    status: "OK",
+                    msg: "password changed successfully",
+                    data: updatedPass
                 }
             }
-            else{
-                return{
-                    status:"err",
-                    msg:"old password is incorrect",
-                    data:null
+            else {
+                return {
+                    status: "err",
+                    msg: "old password is incorrect",
+                    data: null
                 }
             }
 
