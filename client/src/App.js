@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-
+import Login from "./login/Login";
 
 // import Button from "./components/Button";
 import Loader from "./components/Loader";
@@ -14,8 +14,9 @@ function App() {
   return (
     <div>
       {isLoading == true ? <Loader /> : <div>
-        <h1>Hello World ...</h1>
-      </div>}
+       
+        <Login/>
+    </div>}
 
  {/* <Button
           padding={"0px 400px"}
