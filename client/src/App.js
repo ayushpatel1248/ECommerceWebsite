@@ -1,20 +1,22 @@
 import React, { useEffect, useState } from "react";
-import Login from "./login/Login";
-
+import Login from "./Components/login/Login";
 // import Button from "./components/Button";
 import Loader from "./components/Loader";
+import Header from "./Components/header/Header";
+
+
 function App() {
   const [isLoading, setIsloading] = useState(true);
 
   useEffect(() => {
     setTimeout(()=>{
       setIsloading(false)
-    },2000) 
+    },100) 
   },[])
   return (
     <div>
       {isLoading == true ? <Loader /> : <div>
-       
+        <Header/>
         <Login/>
     </div>}
 
