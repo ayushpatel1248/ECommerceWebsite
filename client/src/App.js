@@ -32,7 +32,6 @@ function App() {
         /> */}
       {/* <i className="fa fa-font-awesome" aria-hidden="true"></i> */}
     </div>
-
   );
 }
 
