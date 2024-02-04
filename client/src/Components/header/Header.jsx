@@ -1,42 +1,255 @@
-import React from 'react'
-import "./header.css"
-// import Button from '@mui/material/Button';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCartOutlined';
-import Avatar from '@mui/material/Avatar';
-import { deepOrange, deepPurple } from '@mui/material/colors';
-import AccountCircleIcon from '@mui/icons-material/AccountCircleOutlined';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import TextField from '@mui/material/TextField';
+import * as React from 'react';
+import { styled, alpha } from '@mui/material/styles';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import InputBase from '@mui/material/InputBase';
+import Badge from '@mui/material/Badge';
+import MenuItem from '@mui/material/MenuItem';
+import Menu from '@mui/material/Menu';
+import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
+import AccountCircle from '@mui/icons-material/AccountCircle';
+import NotificationsIcon from '@mui/icons-material/Notifications';
+import MoreIcon from '@mui/icons-material/MoreVert';
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
+import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
+import { Link } from 'react-router-dom';
 
-const Header = () => {
+const Search = styled('div')(({ theme }) => ({
+    position: 'relative',
+    borderRadius: theme.shape.borderRadius,
+    backgroundColor: alpha(theme.palette.common.white, 0.15),
+    '&:hover': {
+        backgroundColor: alpha(theme.palette.common.white, 0.25),
+    },
+    marginRight: theme.spacing(2),
+    marginLeft: 0,
+    width: '100%',
+    [theme.breakpoints.up('sm')]: {
+        marginLeft: theme.spacing(3),
+        width: 'auto',
+    },
+}));
+
+const SearchIconWrapper = styled('div')(({ theme }) => ({
+    padding: theme.spacing(0, 2),
+    height: '100%',
+    position: 'absolute',
+    pointerEvents: 'none',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+}));
+
+const StyledInputBase = styled(InputBase)(({ theme }) => ({
+    color: 'inherit',
+    '& .MuiInputBase-input': {
+        padding: theme.spacing(1, 1, 1, 0),
+        // vertical padding + font size from searchIcon
+        paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+        transition: theme.transitions.create('width'),
+        width: '100%',
+        [theme.breakpoints.up('md')]: {
+            width: '20ch',
+        },
+    },
+}));
+
+
+export default function Header() {
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+
+    const isMenuOpen = Boolean(anchorEl);
+    const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+
+    const handleProfileMenuOpen = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleMobileMenuClose = () => {
+        setMobileMoreAnchorEl(null);
+    };
+
+    const handleMenuClose = () => {
+        setAnchorEl(null);
+        handleMobileMenuClose();
+    };
+
+    const handleMobileMenuOpen = (event) => {
+        setMobileMoreAnchorEl(event.currentTarget);
+    };
+
+    const menuId = 'primary-search-account-menu';
+    const renderMenu = (
+        <Menu
+            anchorEl={anchorEl}
+            anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+            }}
+            id={menuId}
+            keepMounted
+            transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+            }}
+            open={isMenuOpen}
+            onClose={handleMenuClose}
+        >
+            <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+            <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+        </Menu>
+    );
+
+    const mobileMenuId = 'primary-search-account-menu-mobile';
+    const renderMobileMenu = (
+        <Menu
+            anchorEl={mobileMoreAnchorEl}
+            anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+            }}
+            id={mobileMenuId}
+            keepMounted
+            transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+            }}
+            open={isMobileMenuOpen}
+            onClose={handleMobileMenuClose}
+        >
+            <MenuItem>
+                <IconButton size="large" aria-label="fav items count" color="inherit">
+                    <Badge badgeContent={4} color="error">
+                        <FavoriteBorderOutlinedIcon />
+                    </Badge>
+                </IconButton>
+                <p>fav</p>
+            </MenuItem>
+
+            <MenuItem>
+                <IconButton size="large" aria-label="cart items count" color="inherit">
+                    <Badge badgeContent={4} color="error">
+                        <ShoppingCartOutlinedIcon />
+                    </Badge>
+                </IconButton>
+                <p>cart</p>
+            </MenuItem>
+            <MenuItem>
+                <IconButton
+                    size="large"
+                    aria-label="show 17 new notifications"
+                    color="inherit"
+                >
+                    <Badge badgeContent={17} color="error">
+                        <NotificationsIcon />
+                    </Badge>
+                </IconButton>
+                <p>Notifications</p>
+            </MenuItem>
+            <MenuItem onClick={handleProfileMenuOpen}>
+                <IconButton
+                    size="large"
+                    aria-label="account of current user"
+                    aria-controls="primary-search-account-menu"
+                    aria-haspopup="true"
+                    color="inherit"
+                >
+                    <AccountCircle />
+                </IconButton>
+                <p>Profile</p>
+            </MenuItem>
+        </Menu>
+    );
 
 
 
     return (
-        <div className='headerParent'>
-            <div className='mainHeader'>
-                <div className='leftHeaderParent'>
-                    <img className='companyLogo' src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoHCBIVERgSEhIZGBIYFhoZFhgaHRYcGRwUHBoZGRkZHBwcIC4lHh8sIRoYJzgmKy8xNTg1GiQ7QDs0Py40NjEBDAwMEA8QHhISHz4oJCw3Oj8xNjs6NDQ0NjQ/MTQxNDU1NDY2NDQxNDYxNDQ0MTQ0NDQxNDQ0NDQ0NDQxNDQ2NP/AABEIAOEA4QMBIgACEQEDEQH/xAAcAAEAAQUBAQAAAAAAAAAAAAAAAQIEBQYHAwj/xABNEAACAQMCAwMGCAsDCwUAAAABAgADBBESIQUGMUFRYRMUIjJxgQdCUpGhsbLSFSM1VGJyc5KTwdEzU6MWFyQlNEOCotPh8ERjg8LD/8QAGAEBAQEBAQAAAAAAAAAAAAAAAAIBAwT/xAAtEQACAgEDAgUCBgMAAAAAAAAAAQIRMQMSIUFRBBMiYXGh8BQzUpGxwTJDgf/aAAwDAQACEQMRAD8A5FERKBBiTIgCIiAIiJgEREASJMQCIiIAiIgCIiAIMRAKYlRlMAREQBERAEREwCIiAekREoCQZMQCIgxAEREARETAIiIAkSZEAREQBERAEREASDJiAUxJMiAIiIAiIgCIiYD0iIlAREQBIMmIBESDJgCIiAIiJgCqScDcnYe2Z225QvHIVUQMdtLVKatnuwW6+E9bKgtpbrd1MG4qA+aofir0Ndh3dig9TvItK/mdI3Db31YHyWetOm2Q1U5+M24GfEzm5N4LUV1Lip8H/EVOGSnq+T5ajq8Bgt1M1m5t3pu1OopSojFWU7EMOoM2m1YcQthbuR5/RQ+bMTvWojJagTndl3Kk7ncSulWF4gqFFbiNuvpK4yLigoxlht+MQe8geEze1kbU8Gr3dnUp6PKLjWi1E8UbOk/QZbzoHG+LHiYtrS0tkNRaILOQdSNgk01bbC7AZ7SZoNWmysUYFWUkMD1DDYgyoNtc8MxqsFMREskREQBIkwYBTEmRAEREAREQD0iImgREQBERAEiTIMAREQBERAN2r8duW4dSqW9TT5uq0K6aabYA2p1AWUnBHokZwCJbcU5kvKZp1aNULTqoHUaKTaWHouuWQnZh9MxfAvLUnDmhUehUQrUAVir0m64OMbdQe8TYaHLq1LU2/l19GrrosyVQQrDDqw0ZB9U+2eZ7Ivk6+por5U5p4jXulWpcjyKBqtYinbjFGmNTbhMjOw239KevD+artkr31api2QstKnppDVWfJWnqC5woOSc52HfLvh/KZo2lxSW6TytfQhfTWwtAHU4xo3LEKPYJrPM1Kqxp21vb1vNbddNMmm41sd3qsCOrH5gJnok6+6C3RRrdncvTcVKbFHGdLLsRkFTj3EzyAkxPSchERAEREAREQAZTKpBgEREQBERAPSIiaBERAEREAREQCDEmQRAEveE8JrXNTyVFctjJJ2VV72PYI4Tw2pcVRTpjc+sx9VV7Wb/zebvxLilHhlv5ta4a5YZdzjIOPWbx7l7Pr46mpT2x5f3kuMerwbyPOnpohpUwyoqnFRsbADb8XPTh1rdof7ND/wDIw/8AznDjx68Jybqrk/pv/IyocfvPzqr++/8AWeX8JLNo7eej6K8rdEf2FP8Ait/054VUuz0pU/4rf9OfPv8AlDe/ndb99/vQOYr787rfvv8Aeh+Eb7E+dRd828vXVpXZrhFC1GZ1ZCWQ5JYqDgbjPQgTAGdV5T5opX9E8N4nh3banUOAWPxckeq47G7enXrpPNvLNWxraH9Kk2fJVMbMvce5h2iemE3e2Wf5Oco8WsGAiInYgREQBERAEREAgyJVIgEREQD1kGTE0EREQBERAEREAS64dYPXqCmgyT1PYq9pJ7pRZWz1aiUk9d2Cj+p8B1903TiFzR4bR8jRw1ywyWP2m8OuFnHU1GvTHlv7suMb5eBe39Lh1DyFDDXDDLMeoPym/ks0So7Oxd2LOxySdySe0yXdnYu5LMxySepJlxw7h9SvUWlSXU7fMB2sT2Ad8QgoJtvnqw25OkW9OmWIVQSx6AAkn2ATKUuWb5gCtrUIP6Df0nQeEcHo2adRqAzUqHb29fVUd385fWvP3DkODVY47Qjke7acX4mUn6I2jp5SS9To5r/kjxH8zq/uN/SYq6tKlNtFWm6P8l1ZT8zCdyHwmcLxjyr/AMN/6TI8SsrTidqMkVKbjNOovrq3epO4I7VPsImfiJRfrjSM8pPDPncHByOo6e2dU5U5ko8Qofg3iO9QjFNzsWIHo79lQdh7fr5/zFwKtZVzRqjI6o49V1+UP5js+YnFqxByDgg5BHUEdDmd5RWpG0/hkJuLM1zVy3Wsa3k39Km2TTqY2ZfHuYdomDnV+WeP0eJ0PwdxAZrY/Fv0LEDZgeyoB+8M+InPOY+DPZ3TW7nOnBVvlId1bHZ7O8GZp6jb2yyvr7iUVW5YMXEROxAiIgCIiAIMRAIxEmIBXERNAkSYgETJWXArutTarRt3emudTKpIyBkgdp92ZuvwecLsnt2qVaaVq3lArq+ginT2w+l2A041EtufRwJmLSzosaApJVpeQqtcIipXCuuWDohYY9JqaMAT6tQ9gnCWtTaSLjCzkAMTZLrlS9eo7lEVnZm0eVo6gWJbGNfjMLfcPrUG0VqTIx6BhjI8D0PunRST6mNNdC+5S/26j+sfstPTnbfiD/qp9gTz5S/26j+sfstKudfyhU9ifYWcn+cvj+y/9f8A0w6KSQAMk7ADqT2ATtXAOAU7G19LAqldVdz3gZK57FX/ALzlnKNJX4hbqwyPLIfmYEfVOo/CdVZeH1NJxqZVP6pYZHvnLxMnKUYLqXopKLl2Ob83cyG5c06RItwfexHxj4dwmthYUbSZ6YQjGO2JxlJydsYmy8m811LGp0LW7H8Ynj01LnowHz9O7GtRibKMZLbIxNp2jc/hA5tpXwp06CMERixZwAdRGNIAJ2mmRiIhCMI7Y4DbbtmY5QOOI22P7+n9oTO/C3+Uh+wT63mC5R/KFt+3p/bEzvwt/lIfsE+t5xf5y+C1/g/k0qRLizs6lVwlKmzufiqCT7dug8Zmf8jL3oURSR6rVaIb90vO0pJcNkKLeDHvwK7W3Fy1u4oEAioVOnB2B78ePSY6dgqWiEvVuUrM9e2RGt0So2kUlJdAyAqFdqaKpHyyZYc48LsFsDUWjTouoTyT09A8oxCkqAGLEDLA6hqBTM5R1ueUW4HLokLJnc5iIiAIiIBXERNAiIgGe5Nr29O68pXdU003NJ3RnVa+AEYqOuPSIHeB4TZ7fiovKht6dSvUtqKNVqO7kV7ipsirnP4tSXA0jsznw51L3hHE6ltVFWnjOCrKwyrI3rKw7QdvmE5T075WSoyo2vjQNumqrYWL0C5Q+S16kcfENTZtWx33GxnnY16VSmVpM1S2xmtaVDqqU1/vKDdW09cDfvEw/MfNVxeKqOFRFOdK6zlsYyxYknqce0zEWdy1KotSm2HRsqfHx8Oz3yVBuPOS3JXxgzvCLE0OKpRJzpc6W7GUoxVh7QRLbnX8oVPYn2Fmy3WhuIWNwi4SrTyB3aQ23u1Ae6a3zqP9YVP1U+wsiDvUTfb+zWqi17jkv8pW37VfrnS/hT/J7/tE+1OQ2F21KqlVfWRlce1WDY9hxidwvzQv7PY5pVVzkY1K3X3MrDp4Tn4j0zjN4L0eYSj1ODL0l1wyzNavTog4LuiZ7tTBc+7OfdPfjXCaltVNOpuOqsPVZe8ePeOyWltcPTqJUQ4dGV1PcykMPpE9d7o3E89U6Z9CWnJ3DaVJV81pNgYL1FVmY95J7TD8t8N/M7b9yn/Sck5p59ub23W3amiJkM5XVlmXp16DO+N/bNc4Rwmtc1lo0V1O3zBe1mPYo7T/ANs+TyJtXKVHbzI3SVncrnlbhzqV80ogHbKKqsPYy7gzi3M/CvNbt6AbUqkFSeukgEZ8d8e6dn4Hwejw+0KaxhcvVqHYFsbt4KAMATi3MvE/ObyrXGdDNhQfkKAq/QAffI8JKbnLm4laqW1cUz15R/KNt+3T7Ymx/CdbPV4vTpIMu9Okqj9JmYD65rnKA/1jbft6f2hOk8Qt1bmNGb1aVr5QnuCh1z/zCdtR7dW/YiKuFe5g7tadtS8marULNSV/F4FzeVV2dwT6tLOQD0wNszHcJrrX1+bWFolBMF3udTnc4Gpzvk4J2HYZrXHuJtc3DVW9XOlF7FpLsiAdgA+nMueXuYa1m7NS0srgBkbOk4zgjBBB3O47zL2PbayTuV+xt91fmwZdSuttX1JWpU6jaqNWmR6du+cgYcMFO2+D4a7zte29ZqL0q3lquhhVqFSjsA34suD1cLkEjrgeExvHuN1bt1aoFVVBCoudI1HLHckkk9ST2CYubpwapvJjlfCAiInYgREQBERAK4iJoEREATYjyddZ0hqBqf3YrUjUHhpz18MzXZTpHdJafRmqupsnL3CsXbJdUW1U6VSoKTqRrZQMKQfWG5bbrpmV52u7N6A0Gk1XWPJNTKkmlvkvpUBc7eic4MxnBOa6lJkFceWpo2V1HNROw6GO+4yCp2IONpb8ycLRW86tTqtKhypA/s27abj4pB6Z7PZOLi3NOXHbsdLSi6Ls3brw+1uFA10K9RBnphvSwfAjaZPiVtS4jRFxQ9G4UYZSf+U/Thv/AAYfl9PL2lzaD1yFrUh3uuzAe0aR75huF8RqUKgdDgjZlPRl7VYSXBtuuGnx8ZN3cK8MtnRlYqwIYHBB2II7CJneV+Y3tKh6tQc+mn0a17mH09Jnb/h1LiFHzi2wtwowynAJI+K3j3HtmiuhUlWBVgcEEYIPaCJacdWLjJfKIacHaOtX1tb3tIb6qbjKOOqt3juI6Ee6YOh8GNZz6N0mOzKtnHzzUeFcar27ZpN6JOSrbqT347D4ibRb/Cbcpj/R6R97/wBZwWlrafEHwdXOEuZLkyP+aKv+d0/3Hm88vcu23DrdsMNWNVas2FyBv/woO739ZoX+dy6xjzWj89T+s1rmLnK9vF0VXVKXUpTBVSfHJJb3mJaWtqcTdIxShHlZL7nvnFrtzRokraqfYajD4zeHcPf1mnqvYBCr2CdS5R5Xo2ND8JcRwrKNVNG6qTupKnrUPYvZ7ena46MaS+F3Ofqm7ZPKfL1Lh9D8JcQOlwuadPtXI227ah6AdmfbjG2XGnufwlxB1C/6L5GmPkrUbSFz37Zz3ma3zbzPVvq2tvRpKT5NOxV7z3se0+6ZO/p+a8ESk21W8qiqQeooIBo+c6T/AMRkKDzLL+iK3LCwj0+D65tUFU1BS84yug1WVU8nvqCsysA2cHpkgTw50sKTVaNS1p5NcVPRRfXC1CqVFRRtqHdscZAGZiuXeDG4cs7eTtafpV6p2VV+SD2segHXtmW4/wA4ZYpYJ5GmEFMVMYqtTUYVQfiJ+iN9yScynFrUtc9+wTW3kx45SuhgOaVNz0SpVpo5PdpJz8+JhbikyOyMMMjFWGx9JTg7jY9J5Hcksck75PUnvMkCd0mss5uuhESZE0wREQBERAK4iJoEREAREQBL7hfFKlAtpAemwxUpuMo69zDv7iNxLGJjSapmp1g2G0pUjVWtY1RTqqc+RqtjftCP0cHcYODvLrjPAzWY1qSGnWO9Sg3o5btam3qsD12Pb2TUyJeWvFbmmMJWcL8nOpf3WyJycJXcXyUpKqaPbh17Xs6wcKyMNmVgQGXtBH85uPFOE0uJUPO7TAuFGHQ4BY/Jb9LHQ9CJrg5tuSNNSnSqL3OmfqInvYc4GixelZ0EYjBKa1BHiAcGRKM7tKmWpRXDfBhTwi6BwbarkdfxdT7skcHuvzat/Dqfdm1L8Jt4P9xR/wAT789V+Fa9H+4o/wCJ9+bu1f0r9yah3NR/At3+a1v4VX7sn8CXf5rW/hVfuzcl+Fy+H/p6H+J9+Sfhdvvzeh/iffm7tX9K/cyo9y/5R5Up2VI8S4nhCgzTpsMlT8Ule1yfVXs9vTT+aeYrjiVx6KN5JTilRUFiAdtRC+s57T7hMtxH4RalcKLiwt6mndQ/lCoPfpLYzPCl8IlzTXTb21tQH/t0sf8A2kxjO90lb+iKbVUnwXXL/JTIVr31NiBhktkGqtUbsDKPUTOMkkeOJ58w0VqXBueKV1p7AU7WiVeqqD1UOPQpjvJPUnYbTA8R5s4hXyKl0+k9VQ6V94TGffmYTEtQk3cmS5JKkZfjHHGrotGmgo2qHKUl6Z+U7dXc/KMxIEROiSSpEt2IiJpgiIgEREQBERAK4kyJoEREAREQBKlQnoCfZKZn+T2Pl6g1EDzeqT17FGDt3byZOk2VFW6MCykHBGDJWmx3Ck+wGZTivEKb0aNJSztTD6qrDBYMchRkk6R4y84PUxw+51O6gVKOCu5GSeg1DGfbJc2lddQopurNdZSDgjBlXk2xnScd+OyXHEqru6tUznQgVj6zIBhGbc7kYm3cJy1Oy/GsGArsEGfxmlgdGScZxtgzJ6m2nRsY26NGnp5F/kn5jK7xw1V2C6QXY6emnJJ0+7pNk4rftTS1daja/NaZ07lWzqB1ekM7Z7DKcmqpZMUU7NVVSdgMmTobfY7dfD2zKcqti9ob4GoA+Iwdj9EkVHDXWWYeiwbc9fKooB8cZHszDlToKNqzEqpPQZhVJ2AzMry1ceTuVfqFV2I7wqM2D3jabJwuwp0b3WhBSsGNDwpshdj7jpX3mTPU2tquhUYWjRCpzjG/85WaLjcqcewyNR9Yk6uue3PXOe+bbzFcutbFN2LtbqGTGUKGmdbH0uuMnp2SnJppEqNps1CIiWSIiJgEREASJMQCIiIB6RETQREmRAEREAS4tL2pSJNN9JYYJAU5Xu3HSW8Q0nkJ0S7Ekk9Scnp190urfiNZENNKmEJyVwhBI6E5G8tIhpPJqdFzXarV1VXy2MKzbADAwBt4Y2EuDdXWUp6mzTw6D0Ro2DBgQNhgg9e0ZlpTuXVGpgjS/rbDJxg9fdK2vqhbVtkpobYekuAMN3+qvzSGvY2ya61ndnqAlgTrJAHpAZII2ycDpK7m4uKoRXJYH0aeQo6HTpUgDoTjHjPP8IVPSy2dZJbIB9JhpYjuJB+qU+ePpRcjCHK7DY4x9OBmKfYWjzZHRhkFWGCOwg9h8Dn6pfXb3TnRU1FmJJHogsUyGLEY1EYO5zLKvcO7anOWwBntOBgZ7z4z3fiNQuHJGoa8bfLzq+szWmLQtlrpqqUwRpyjsApx0yN89438Z6LeXNIowdlITCH0ThD6WB1wDrz754LeOEdBgI5ywwMZ26d2MCUV67PjVj0VCggYOkAKAfYAJlXlC6weZqHVq+NnVnA65z06S9qcZuWzqqk6l0E4XJUjGnOM4xtLCJtJ5MTZEQYlGCIiAIiJgEREAREQCuIiaBIkxAIiIgCIiAIiIAiIgERJkQBERAEREAREQBIMmIBEQREAREQBERMAiIgFcRE0CIiAJBkxAIiIgCIiAIiIAiIgERJkQBERAEREAREQBIkxAIiIgCIiAIiJgK4iJQEREwCIiAQYiIAiIgCIiAIiIAkGIgCIiAIiIAiIgCIiAQYiIAiIgCIiAf/Z" alt="" srcset="" />
-                </div>
-                <div className='d-flex rightHeaderParent'>
-                    {/* <TextField id="outlined-basic" label="SEARCH" variant="outlined" /> */}
-                    {/* <SearchIcon fontSize='large' variant="outlined"/> */}
-                    <div className='d-flex align-item-center'>
-                        <div className="search-container">
-                            <input type="text" id="search-bar" placeholder="search your fav perfume?" />
-                            <a href="#"><img class="search-icon" src="http://www.endlessicons.com/wp-content/uploads/2012/12/search-icon.png" /></a>
-                        </div>
-                    </div>
-               
-                    <FavoriteBorderIcon fontSize='large' variant="outlined" />
-                    <ShoppingCartIcon fontSize='large' variant="outlined" />
-                    {/* <Avatar sx={{ bgcolor: deepOrange[500] }}>N</Avatar> */}
-                    <AccountCircleIcon fontSize='large' variant="outlined" />
-                </div>
-            </div>
-        </div>
-    )
-}
+        <Box sx={{ flexGrow: 1 }}>
+            <AppBar position="static" sx={{ backgroundColor: 'rgba(21, 105, 206, 0.8491596467688638)' }}>
+                <Toolbar>
+                    <IconButton
+                        size="large"
+                        edge="start"
+                        color="inherit"
+                        aria-label="open drawer"
+                        sx={{ mr: 2 }}
+                    >
+                        <MenuIcon />
+                    </IconButton>
+                    <Typography
+                        variant="h6"
+                        noWrap
+                        component="div"
+                        sx={{ display: { xs: 'none', sm: 'block' } }}
+                    >
+                        PeRfUmE
+                    </Typography>
 
-export default Header
+                    <Box sx={{ flexGrow: 1 }} />
+                    <Search>
+                        <SearchIconWrapper>
+                            <SearchIcon />
+                        </SearchIconWrapper>
+                        <StyledInputBase
+                            placeholder="Search…"
+                            inputProps={{ 'aria-label': 'search' }}
+                        />
+                    </Search>
+                    <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+                        <IconButton size="large" aria-label="show 4 new fav" color="inherit">
+                            <Badge badgeContent={4} color="error">
+                                <FavoriteBorderOutlinedIcon />
+                            </Badge>
+                        </IconButton>
+                        <Link to="/cart" className='colorWhite' >
+                            <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+                                <Badge badgeContent={4} color="error">
+                                    <ShoppingCartOutlinedIcon />
+                                </Badge>
+                            </IconButton>
+                        </Link>
+                        <IconButton
+                            size="large"
+                            aria-label="show 17 new notifications"
+                            color="inherit"
+                        >
+                            <Badge badgeContent={17} color="error">
+                                <NotificationsIcon />
+                            </Badge>
+                        </IconButton>
+                        <IconButton
+                            size="large"
+                            edge="end"
+                            aria-label="account of current user"
+                            aria-controls={menuId}
+                            aria-haspopup="true"
+                            onClick={handleProfileMenuOpen}
+                            color="inherit"
+                        >
+                            <AccountCircle />
+                        </IconButton>
+                    </Box>
+                    <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
+                        <IconButton
+                            size="large"
+                            aria-label="show more"
+                            aria-controls={mobileMenuId}
+                            aria-haspopup="true"
+                            onClick={handleMobileMenuOpen}
+                            color="inherit"
+                        >
+                            <MoreIcon />
+                        </IconButton>
+                    </Box>
+                </Toolbar>
+            </AppBar>
+            {renderMobileMenu}
+            {renderMenu}
+        </Box>
+    );
+}
