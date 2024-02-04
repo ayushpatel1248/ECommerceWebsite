@@ -1,36 +1,28 @@
 import React, { useEffect, useState } from "react";
-import Login from "./login/Login";
+import Login from "./Components/login/Login";
+import Loader from "./Components/Loader";
+import Header from "./Components/header/Header";
+import { Route, Routes, BrowserRouter } from "react-router-dom";
+import Register from "./Components/register/Register";
 
-// import Button from "./components/Button";
-import Loader from "./components/Loader";
+
 function App() {
   const [isLoading, setIsloading] = useState(true);
 
   useEffect(() => {
-    setTimeout(()=>{
+    setTimeout(() => {
       setIsloading(false)
-    },2000) 
-  },[])
+    }, 1000)
+  }, [])
   return (
-    <div>
-      {isLoading == true ? <Loader /> : <div>
-       
-        <Login/>
-    </div>}
+    <BrowserRouter>
+      <Routes>
+        <Route   path="/login" element={isLoading == true ? <Loader /> : <div> <Login/></div>} />
+        <Route   path="/register" element={isLoading == true ? <Loader /> : <div> <Register/></div>} />
+      </Routes>
+    </BrowserRouter>
 
- {/* <Button
-          padding={"0px 400px"}
-          color={"white"}
-          fontWeight={"900"}
-          fontSize={"60px"}
-          borderRadius={"40px"}
-          fontFamily={"Noto Serif"}
-          background={"linear-gradient(90deg, hsla(312, 66%, 76%, 1) 0%, hsla(234, 93%, 67%, 1) 100%)"}
-          value={"sumbit"}
-        /> */}
-      {/* <i className="fa fa-font-awesome" aria-hidden="true"></i> */}
-    </div>
-
+    //checkout readme once ....
   );
 }
 
