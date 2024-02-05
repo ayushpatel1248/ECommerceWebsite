@@ -17,6 +17,7 @@ import MoreIcon from '@mui/icons-material/MoreVert';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -62,6 +63,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 export default function Header() {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+    const [searchInput, setSearchInput]= useState(null);
 
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -168,6 +170,7 @@ export default function Header() {
 
 
 
+
     return (
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static" sx={{ backgroundColor: 'rgba(21, 105, 206, 0.8491596467688638)' }}>
@@ -198,6 +201,7 @@ export default function Header() {
                         <StyledInputBase
                             placeholder="Search…"
                             inputProps={{ 'aria-label': 'search' }}
+                            onChange={(e)=>setSearchInput(e.target.value)}
                         />
                     </Search>
                     <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
@@ -250,6 +254,7 @@ export default function Header() {
             </AppBar>
             {renderMobileMenu}
             {renderMenu}
+            <h1>{searchInput}</h1>
         </Box>
     );
 }
