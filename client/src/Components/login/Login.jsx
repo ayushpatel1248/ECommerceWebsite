@@ -68,6 +68,7 @@ const Login = () => {
                         onChange={(e) => { setPassword(e.target.value) }}
                     ></input>
                     <div className='showPass'><input type="checkbox" onChange={(e) => { e.target.checked == true ? setShowHidePass("text") : setShowHidePass("password") }} /><label> show password</label></div>
+                    <div className="forget-password"><Link to={"/forget-password"}>~Forget Password </Link></div>
                     <div className="form--marketing">
                         <label htmlFor="okayToEmail" className="checkbox">
                             Create a new account -
