@@ -11,7 +11,7 @@
 }
 
 .left-child {
-  background: linear-gradient(90deg, rgba(21, 105, 206, 1) 0%, rgba(21, 105, 206, 0.8491596467688638) 4%, rgba(249, 249, 249, 0.036834716796875) 96%, rgba(21, 105, 206, 0) 100%);
+  background: linear-gradient(90deg, rgb(102 ,51 ,153 ,1) 0%, rgba(102, 51, 153, 0.8491596467688638) 4%, rgba(249, 249, 249, 0.036834716796875) 96%, rgba(21, 105, 206, 0) 100%);
   width: 50%;
   display: flex;
   justify-content: center;
@@ -148,7 +148,7 @@ input[type="checkbox"] {
   .container {
     justify-content: center;
     align-items: center;
-    background: linear-gradient(180deg, rgba(21, 105, 206, 1) 0%, rgba(21, 105, 206, 0.8491596467688638) 4%, rgba(249, 249, 249, 0.036834716796875) 96%, rgba(21, 105, 206, 0) 100%);
+    background: linear-gradient(180deg, rgba(102, 51, 153, 1) 0%, rgba(102, 51, 153, 0.8491596467688638) 4%, rgba(249, 249, 249, 0.036834716796875) 96%, rgba(21, 105, 206, 0) 100%);
   }
 }
 @media screen and (min-width:541px) and (max-width:737px){
