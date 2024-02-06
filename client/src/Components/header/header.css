@@ -1,38 +1,104 @@
-*{
+* {
     padding: 0px;
     margin: 0px;
 }
 
-.mainHeader{
+.mainHeader {
     display: flex;
     height: 10vh;
+    width: 100%;
     align-items: center;
-    background: linear-gradient(90deg, rgba(21,105,206,1) 0%, rgba(21,105,206,0.8491596467688638) 4%, rgba(249,249,249,0.036834716796875) 50%, rgba(21,105,206,0) 100%);
+    background: linear-gradient(90deg, rgba(21, 105, 206, 1) 0%, rgba(21, 105, 206, 0.8491596467688638) 4%, rgba(249, 249, 249, 0.036834716796875) 50%, rgba(21, 105, 206, 0) 100%);
     /* background: url(data:image/jpeg;base64,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); */
-    box-shadow: rgba(0, 0, 0, 0.55) 0px 29px 20px -20px;
-    
-
+    box-shadow: rgba(130, 94, 94, 0.55) 0px 29px 20px -20px;
+    position: fixed;
 }
-.d-flex{
+
+.d-flex {
     display: flex;
 }
 
-.companyLogo{
+.colorWhite{
+    /* color: white !important; */
+     color: white;  
+}
+
+.align-item-center{
+    align-items: center;
+}
+
+.companyLogo {
     /* height: 5.5em; */
     height: 9vh;
     border-radius: 50%;
     box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
 }
 
-.leftHeaderParent{
+.leftHeaderParent {
     width: 50%;
     padding-left: 1%;
 }
 
-.rightHeaderParent{
+.rightHeaderParent {
     align-items: center;
     width: 50%;
-    justify-content: right;
-    gap: 3%;
+    justify-content: end;
+    gap: 5%;
     padding-right: 2%;
+    height: 100%;
+}
+
+
+
+/* search bar  */
+
+
+.search-container {
+    width: 15vw;
+    display: block;
+    margin-right: 10%;
+    height: 100% !important;
+    /* margin-top: 8%; */
+    position: relative;
+    top: 2.3em;
+}
+
+input#search-bar {
+    width: 100%;
+    height: 45px;
+    padding: 0 20px;
+    font-size: 1rem;
+    border: 1px solid #D0CFCE;
+    outline: none;
+    border-radius: 20px;
+
+    &:focus {
+        border: 1px solid #008ABF;
+        transition: 0.35s ease;
+        color: #008ABF;
+
+        &::-webkit-input-placeholder {
+            transition: opacity 0.45s ease;
+            opacity: 0;
+        }
+
+        &::-moz-placeholder {
+            transition: opacity 0.45s ease;
+            opacity: 0;
+        }
+
+        &:-ms-placeholder {
+            transition: opacity 0.45s ease;
+            opacity: 0;
+        }
+    }
+}
+
+.search-icon {
+    position: relative;
+    float: right;
+    width: 75px;
+    height: 75px;
+    top: -62px;
+    right: -45px;
 }

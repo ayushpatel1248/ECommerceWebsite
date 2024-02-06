@@ -1,9 +1,9 @@
-import React from 'react'
-
+import React, { useEffect } from 'react'
+import Header from '../header/Header'
 const Products = () => {
   return (
     <div>
-      products
+      <Header/>
     </div>
   )
 }
