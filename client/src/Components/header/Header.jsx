@@ -246,7 +246,6 @@ export default function Header() {
             </AppBar>
             {renderMobileMenu}
             {renderMenu}
-            <h1>{searchInput}</h1>
         </Box>
     );
 }
