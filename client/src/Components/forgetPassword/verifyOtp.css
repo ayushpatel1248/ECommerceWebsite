@@ -1,0 +1,134 @@
+.box{
+    display: flex;
+  justify-content: center;
+  margin-top: 150px;
+}
+
+
+.form {
+    width: 326px;
+    height: 380px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 15px;
+    background-color: white;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    transition: .4s ease-in-out;
+  }
+  
+  .form:hover {
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+    scale: 0.99;
+  }
+  
+  .heading {
+    position: relative;
+    text-align: center;
+    color: black;
+    top: 3em;
+    font-weight: bold;
+  }
+  
+  .check {
+    position: relative;
+    align-self: center;
+    top: 4em;
+  }
+  
+  .input {
+    width: 2.5em;
+    height: 3.5em;
+    margin: 0em 1em;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    background-color: rgb(235, 235, 235);
+    box-shadow: inset 3px 3px 6px #d1d1d1,
+              inset -3px -3px 6px #ffffff;
+    padding-left: 15px;
+    transition: .4s ease-in-out;
+  }
+  
+  .input:hover {
+    box-shadow: inset 0px 0px 0px #d1d1d1,
+              inset 0px 0px 0px #ffffff;
+    background-color: lightgrey;
+  }
+  
+  .input:focus {
+    box-shadow: inset 0px 0px 0px #d1d1d1,
+              inset 0px 0px 0px #ffffff;
+    background-color: lightgrey;
+  }
+  .submit-back-div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    margin-top: 23px;
+  }
+  .counting{
+    margin-top: 15px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  color: red;
+  font-size: smaller;
+}
+.resend-otp{
+  color: blue;
+  border: none;
+  background-color: transparent;
+}
+.resend-otp-disable{
+  color: grey;
+  border: none;
+  background-color: transparent;
+}
+  
+  .btn1 {
+   
+    width: 17em;
+    height: 3em;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    transition: .4s ease-in-out;
+    box-shadow: 1px 1px 3px #b5b5b5,
+               -1px -1px 3px #ffffff;
+  }
+  
+  .btn1:active {
+    box-shadow: inset 3px 3px 6px #b5b5b5,
+              inset -3px -3px 6px #ffffff;
+  }
+  
+  .btn2 {
+   
+    width: 17em;
+    height: 3em;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    transition: .4s ease-in-out;
+    box-shadow: 1px 1px 3px #b5b5b5,
+               -1px -1px 3px #ffffff;
+  }
+  
+  .btn2:active {
+    box-shadow: inset 3px 3px 6px #b5b5b5,
+              inset -3px -3px 6px #ffffff;
+  }
+  .verify-otp{
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    align-items: center;
+  }
+  .icon{
+    
+    font-size: 21px;
+  }
+  .submit-back-div{
+width:100% ;
+  }

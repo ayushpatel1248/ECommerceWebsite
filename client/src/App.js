@@ -7,6 +7,7 @@ import Register from "./Components/register/Register";
 import Products from "./Components/product/Products";
 import ForgetPassword from "./Components/forgetPassword/ForgetPassword";
 
+
 function App() {
   const [isLoading, setIsloading] = useState(true);
 
@@ -24,6 +25,7 @@ function App() {
         <Route   path="/register" element={isLoading == true ? <Loader /> : <div> <Register/></div>} />
         <Route   path="/forget-password" element={isLoading == true ? <Loader /> : <div> <ForgetPassword/></div>} />
         <Route path="/header" element={isLoading == true ? <Loader /> : <div> <Header /></div>} />
+       
  
       </Routes>
     </BrowserRouter>

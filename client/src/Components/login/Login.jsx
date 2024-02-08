@@ -21,7 +21,7 @@ const Login = () => {
         email: string().trim().matches(/^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/, "email should be correct").required("email is required field"),
         password: string().required("password is required field")
     })
-    const notify = (mes) => toast.error(mes,);
+    const notify = (mes) => toast.error(mes);
     const sumbitLoginHandle = async () => {
         try {
             await loginSchema.validate({ email, password })

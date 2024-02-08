@@ -6,7 +6,7 @@ const userLoginDataSlice = createSlice({
     reducers:{
         addData(state , action){
             state = action.payload;
-            console.log(state)
+            console.log("userLoginDataSlice",state)
         }
     }
 })
