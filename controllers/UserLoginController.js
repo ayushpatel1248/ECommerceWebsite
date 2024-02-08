@@ -38,7 +38,7 @@ UserLoginController.login = async (req, res) => {
     } else {
         res.send({
             status: "err",
-            msg: "enter valid mail ....ehehe",
+            msg: "user not exist with entered mail ",
             data: null
         })
     }

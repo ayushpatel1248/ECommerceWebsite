@@ -72,7 +72,7 @@ PasswordService.otpForforgotPassword = async (email, role) => {
     catch (err) {
         return {
             status: "err",
-            msg: "error occured",
+            msg: "error occured in password service",
             data: err
         }
     }
