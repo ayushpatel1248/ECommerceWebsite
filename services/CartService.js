@@ -1,3 +1,4 @@
+const e = require('cors');
 const Cart = require('../model/Cart');
 const Products = require('../model/Products')
 
@@ -5,13 +6,15 @@ const CartServices = {}
 
 CartServices.addToCart = async (userid, items) => {
     try {
+        console.log("inside add to cart")
         const { productid, quantity } = items[0];
+        console.log("below item")
         console.log(productid)
         console.log(items)
 
         // checking wheather item is available 
         const isItemAvailble = await Products.findOne({ "_id": productid });
-        console.log("is item available = " , isItemAvailble)
+        console.log("is item available = ", isItemAvailble)
         if (!isItemAvailble) {
             return {
                 status: "ERR",
@@ -83,33 +86,52 @@ CartServices.addToCart = async (userid, items) => {
 
 CartServices.viewCart = async (userid) => {
     try {
-        const isCartAvailble = await Cart.findOne({ userid });
-        console.log("cartdata = ", isCartAvailble)
-        if (isCartAvailble) {
-            return {
-                status: "OK",
-                msg: "cart data send successfully",
-                data: isCartAvailble.items
-            }
-        }
-        else {
+        // Fetch the cart data
+        const isCartAvailable = await Cart.findOne({ userid });
+
+        if (!isCartAvailable) {
+            // If cart is not available, return error
             return {
                 status: "err",
-                msg: "no cart available / cart is empty",
+                msg: "No cart available / cart is empty",
                 data: null
-            }
+            };
         }
-    }
-    catch {
+
+        // Fetch product details for each item in the cart
+        const itemsWithProducts = await Promise.all(isCartAvailable.items.map(async (el) => {
+            const product = await Products.findOne({ "_id": el.productid });
+            console.log("we are here ", product)
+            return { ...el.toObject(), "product": product };
+        }));
+
+        if (itemsWithProducts.length === 0) {
+            console.log(itemsWithProducts)
+
+            // If no products found for items in the cart, return error
+            return {
+                status: "err",
+                msg: "No products found for items in the cart",
+                data: null
+            };
+        }
+        console.log(itemsWithProducts)
+
+        // Return cart data with product details
+        return {
+            status: "OK",
+            msg: "Cart data sent successfully",
+            data: itemsWithProducts
+        };
+    } catch (error) {
+        console.error(error);
         return {
             status: "500",
-            msg: "server error",
+            msg: "Server error",
             data: null
-        }
+        };
     }
-
-
-}
+};
 
 
 
@@ -165,7 +187,7 @@ CartServices.updateCart = async (userid, productid, updation) => {
 
         const updateQuantity = updation == "inc" ? 1 : -1;
 
-        const updatedCart = await Cart.findOneAndUpdate(cartDetail, { $inc: { "items.$.quantity": updateQuantity } })
+        const updatedCart = await Cart.findOneAndUpdate(cartDetail, { $inc: { "items.$.quantity": updateQuantity } } , {runValidators: true })
         console.log("updated cart = ", updatedCart)
 
         if (!updatedCart) {

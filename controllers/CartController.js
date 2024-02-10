@@ -8,6 +8,7 @@ CartController.addToCart = async (req, res) => {
     const { items } = req.body;
     const { authorization } = req.headers;
     const userid = verifyAuth(authorization)
+    console.log("userid =" ,userid)
     if (userid) {
         const result = await CartServices.addToCart(userid, items);
         console.log(result)

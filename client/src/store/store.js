@@ -5,6 +5,7 @@ const store = configureStore({
     reducer :{
         example : exampleSlice,
         userLoginData : userLoginDataSlice
+        // cartData : cartDataSlice
         //and more reducer are add here...
     }
 })

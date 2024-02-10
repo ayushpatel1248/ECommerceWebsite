@@ -8,14 +8,20 @@ PasswordController.otpForforgotPassword = async (req, res) => {
     const result = await PasswordService.otpForforgotPassword(email, role);
     res.send(result);
 }
+//----------------------------------------------------------------------------------
+
+PasswordController.verifyOtp = async (req, res)=>{
+    const {otpToBeVerified,  email, role} = req.body;
+    const result = await PasswordService.verifyOtp(otpToBeVerified, email, role)
+    res.send(result);
+}
 
 // ---------------------------------------------------------------------------
 
-PasswordController.verifyOtpAndSetPassword = async (req, res)=>{
-    const {otpToBeVerified, newPassword, email, role} = req.body;
-    console.log(role)
-    console.log({otpToBeVerified, newPassword, email})
-    const result = await PasswordService.verifyOtpAndSetPassword(otpToBeVerified, newPassword, email, role);
+PasswordController.SetPassword = async (req, res)=>{
+    const {verifier} = req.headers;
+    const {newPassword, role} = req.body;
+    const result = await PasswordService.SetPassword(verifier, newPassword, role);
     res.send(result);
 }
 

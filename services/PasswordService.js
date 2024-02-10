@@ -2,10 +2,12 @@ const Users = require("../model/Users")
 const Admin = require("../model/Admin")
 const bcrypt = require('bcrypt');
 var nodemailer = require('nodemailer');
+const jwt = require('jsonwebtoken');
 
 const PasswordService = {};
 
-const saltRounds = 10;
+var SECRET_KEY = "hehehehe"
+const saltRounds = 10
 
 
 // transporter for sending mail 
@@ -18,8 +20,21 @@ const transporter = nodemailer.createTransport({
 });
 
 
+const decryptAuth = (token) => {
+    try {
+        const { email } = jwt.verify(token, SECRET_KEY);
+        console.log(jwt.verify(token, SECRET_KEY))
+        return email;
+    }
+    catch (err) {
+        return null;
+    }
+}
+
+
 // ----------------------------------------------for sending otp  for new password--------------------------------------------------
 var otp;
+
 
 PasswordService.otpForforgotPassword = async (email, role) => {
     try {
@@ -54,7 +69,7 @@ PasswordService.otpForforgotPassword = async (email, role) => {
             // from below code otp will automatically expire after 20 seconds
             setTimeout(() => {
                 otp = `${Math.random().toString().substr(2, 6)}`
-            }, 40000);
+            }, 4000000);
             return {
                 status: "OK",
                 msg: "otp send successfully",
@@ -79,9 +94,47 @@ PasswordService.otpForforgotPassword = async (email, role) => {
 }
 
 
-PasswordService.verifyOtpAndSetPassword = async (otpToBeVerified, newPassword, email, role) => {
+PasswordService.verifyOtp = async (otpToBeVerified, email, role) => {
+    console.log("inside varify otp")
+    let model = null;
+    try {
+        if (role == "Admin" || role == "admin") {
+            model = Admin
+        }
+        else if (role == "Users" || role == "users" || role == "user") {
+            model = Users
+        }
+
+        if (otp == otpToBeVerified) {
+            const token = jwt.sign({ email }, SECRET_KEY);
+
+            return {
+                status: "OK",
+                msg: " otp varified successfully successfully",
+                data: { "verifier": token }
+            }
+        }
+        else {
+            return {
+                status: "err",
+                msg: "wrong otp",
+                data: null
+            }
+        }
+    }
+    catch (err) {
+        return {
+            status: "err",
+            msg: "server error",
+            data: null
+        }
+    }
+}
+
+PasswordService.SetPassword = async (verifier, newPassword, role) => {
     console.log("above try")
     try {
+        // checking if otp is same 
         let model = null;
         if (role == "Admin" || role == "admin") {
             model = Admin
@@ -89,14 +142,17 @@ PasswordService.verifyOtpAndSetPassword = async (otpToBeVerified, newPassword, e
         else if (role == "Users" || role == "users" || role == "user") {
             model = Users
         }
-        // checking if otp is same 
-        console.log("thi is otp form user =",otpToBeVerified)
-        console.log("this is real otp", otp)
-        if (otp == otpToBeVerified) {
-            console.log("inside if of otp verfication")
+
+        const verificationResult = decryptAuth(verifier)
+        console.log("here = ", verificationResult)
+        if (verificationResult) {
+            console.log("inside", newPassword)
             const newHashPassword = bcrypt.hashSync(newPassword, saltRounds);
-            const updatedPass = await model.findOneAndUpdate({ "email": email }, { "password": newHashPassword })
-            console.log("updated is == ",updatedPass)
+            console.log(newHashPassword)
+            console.log("after hash sync")
+            console.log(model)
+            const updatedPass = await model.findOneAndUpdate({ "email": verificationResult }, { "password": newHashPassword })
+            console.log("updated is == ", updatedPass)
             return {
                 status: "OK",
                 msg: "password changed successfully",
@@ -106,7 +162,7 @@ PasswordService.verifyOtpAndSetPassword = async (otpToBeVerified, newPassword, e
         else {
             return {
                 status: "err",
-                msg: "otp verification error",
+                msg: "some error occured",
                 data: null
             }
         }

@@ -26,13 +26,7 @@ function App() {
         <Route path="/register" element={isLoading == true ? <Loader /> : <div> <Register /></div>} />
         <Route path="/forget-password" element={isLoading == true ? <Loader /> : <div> <ForgetPassword /></div>} />
         <Route path="/header" element={isLoading == true ? <Loader /> : <div> <Header /></div>} />
-<<<<<<< HEAD
         <Route path="/cart" element={isLoading == true ? <Loader /> : <div><Cart /></div>} />
-
-=======
-       
- 
->>>>>>> a2e66ec583dc23d4e0865985882404be0198b875
       </Routes>
     </BrowserRouter>
   );
