@@ -173,7 +173,7 @@
     font-weight: 300;
 }
 
-button[class*="btn"] {
+.button-plus-minus {
     width: 30px;
     height: 30px;
     background-color: #E1E8EE;
@@ -188,16 +188,13 @@ button[class*="btn"] {
     height: auto;
 }
 
-button:focus,
-input:focus {
-    outline: 0;
-}
 
 .total-price {
     width: 12%;
     text-align: center;
     padding-left: 10%;
-    font-size: 16px;
+    font-size: 20px;
+    /* font-weight: bold; */
     color: #43484D;
     font-weight: 300;
     display: flex;
@@ -282,7 +279,7 @@ input:focus {
 
 
 .total-cart-price {
-    font-size: 16px;
+    font-size: 18px;
     color: white;
     font-weight: bolder;
 
@@ -347,3 +344,7 @@ input:focus {
     transition-duration: 0.5s;
 }
 
+
+.font24px{
+    font-size: 17px !important;
+}

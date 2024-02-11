@@ -98,24 +98,28 @@ CartServices.viewCart = async (userid) => {
             };
         }
 
+
         // Fetch product details for each item in the cart
         const itemsWithProducts = await Promise.all(isCartAvailable.items.map(async (el) => {
             const product = await Products.findOne({ "_id": el.productid });
-            console.log("we are here ", product)
+            // console.log("we are here ", product)
             return { ...el.toObject(), "product": product };
         }));
 
-        if (itemsWithProducts.length === 0) {
-            console.log(itemsWithProducts)
+        
+
+        console.log("above items with product length ", itemsWithProducts.length)
+        if (itemsWithProducts.length == 0 || itemsWithProducts == null) {
+            // console.log(itemsWithProducts)
 
             // If no products found for items in the cart, return error
             return {
                 status: "err",
-                msg: "No products found for items in the cart",
-                data: null
+                msg: "No products found in the cart",
+                data: []
             };
         }
-        console.log(itemsWithProducts)
+        // console.log(itemsWithProducts)
 
         // Return cart data with product details
         return {
@@ -187,7 +191,26 @@ CartServices.updateCart = async (userid, productid, updation) => {
 
         const updateQuantity = updation == "inc" ? 1 : -1;
 
-        const updatedCart = await Cart.findOneAndUpdate(cartDetail, { $inc: { "items.$.quantity": updateQuantity } } , {runValidators: true })
+        // here checking if cart item has become zero or less then zero then deleting this item using privous remove service
+
+        const isCartProductZero = await Cart.findOne(cartDetail);
+        console.log("is cart product zero = ", isCartProductZero.items.find((el) => el.productid == productid).quantity <= 1 && updateQuantity == -1, updateQuantity)
+        if (isCartProductZero.items.find((el) => el.productid == productid).quantity <= 1 && updateQuantity == -1) {
+            try {
+                console.log("inside if condition of iscartzero checker")
+                const result = await CartServices.removeProduct(userid, productid)
+                return result;
+            }
+            catch (err) {
+                return {
+                    status: "err",
+                    msg: "some error occured while deleting the item when its quanity is zero in cart",
+                    data: null
+                }
+            }
+        }
+
+        const updatedCart = await Cart.findOneAndUpdate(cartDetail, { $inc: { "items.$.quantity": updateQuantity } }, { runValidators: true })
         console.log("updated cart = ", updatedCart)
 
         if (!updatedCart) {

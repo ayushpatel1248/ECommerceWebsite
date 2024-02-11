@@ -10,7 +10,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useEffect } from 'react';
-
+import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
 const baseUrl = process.env.REACT_APP_BASE_URL
 
 const Cart = () => {
@@ -29,9 +29,9 @@ const Cart = () => {
                         'authorization': authorization
                     }
                 })
-                console.log(viewCartApiHit)
+                // console.log(viewCartApiHit)
                 setCartData(viewCartApiHit.data.data)
-                console.log(viewCartApiHit.data)
+                // console.log(viewCartApiHit.data)
             }
             else{
                 navigate('/login')
@@ -75,6 +75,13 @@ const Cart = () => {
         viewCart()
     }, [])
 
+
+    const totalAmount = cartData.reduce((acc, el) => {
+        acc = acc + (el.quantity * el.product.price)
+        return acc;
+    }, 0)
+
+
     return (
         <>
             <Header />
@@ -99,16 +106,16 @@ const Cart = () => {
                                 </div>
 
                                 <div className="quantity">
-                                    <button className="minus-btn" type="button" onClick={() => updateCart(el.productid, "dec")}>
+                                    <button className="minus-btn button-plus-minus" type="button" onClick={() => updateCart(el.productid, "dec")}>
                                         <RemoveIcon />
                                     </button>
                                     <input type="text" name="name" value={el.quantity} />
-                                    <button className="plus-btn" type="button" onClick={() => updateCart(el.productid, "inc")}>
+                                    <button className="plus-btn button-plus-minus" type="button" onClick={() => updateCart(el.productid, "inc")}>
                                         <AddIcon />
                                     </button>
                                 </div>
 
-                                <div className="total-price">{el.product?.price}</div>
+                                <div className="total-price"><CurrencyRupeeIcon fontSize="small"/>{Math.ceil(el.product?.price*el?.quantity)}</div>
                                 <div className='delete-item-icon'>
                                     <button onClick={() => deleteProduct(el.productid)}><DeleteIcon /></button>
                                 </div>
@@ -124,7 +131,7 @@ const Cart = () => {
 
             </div>
             <div className="cart-footer">
-                <div className="total-cart-price">Total = $1234</div>
+                <div className="total-cart-price">Total = <CurrencyRupeeIcon className="font24px"/>{Math.round(totalAmount)}</div>
                 <button class="checkout-button">
                     <span class="button-content">CHECKOUT </span>
                 </button>
