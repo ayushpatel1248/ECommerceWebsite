@@ -80,7 +80,7 @@ const Cart = () => {
     const totalAmount = cartData.reduce((acc, el) => {
         acc = acc + (el.quantity * el.product.price)
         return acc;
-    }, 0)
+    }, 0)||0;
 
 
     return (
