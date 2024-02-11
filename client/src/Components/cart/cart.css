@@ -207,9 +207,12 @@
 @media (max-width: 1100px) {
     .shopping-cart {
         width: 80%;
-        height: auto;
-        overflow: hidden;
-        
+        /* height: auto; */
+        overflow: scroll;
+    }
+    
+    .title{
+        padding-bottom: 10%;
     }
     .cart-footer{
         display: flex;
@@ -227,6 +230,10 @@
         height: auto;
         flex-wrap: wrap;
         justify-content: center;
+        /* margin-bottom:  */
+    }
+    .item:last-child{
+        padding-bottom: 10%;
     }
 
     .image img {
