@@ -33,6 +33,7 @@
     height: 2rem;
     border-bottom: 1px solid #E1E8EE;
     padding: 20px 30px;
+    padding-bottom: 3%;
     color: #5E6977;
     background: white;
     font-size: 18px;
@@ -46,6 +47,7 @@
     padding: 8% 10%;
     height: 12%;
     display: flex;
+    align-items: center;
 }
 
 .item:nth-child(3) {
@@ -205,9 +207,12 @@
 @media (max-width: 1100px) {
     .shopping-cart {
         width: 80%;
-        height: auto;
-        overflow: hidden;
-        
+        /* height: auto; */
+        overflow: scroll;
+    }
+    
+    .title{
+        padding-bottom: 10%;
     }
     .cart-footer{
         display: flex;
@@ -225,6 +230,10 @@
         height: auto;
         flex-wrap: wrap;
         justify-content: center;
+        /* margin-bottom:  */
+    }
+    .item:last-child{
+        padding-bottom: 10%;
     }
 
     .image img {
@@ -261,9 +270,14 @@
     align-items: center;
     padding: 11px 25px;
     background-color: #387FD5;
-    position: sticky;
-    bottom: 0;
+    /* position: sticky; */
+    /* bottom: 0; */
+    position: fixed;
+    bottom: 0px;
+    right: 0px;
+    left: 0px;
     z-index: 2;
+
     overflow-x: hidden;
 }
 
