@@ -9,7 +9,7 @@ const Footer = () => {
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-3 col-md-6">
-                            <div class="f_widget company_widget wow fadeInLeft" data-wow-delay="0.2s" style={{visibility: 'visible',animationDelay: '0.2s', animationName: 'fadeInLeft'}}>
+                            <div class="f_widget company_widget wow fadeInLeft footer-widget" data-wow-delay="0.2s" style={{visibility: 'visible',animationDelay: '0.2s', animationName: 'fadeInLeft'}}>
                                 <h3 class="f-title f_600 t_color f_size_18">Get in Touch</h3>
                                 <p>Dont miss any updates of our new templates and extensions.!</p>
                                 <form action="#" class="f_subscribe_two mailchimp" method="post" novalidate="true" _lpchecked="1">
@@ -20,8 +20,8 @@ const Footer = () => {
                                 </form>
                             </div>
                         </div>
-                        <div class="col-lg-3 col-md-6">
-                            <div class="f_widget about-widget pl_70 wow fadeInLeft" data-wow-delay="0.4s"style={{visibility: 'visible',animationDelay: '0.4s', animationName: 'fadeInLeft'}}>
+                        <div class="col-lg-3 col-md-6 services">
+                            <div class="f_widget about-widget pl_70 wow fadeInLeft service" data-wow-delay="0.4s"style={{visibility: 'visible',animationDelay: '0.4s', animationName: 'fadeInLeft'}}>
                                 <h3 class="f-title f_600 t_color f_size_18">Service available</h3>
                                 <ul class="list-unstyled f_list">
                                     <li><a href="#">Company</a></li>
@@ -33,21 +33,21 @@ const Footer = () => {
                                 </ul>
                             </div>
                         </div>
-                        <div class="col-lg-3 col-md-6">
-                            <div class="f_widget about-widget pl_70 wow fadeInLeft" data-wow-delay="0.6s" style={{visibility: 'visible',animationDelay: '0.6s', animationName: 'fadeInLeft'}}>
+                        <div class="col-lg-3 col-md-6 services help">
+                            <div class="f_widget about-widget pl_70 wow fadeInLeft service" data-wow-delay="0.6s" style={{visibility: 'visible',animationDelay: '0.6s', animationName: 'fadeInLeft'}}>
                                 <h3 class="f-title f_600 t_color f_size_18">Help</h3>
                                 <ul class="list-unstyled f_list">
                                     <li><a href="#">FAQ</a></li>
                                     <li><a href="#">Term &amp; conditions</a></li>
                                     <li><a href="#">Reporting</a></li>
-                                    <li><a href="#">Documentation</a></li>
+                                    {/* <li><a href="#">Documentation</a></li> */}
                                     <li><a href="#">Support Policy</a></li>
-                                    <li><a href="#">Privacy</a></li>
+                                    {/* <li><a href="#">Privacy</a></li> */}
                                 </ul>
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-6">
-                            <div class="f_widget social-widget pl_70 wow fadeInLeft" data-wow-delay="0.8s" style={{visibility: 'visible',animationDelay: '0.8s', animationName: 'fadeInLeft'}}>
+                            <div class="f_widget social-widget pl_70 wow fadeInLeft footer-widget" data-wow-delay="0.8s" style={{visibility: 'visible',animationDelay: '0.8s', animationName: 'fadeInLeft'}}>
                                 <h3 class="f-title f_600 t_color f_size_18">Team Solutions</h3>
                                 <div class="f_social_icon">
                                     <a href="#" class="fab fa-facebook"></a>
@@ -66,12 +66,12 @@ const Footer = () => {
             </div>
             <div class="footer_bottom">
                 <div class="container">
-                    <div class="row align-items-center">
+                    <div class="f-d-flex">
                         <div class="col-lg-6 col-sm-7">
-                            <p class="mb-0 f_400">© cakecounter Inc.. 2019 All rights reserved.</p>
+                            <p class="mb-0 f_400 reserved">© Inc.. 2024 All rights reserved.</p>
                         </div>
-                        <div class="col-lg-6 col-sm-5 text-right">
-                            <p>Made By <i class="icon_heart"></i>  <a href="https://okxxx1.com/" target="_blank">pro Programer</a></p>
+                        <div class="col-lg-6 col-sm-5 text-rightt ">
+                            <p>Developed By <i class="icon_heart"></i>  <a href="" target="_blank">pro Programer</a></p>
                         </div>
                     </div>
                 </div>
