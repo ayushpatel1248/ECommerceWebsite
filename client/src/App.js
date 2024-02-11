@@ -6,7 +6,12 @@ import { Route, Routes, BrowserRouter } from "react-router-dom";
 import Register from "./Components/register/Register";
 import Products from "./Components/product/Products";
 import ForgetPassword from "./Components/forgetPassword/ForgetPassword";
+<<<<<<< HEAD
 import Profile from "./Components/profile/Profile"
+=======
+import Cart from "./Components/cart/Cart";
+
+>>>>>>> 5c984025a97d3204dcbd844301faeee9b789d364
 
 function App() {
   const [isLoading, setIsloading] = useState(true);
@@ -19,13 +24,17 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
- 
-        <Route   path="/" element={isLoading == true ? <Loader /> : <div> <Products/></div>} />
-        <Route   path="/login" element={isLoading == true ? <Loader /> : <div> <Login/></div>} />
-        <Route   path="/register" element={isLoading == true ? <Loader /> : <div> <Register/></div>} />
-        <Route   path="/forget-password" element={isLoading == true ? <Loader /> : <div> <ForgetPassword/></div>} />
+
+        <Route path="/" element={isLoading == true ? <Loader /> : <div> <Products /></div>} />
+        <Route path="/login" element={isLoading == true ? <Loader /> : <div> <Login /></div>} />
+        <Route path="/register" element={isLoading == true ? <Loader /> : <div> <Register /></div>} />
+        <Route path="/forget-password" element={isLoading == true ? <Loader /> : <div> <ForgetPassword /></div>} />
         <Route path="/header" element={isLoading == true ? <Loader /> : <div> <Header /></div>} />
+<<<<<<< HEAD
         <Route path="/profile" element={isLoading == true ? <Loader /> : <div> <Profile/></div>} /> 
+=======
+        <Route path="/cart" element={isLoading == true ? <Loader /> : <div><Cart /></div>} />
+>>>>>>> 5c984025a97d3204dcbd844301faeee9b789d364
       </Routes>
     </BrowserRouter>
   );

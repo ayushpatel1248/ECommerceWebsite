@@ -68,8 +68,12 @@ export default function Header() {
     var navigate = useNavigate();
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+<<<<<<< HEAD
     const [searchInput, setSearchInput]= useState(null);
     const [auth, setAuth]= useState("");
+=======
+    const [searchInput, setSearchInput] = useState(null);
+>>>>>>> 5c984025a97d3204dcbd844301faeee9b789d364
 
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -141,6 +145,7 @@ export default function Header() {
 
     const mobileMenuId = 'primary-search-account-menu-mobile';
     const renderMobileMenu = (
+
         <Menu
             anchorEl={mobileMoreAnchorEl}
             anchorOrigin={{
@@ -156,6 +161,7 @@ export default function Header() {
             open={isMobileMenuOpen}
             onClose={handleMobileMenuClose}
         >
+
             <MenuItem>
                 <IconButton size="large" aria-label="fav items count" color="inherit">
                     <Badge badgeContent={4} color="error">
@@ -207,15 +213,6 @@ export default function Header() {
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static" sx={{ backgroundColor: 'rgba(21, 105, 206, 0.8491596467688638)' }}>
                 <Toolbar>
-                    <IconButton
-                        size="large"
-                        edge="start"
-                        color="inherit"
-                        aria-label="open drawer"
-                        sx={{ mr: 2 }}
-                    >
-                        <MenuIcon />
-                    </IconButton>
                     <Typography
                         variant="h6"
                         noWrap
@@ -233,7 +230,7 @@ export default function Header() {
                         <StyledInputBase
                             placeholder="Search…"
                             inputProps={{ 'aria-label': 'search' }}
-                            onChange={(e)=>setSearchInput(e.target.value)}
+                            onChange={(e) => setSearchInput(e.target.value)}
                         />
                     </Search>
                     <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
@@ -273,20 +270,18 @@ export default function Header() {
                     <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
                         <IconButton
                             size="large"
-                            aria-label="show more"
-                            aria-controls={mobileMenuId}
-                            aria-haspopup="true"
-                            onClick={handleMobileMenuOpen}
+                            edge="start"
                             color="inherit"
+                            aria-label="open drawer"
+                            sx={{ mr: 2 }}
                         >
-                            <MoreIcon />
+                            <MenuIcon />
                         </IconButton>
                     </Box>
                 </Toolbar>
             </AppBar>
             {renderMobileMenu}
             {renderMenu}
-            <h1>{searchInput}</h1>
         </Box>
     );
 }

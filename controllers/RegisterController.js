@@ -37,7 +37,7 @@ try{
         res.send({
             status:"err",
             msg: "user already exist with entered mail",
-            data : null
+            data : null  
         })
      }
 }
