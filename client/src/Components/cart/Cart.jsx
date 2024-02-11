@@ -19,6 +19,7 @@ const Cart = () => {
     const navigate = useNavigate()
     //this is state for storing cart data of user 
     const [cartData, setCartData] = useState([])
+    const [totalAmount, setTotalAmount] = useState(0)
 
 
     const viewCart = async () => {
@@ -76,11 +77,15 @@ const Cart = () => {
         viewCart()
     }, [])
 
+    useEffect(()=>{
+        setTotalAmount(cartData.reduce((acc, el) => {
+            acc = acc + (el.quantity * el.product.price)
+            return acc;
+        }, 0)||0)
+    },[cartData])
 
-    const totalAmount = cartData.reduce((acc, el) => {
-        acc = acc + (el.quantity * el.product.price)
-        return acc;
-    }, 0)||0;
+
+    
 
 
     return (
@@ -133,8 +138,8 @@ const Cart = () => {
             </div>
             <div className="cart-footer">
                 <div className="total-cart-price">Total = <CurrencyRupeeIcon className="font24px"/>{Math.round(totalAmount)}</div>
-                <button class="checkout-button">
-                    <span class="button-content">CHECKOUT </span>
+                <button className="checkout-button">
+                    <span className="button-content">CHECKOUT </span>
                 </button>
 
             </div>
