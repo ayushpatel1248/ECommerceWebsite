@@ -28,7 +28,7 @@ const Login = () => {
             const BASE_URL = process.env.REACT_APP_BASE_URL;
             axios.post(`${BASE_URL}/login`, { email, password }).then((res) => {
                 if (res.data.status == "ok") {
-                    localStorage.setItem("authToken" , res.data.authToken)
+                    localStorage.setItem("authorization" , res.data.authToken)
                     console.log("ok", res.data)
                     dispatch(addData(res.data.data));
                     navigate("/")

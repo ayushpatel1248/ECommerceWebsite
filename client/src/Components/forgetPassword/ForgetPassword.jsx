@@ -44,16 +44,20 @@ const ForgetPassword = () => {
   const [inp2, setInp2] = useState()
   const [inp3, setInp3] = useState()
   const [inp4, setInp4] = useState()
+  const [inp5, setInp5] = useState()
+  const [inp6, setInp6] = useState()
   const verifyOtpSchema = object({
     inp1: number().typeError("entered field must be a number...").required("invalid OTP"),
     inp2: number().typeError("entered field must be a number...").required("invalid OTP"),
     inp3: number().typeError("entered field must be a number...").required("invalid OTP"),
-    inp4: number().typeError("entered field must be a number...").required("invalid OTP")
+    inp4: number().typeError("entered field must be a number...").required("invalid OTP"),
+    inp5: number().typeError("entered field must be a number...").required("invalid OTP"),
+    inp6: number().typeError("entered field must be a number...").required("invalid OTP")
   })
   const handleSubmitOtp = async() => {
 try{
-  await verifyOtpSchema.validate({inp1,inp2,inp3,inp4})
-  let otpArr = [inp1,inp2,inp3,inp4]
+  await verifyOtpSchema.validate({inp1,inp2,inp3,inp4,inp5,inp6})
+  let otpArr = [inp1,inp2,inp3,inp4,inp5,inp6]
   let otpStr = otpArr.join("")
   
 }catch(err){
@@ -121,6 +125,8 @@ try{
               <input className="input" type="text" maxLength="1" value={inp2} onChange={(e) => { setInp2(e.target.value) }}></input>
               <input className="input" type="text" maxLength="1" value={inp3} onChange={(e) => { setInp3(e.target.value) }}></input>
               <input className="input" type="text" maxLength="1" value={inp4} onChange={(e) => { setInp4(e.target.value) }}></input>
+              <input className="input" type="text" maxLength="1" value={inp5} onChange={(e) => { setInp5(e.target.value) }}></input>
+              <input className="input" type="text" maxLength="1" value={inp6} onChange={(e) => { setInp6(e.target.value) }}></input>
             </div>
             <div className="counting"><button className={resendOtp?"resend-otp-disable":'resend-otp'} disabled={resendOtp} onClick={()=>{handleSubmitForgetPassword();setVerify("verify-otp")}}>-resend Otp</button><p>OTP is valid up to : {count} sec</p></div>
             <div className='submit-back-div'>
