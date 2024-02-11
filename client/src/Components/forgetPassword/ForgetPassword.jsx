@@ -83,7 +83,7 @@ const ForgetPassword = () => {
       setTimeout(() => {
         setResendOtp(false)
         clearInterval(interval)
-      }, 21000);
+      }, 31000);
     }
   }, [verify])
 

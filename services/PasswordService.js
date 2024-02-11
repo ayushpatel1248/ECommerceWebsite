@@ -66,10 +66,10 @@ PasswordService.otpForforgotPassword = async (email, role) => {
                     console.log('Email sent: ' + info.response);
                 }
             });
-            // from below code otp will automatically expire after 20 seconds
+            // from below code otp will automatically expire after 40 seconds
             setTimeout(() => {
                 otp = `${Math.random().toString().substr(2, 6)}`
-            }, 30000);
+            }, 40000);
             return {
                 status: "OK",
                 msg: "otp send successfully",
