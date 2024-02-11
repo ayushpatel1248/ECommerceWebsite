@@ -11,6 +11,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useEffect } from 'react';
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
+import '../../App.css'
 const baseUrl = process.env.REACT_APP_BASE_URL
 
 const Cart = () => {
@@ -85,7 +86,7 @@ const Cart = () => {
     return (
         <>
             <Header />
-            <div className='cart-body'>
+            <div className='cart-body backgroundWithPurple'>
                 <div className="shopping-cart">
                     <div className="title">
                         Shopping Bag

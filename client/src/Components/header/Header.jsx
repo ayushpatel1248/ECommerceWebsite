@@ -86,7 +86,6 @@ export default function Header() {
      }
     const handleProfileMenuOpen = (event) => {
         getAuth()
-       
         setAnchorEl(event.currentTarget);
     };
 
@@ -156,6 +155,7 @@ export default function Header() {
                 horizontal: 'right',
             }}
             open={isMobileMenuOpen}
+            
             onClose={handleMobileMenuClose}
         >
 
@@ -271,6 +271,7 @@ export default function Header() {
                             color="inherit"
                             aria-label="open drawer"
                             sx={{ mr: 2 }}
+                            onClick={handleMobileMenuOpen}
                         >
                             <MenuIcon />
                         </IconButton>

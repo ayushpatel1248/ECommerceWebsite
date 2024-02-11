@@ -11,6 +11,7 @@
 .cart-body {
     padding-top: 3%;
     height: 100vh;
+    /* z-index: 1; */
     width: 100%;
     background: linear-gradient(90deg, rgb(19, 103, 204) 0%, rgba(21, 105, 206, 0.8491596467688638) 4%, rgba(249, 249, 249, 0.036834716796875) 96%, rgba(21, 105, 206, 0) 100%);
 
