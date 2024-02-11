@@ -37,7 +37,7 @@
   width: 100%;
   justify-content: end;
   display: flex;
-  margin-bottom: 3em;
+  /* margin-bottom: 3em; */
 }
 
 .login-img img {
@@ -86,7 +86,7 @@
 .showPass{
   display: flex;
   gap:14px;
-  margin-bottom: 0.5em;
+  /* margin-bottom: 0.5em; */
   width: 100%;
 }
 .form--input {
@@ -106,9 +106,9 @@
 }
 
 .form--marketing {
-  display: flex;
-  margin-bottom: 1.25em;
-  align-items: center;
+  /* display: flex; */
+  margin-bottom: 1.15em;
+  /* align-items: center; */
 }
 
 .form--marketing>input {
