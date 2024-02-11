@@ -6,14 +6,21 @@
 
 
 .form {
-    width: 326px;
-    height: 380px;
+  width: 402px;
+  height: 454px;
     display: flex;
     flex-direction: column;
     border-radius: 15px;
     background-color: white;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     transition: .4s ease-in-out;
+  }
+  @media screen and (max-width:540px) {
+    .input
+{
+  width: 1.5em;
+  height: 2.5em;
+}
   }
   
   .form:hover {
@@ -120,6 +127,7 @@
               inset -3px -3px 6px #ffffff;
   }
   .verify-otp{
+    background: linear-gradient(90deg, rgb(19, 103, 204) 0%, rgba(21, 105, 206, 0.8491596467688638) 4%, rgba(249, 249, 249, 0.036834716796875) 96%, rgba(21, 105, 206, 0) 100%);
     display: flex;
     justify-content: center;
     height: 100vh;
@@ -132,3 +140,5 @@
   .submit-back-div{
 width:100% ;
   }
+ 
+  

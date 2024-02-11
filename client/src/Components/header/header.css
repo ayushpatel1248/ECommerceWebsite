@@ -13,7 +13,11 @@
     box-shadow: rgba(130, 94, 94, 0.55) 0px 29px 20px -20px;
     position: fixed;
 }
-
+.logout{
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
 .d-flex {
     display: flex;
 }

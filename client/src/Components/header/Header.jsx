@@ -16,8 +16,11 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
+import LogoutIcon from '@mui/icons-material/Logout';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import "./header.css";
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -60,15 +63,30 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 
+
 export default function Header() {
+    var navigate = useNavigate();
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-    const [searchInput, setSearchInput] = useState(null);
+
+    const [searchInput, setSearchInput]= useState(null);
+    const [auth, setAuth]= useState("");
 
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
+    const getAuth = ()=>{
+        const auth = localStorage.getItem("authorization");
+        console.log(auth)
+        if(auth){
+            setAuth(`Log-Out`)
+        }else{
+            setAuth("Sign-up/Sign-in")
+        }
+     }
     const handleProfileMenuOpen = (event) => {
+        getAuth()
+       
         setAnchorEl(event.currentTarget);
     };
 
@@ -79,6 +97,18 @@ export default function Header() {
     const handleMenuClose = () => {
         setAnchorEl(null);
         handleMobileMenuClose();
+        if(auth =="Log-Out"){
+            localStorage.removeItem("authorization");
+        }
+        if(auth=="Sign-up/Sign-in"){
+            navigate("/login")
+        }
+    };
+    const handleMenuCloser = () => {
+        setAnchorEl(null);
+        handleMobileMenuClose();
+       console.log("click on profile")
+       navigate('/profile')
     };
 
     const handleMobileMenuOpen = (event) => {
@@ -86,7 +116,9 @@ export default function Header() {
     };
 
     const menuId = 'primary-search-account-menu';
+
     const renderMenu = (
+       
         <Menu
             anchorEl={anchorEl}
             anchorOrigin={{
@@ -102,8 +134,9 @@ export default function Header() {
             open={isMenuOpen}
             onClose={handleMenuClose}
         >
-            <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-            <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+            <MenuItem onClick={handleMenuCloser}>Profile</MenuItem>
+    
+            <MenuItem onClick={handleMenuClose}>{auth=="Log-Out"?<p className='logout'>Logout<LogoutIcon/></p>:auth}</MenuItem>
         </Menu>
     );
 

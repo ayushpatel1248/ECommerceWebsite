@@ -38,43 +38,52 @@ const ForgetPassword = () => {
     setIsLoading(false)
   }
   //------------all logic for to handle verify otp
-  const [count, setCount] = useState(20);
-  const[resendOtp , setResendOtp] = useState(true)
+  const [count, setCount] = useState(30);
+  const [resendOtp, setResendOtp] = useState(true)
   const [inp1, setInp1] = useState()
   const [inp2, setInp2] = useState()
   const [inp3, setInp3] = useState()
   const [inp4, setInp4] = useState()
+  const [inp5, setInp5] = useState()
+  const [inp6, setInp6] = useState()
   const verifyOtpSchema = object({
     inp1: number().typeError("entered field must be a number...").required("invalid OTP"),
     inp2: number().typeError("entered field must be a number...").required("invalid OTP"),
     inp3: number().typeError("entered field must be a number...").required("invalid OTP"),
-    inp4: number().typeError("entered field must be a number...").required("invalid OTP")
+    inp4: number().typeError("entered field must be a number...").required("invalid OTP"),
+    inp5: number().typeError("entered field must be a number...").required("invalid OTP"),
+    inp6: number().typeError("entered field must be a number...").required("invalid OTP")
   })
-  const handleSubmitOtp = async() => {
-try{
-  await verifyOtpSchema.validate({inp1,inp2,inp3,inp4})
-  let otpArr = [inp1,inp2,inp3,inp4]
-  let otpStr = otpArr.join("")
-  
-}catch(err){
-  console.log(err.message)
-  notify(err.message)
-}
+  const handleSubmitOtp = async () => {
+    try {
+      await verifyOtpSchema.validate({ inp1, inp2, inp3, inp4, inp5, inp6 })
+      let otpArr = [inp1, inp2, inp3, inp4, inp5, inp6]
+      let otpStr = otpArr.join("");
+      axios.post(`${BASE_URL}/password/verifyOtp`, { otpToBeVerified: otpStr, email, role: "user" }).then((res) => {
+        console.log(res)
+      }).catch((err) => {
+        console.log(err)
+      })
 
-}
+    } catch (err) {
+      console.log(err.message)
+      notify(err.message)
+    }
+
+  }
 
   useEffect(() => {
-    let i = 20
+    let i = 30
     if (verify == "verify") {
-     var interval = setInterval(() => {
+      var interval = setInterval(() => {
         setCount(--i)
         // console.log(i)
       }, 1000)
 
-    setTimeout(() => {
+      setTimeout(() => {
         setResendOtp(false)
         clearInterval(interval)
-      }, 21000);
+      }, 31000);
     }
   }, [verify])
 
@@ -110,7 +119,7 @@ try{
                 disabled={isLoading}>{isLoading == false ? "submit" : "submitting....."}</button>
             </div>
           </div>
-          
+
         </div> :
         <div className='verify-otp'>
           <div className="form">
@@ -121,15 +130,17 @@ try{
               <input className="input" type="text" maxLength="1" value={inp2} onChange={(e) => { setInp2(e.target.value) }}></input>
               <input className="input" type="text" maxLength="1" value={inp3} onChange={(e) => { setInp3(e.target.value) }}></input>
               <input className="input" type="text" maxLength="1" value={inp4} onChange={(e) => { setInp4(e.target.value) }}></input>
+              <input className="input" type="text" maxLength="1" value={inp5} onChange={(e) => { setInp5(e.target.value) }}></input>
+              <input className="input" type="text" maxLength="1" value={inp6} onChange={(e) => { setInp6(e.target.value) }}></input>
             </div>
-            <div className="counting"><button className={resendOtp?"resend-otp-disable":'resend-otp'} disabled={resendOtp} onClick={()=>{handleSubmitForgetPassword();setVerify("verify-otp")}}>-resend Otp</button><p>OTP is valid up to : {count} sec</p></div>
+            <div className="counting"><button className={resendOtp ? "resend-otp-disable" : 'resend-otp'} disabled={resendOtp} onClick={() => { handleSubmitForgetPassword(); setVerify("verify-otp") }}>-resend Otp</button><p>OTP is valid up to : {count} sec</p></div>
             <div className='submit-back-div'>
               <button className="btn1" onClick={handleSubmitOtp} >Submit</button>
               <button className="btn2" onClick={() => { window.location.reload() }}>Back</button>
             </div>
           </div>
         </div>}
-        <ToastContainer />
+      <ToastContainer />
     </div>
   )
 }

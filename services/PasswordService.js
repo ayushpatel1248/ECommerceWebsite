@@ -66,10 +66,10 @@ PasswordService.otpForforgotPassword = async (email, role) => {
                     console.log('Email sent: ' + info.response);
                 }
             });
-            // from below code otp will automatically expire after 20 seconds
+            // from below code otp will automatically expire after 40 seconds
             setTimeout(() => {
                 otp = `${Math.random().toString().substr(2, 6)}`
-            }, 4000000);
+            }, 40000);
             return {
                 status: "OK",
                 msg: "otp send successfully",
@@ -94,6 +94,7 @@ PasswordService.otpForforgotPassword = async (email, role) => {
 }
 
 
+//----------------------------veify OTP---------------------------------------
 PasswordService.verifyOtp = async (otpToBeVerified, email, role) => {
     console.log("inside varify otp")
     let model = null;
@@ -130,6 +131,7 @@ PasswordService.verifyOtp = async (otpToBeVerified, email, role) => {
         }
     }
 }
+////----------------------------reset OTP---------------------------------------
 
 PasswordService.SetPassword = async (verifier, newPassword, role) => {
     console.log("above try")
