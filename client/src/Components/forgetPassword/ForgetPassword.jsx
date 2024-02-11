@@ -38,7 +38,7 @@ const ForgetPassword = () => {
     setIsLoading(false)
   }
   //------------all logic for to handle verify otp
-  const [count, setCount] = useState(20);
+  const [count, setCount] = useState(30);
   const [resendOtp, setResendOtp] = useState(true)
   const [inp1, setInp1] = useState()
   const [inp2, setInp2] = useState()
@@ -73,7 +73,7 @@ const ForgetPassword = () => {
   }
 
   useEffect(() => {
-    let i = 20
+    let i = 30
     if (verify == "verify") {
       var interval = setInterval(() => {
         setCount(--i)
