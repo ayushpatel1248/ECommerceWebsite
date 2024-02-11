@@ -94,7 +94,7 @@ CartServices.viewCart = async (userid) => {
             return {
                 status: "err",
                 msg: "No cart available / cart is empty",
-                data: null
+                data: []
             };
         }
 
@@ -132,7 +132,7 @@ CartServices.viewCart = async (userid) => {
         return {
             status: "500",
             msg: "Server error",
-            data: null
+            data: []
         };
     }
 };

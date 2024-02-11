@@ -1,0 +1,15 @@
+/* .backgroundWithPurple::before {
+    position: absolute;
+    content: "";
+    width: 90%;
+    height: 70%;
+    background-color: rgb(209, 193, 255);
+    transform: rotate(45deg);
+    left: -40%;
+    bottom: 20%;
+    overflow: hidden;
+    z-index: -1;
+    border-radius: 30px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.082);
+
+} */
