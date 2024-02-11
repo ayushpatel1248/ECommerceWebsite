@@ -2,10 +2,10 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const userLoginDataSlice = createSlice({
     name:"userLoginDataSlice",
-    initialState : {},
+    initialState :[],
     reducers:{
         addData(state , action){
-            state = action.payload;
+             state.push(action.payload);
             console.log("userLoginDataSlice",state)
         }
     }

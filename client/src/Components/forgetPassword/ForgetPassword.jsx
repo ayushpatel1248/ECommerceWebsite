@@ -13,6 +13,7 @@ const ForgetPassword = () => {
   const [isLoading, setIsLoading] = useState(false);
   const BASE_URL = process.env.REACT_APP_BASE_URL;
   const notify = (mes) => toast.error(mes);
+  const navigate = useNavigate();
 
   //------------all logic for to handle email sumbittion
   const resetPasswordSchema = object({
@@ -40,12 +41,12 @@ const ForgetPassword = () => {
   //------------all logic for to handle verify otp
   const [count, setCount] = useState(30);
   const [resendOtp, setResendOtp] = useState(true)
-  const [inp1, setInp1] = useState()
-  const [inp2, setInp2] = useState()
-  const [inp3, setInp3] = useState()
-  const [inp4, setInp4] = useState()
-  const [inp5, setInp5] = useState()
-  const [inp6, setInp6] = useState()
+  const [inp1, setInp1] = useState("")
+  const [inp2, setInp2] = useState("")
+  const [inp3, setInp3] = useState("")
+  const [inp4, setInp4] = useState("")
+  const [inp5, setInp5] = useState("")
+  const [inp6, setInp6] = useState("")
   const verifyOtpSchema = object({
     inp1: number().typeError("entered field must be a number...").required("invalid OTP"),
     inp2: number().typeError("entered field must be a number...").required("invalid OTP"),
@@ -60,9 +61,18 @@ const ForgetPassword = () => {
       let otpArr = [inp1, inp2, inp3, inp4, inp5, inp6]
       let otpStr = otpArr.join("");
       axios.post(`${BASE_URL}/password/verifyOtp`, { otpToBeVerified: otpStr, email, role: "user" }).then((res) => {
-        console.log(res)
+        console.log("res", res.data)
+        if (res.data.status == "err") {
+          notify(res.data.msg)
+        } else {
+          notify(res.data.msg)
+          localStorage.setItem("verifier", res.data.data.verifier)
+          navigate("/forget-password/set-new-password")
+
+        }
       }).catch((err) => {
-        console.log(err)
+        console.log("err in forget password.jsx", err)
+        notify(err.message)
       })
 
     } catch (err) {
@@ -71,10 +81,19 @@ const ForgetPassword = () => {
     }
 
   }
-
+  useEffect(() => {
+    localStorage.removeItem("verifier")
+  }, [])
   useEffect(() => {
     let i = 30
     if (verify == "verify") {
+      setInp1("")
+      setInp2("")
+      setInp3("")
+      setInp4("")
+      setInp5("")
+      setInp6("")
+      notify("otp send sucessfully")
       var interval = setInterval(() => {
         setCount(--i)
         // console.log(i)
@@ -133,7 +152,13 @@ const ForgetPassword = () => {
               <input className="input" type="text" maxLength="1" value={inp5} onChange={(e) => { setInp5(e.target.value) }}></input>
               <input className="input" type="text" maxLength="1" value={inp6} onChange={(e) => { setInp6(e.target.value) }}></input>
             </div>
-            <div className="counting"><button className={resendOtp ? "resend-otp-disable" : 'resend-otp'} disabled={resendOtp} onClick={() => { handleSubmitForgetPassword(); setVerify("verify-otp") }}>-resend Otp</button><p>OTP is valid up to : {count} sec</p></div>
+            <div className="counting">
+              <button className={resendOtp ? "resend-otp-disable" : 'resend-otp'}
+                disabled={resendOtp}
+                onClick={() => { handleSubmitForgetPassword(); setVerify("verify-otp") }}>
+                -resend Otp</button>
+              <p>OTP is valid up to : {count} sec</p>
+            </div>
             <div className='submit-back-div'>
               <button className="btn1" onClick={handleSubmitOtp} >Submit</button>
               <button className="btn2" onClick={() => { window.location.reload() }}>Back</button>

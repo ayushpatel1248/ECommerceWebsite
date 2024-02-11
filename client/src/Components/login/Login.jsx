@@ -17,6 +17,10 @@ const Login = () => {
     const [email, setEmail] = useState("harshit7024@gmail.com")
     const dispatch = useDispatch();
     var navigate = useNavigate();
+
+    
+    //---------------------------------validation Schema-----------------------------
+
     const loginSchema = object({
         email: string().trim().matches(/^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/, "email should be correct").required("email is required field"),
         password: string().required("password is required field")
