@@ -68,12 +68,9 @@ export default function Header() {
     var navigate = useNavigate();
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-<<<<<<< HEAD
+
     const [searchInput, setSearchInput]= useState(null);
     const [auth, setAuth]= useState("");
-=======
-    const [searchInput, setSearchInput] = useState(null);
->>>>>>> 5c984025a97d3204dcbd844301faeee9b789d364
 
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
