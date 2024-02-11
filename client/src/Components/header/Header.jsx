@@ -69,21 +69,21 @@ export default function Header() {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
-    const [searchInput, setSearchInput]= useState(null);
-    const [auth, setAuth]= useState("");
+    const [searchInput, setSearchInput] = useState(null);
+    const [auth, setAuth] = useState("");
 
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
-    const getAuth = ()=>{
+    const getAuth = () => {
         const auth = localStorage.getItem("authorization");
         console.log(auth)
-        if(auth){
+        if (auth) {
             setAuth(`Log-Out`)
-        }else{
+        } else {
             setAuth("Sign-up/Sign-in")
         }
-     }
+    }
     const handleProfileMenuOpen = (event) => {
         getAuth()
         setAnchorEl(event.currentTarget);
@@ -96,18 +96,18 @@ export default function Header() {
     const handleMenuClose = () => {
         setAnchorEl(null);
         handleMobileMenuClose();
-        if(auth =="Log-Out"){
+        if (auth == "Log-Out") {
             localStorage.removeItem("authorization");
         }
-        if(auth=="Sign-up/Sign-in"){
+        if (auth == "Sign-up/Sign-in") {
             navigate("/login")
         }
     };
     const handleMenuCloser = () => {
         setAnchorEl(null);
         handleMobileMenuClose();
-       console.log("click on profile")
-       navigate('/profile')
+        console.log("click on profile")
+        navigate('/profile')
     };
 
     const handleMobileMenuOpen = (event) => {
@@ -117,7 +117,7 @@ export default function Header() {
     const menuId = 'primary-search-account-menu';
 
     const renderMenu = (
-       
+
         <Menu
             anchorEl={anchorEl}
             anchorOrigin={{
@@ -134,8 +134,8 @@ export default function Header() {
             onClose={handleMenuClose}
         >
             <MenuItem onClick={handleMenuCloser}>Profile</MenuItem>
-    
-            <MenuItem onClick={handleMenuClose}>{auth=="Log-Out"?<p className='logout'>Logout<LogoutIcon/></p>:auth}</MenuItem>
+
+            <MenuItem onClick={handleMenuClose}>{auth == "Log-Out" ? <p className='logout'>Logout<LogoutIcon /></p> : auth}</MenuItem>
         </Menu>
     );
 
@@ -155,7 +155,7 @@ export default function Header() {
                 horizontal: 'right',
             }}
             open={isMobileMenuOpen}
-            
+
             onClose={handleMobileMenuClose}
         >
 
@@ -168,14 +168,16 @@ export default function Header() {
                 <p>fav</p>
             </MenuItem>
 
-            <MenuItem>
-                <IconButton size="large" aria-label="cart items count" color="inherit">
-                    <Badge badgeContent={4} color="error">
-                        <ShoppingCartOutlinedIcon />
-                    </Badge>
-                </IconButton>
-                <p>cart</p>
-            </MenuItem>
+            <Link to="/cart">
+                <MenuItem>
+                    <IconButton size="large" aria-label="cart items count" color="inherit">
+                        <Badge badgeContent={4} color="error">
+                            <ShoppingCartOutlinedIcon />
+                        </Badge>
+                    </IconButton>
+                    <p>cart</p>
+                </MenuItem>
+            </Link>
             <MenuItem>
                 <IconButton
                     size="large"
