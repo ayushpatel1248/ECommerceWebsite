@@ -49,7 +49,7 @@ const Login = () => {
         }
     }
     return (
-        <div className='container'>
+        <div className='containerr'>
             <div className='left-child'>
                 <div className="login-img"> <img src={login} ></img></div>
             </div>

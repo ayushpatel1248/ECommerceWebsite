@@ -8,6 +8,7 @@ import Products from "./Components/product/Products";
 import ForgetPassword from "./Components/forgetPassword/ForgetPassword";
 import Profile from "./Components/profile/Profile"
 
+
 import Cart from "./Components/cart/Cart";
 import NewPassword from "./Components/newpassword/NewPassword";
 
@@ -29,10 +30,11 @@ function App() {
         <Route path="/login" element={isLoading == true ? <Loader /> : <div> <Login /></div>} />
         <Route path="/register" element={isLoading == true ? <Loader /> : <div> <Register /></div>} />
         <Route path="/forget-password" element={isLoading == true ? <Loader /> : <div> <ForgetPassword /></div>} />
-        <Route path="/forget-password/set-new-password" element={isLoading == true ? <Loader /> : <div> <NewPassword/></div>} />
-        <Route path="/header" element={isLoading == true ? <Loader /> : <div> <Header /></div>} />
-        <Route path="/profile" element={isLoading == true ? <Loader /> : <div> <Profile/></div>} /> 
+        <Route path="/forget-password/set-new-password" element={isLoading == true ? <Loader/> : <div> <NewPassword/></div>} />
+        <Route path="/header" element={isLoading == true ? <Loader /> : <div> <Header /></div>}/>
+        <Route path="/profile" element={isLoading == true ? <Loader /> : <div> <Profile/></div>}/> 
         <Route path="/cart" element={isLoading == true ? <Loader /> : <div><Cart /></div>} />
+        
       </Routes>
     </BrowserRouter>
   );
