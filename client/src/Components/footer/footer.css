@@ -171,7 +171,9 @@ h1, h2, h3, h4, h5, h6 {
     animation: myfirst 30s linear infinite;
 }
 
-
+.text-rightt{
+    text-align: right;
+}
 
 @-moz-keyframes myfirst {
   0% {
@@ -197,5 +199,38 @@ h1, h2, h3, h4, h5, h6 {
   }
   100% {
     left: 100%;
+  }
+}
+.f-d-flex{
+    display: flex;
+}
+@media screen and (max-width:753px) {
+  .f-d-flex{  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  }
+  .reserved{
+    text-align: center !important;
+  }
+  
+.text-rightt{
+    text-align: center;
+}
+  .footer-widget{
+    display: flex;
+  flex-direction: column;
+  align-items: center;
+  }
+  .service{
+    display: inline-block !important;
+  }
+  .services{
+    display: inline-block;
+    width: 50%;
+    margin-bottom: 50px;
+  }
+  .help{
+    padding-left: 20%;
   }
 }
