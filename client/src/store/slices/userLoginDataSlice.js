@@ -5,7 +5,7 @@ const userLoginDataSlice = createSlice({
     initialState :[],
     reducers:{
         addData(state , action){
-             state.push(action.payload);
+            state.push(action.payload);
             console.log("userLoginDataSlice",state)
         }
     }
