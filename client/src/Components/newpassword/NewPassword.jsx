@@ -31,6 +31,7 @@ const NewPassword = () => {
                 console.log(res)
                 if (res.data.status == "OK") {
                         notify(res.data.msg)
+                        localStorage.removeItem("verifier")
                         navigate("/login")
                 } else {
                     notify(res.data.msg)

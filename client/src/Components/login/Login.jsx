@@ -13,7 +13,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
     const [showHidePass, setShowHidePass] = useState("password")
-    const [password, setPassword] = useState("Harsh&098")
+    const [password, setPassword] = useState("Reena@123")
     const [email, setEmail] = useState("harshit7024@gmail.com")
     const dispatch = useDispatch();
     var navigate = useNavigate();
