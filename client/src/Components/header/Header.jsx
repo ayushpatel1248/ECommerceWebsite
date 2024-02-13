@@ -98,6 +98,7 @@ export default function Header() {
         handleMobileMenuClose();
         if (auth == "Log-Out") {
             localStorage.removeItem("authorization");
+            window.location.reload();
         }
         if (auth == "Sign-up/Sign-in") {
             navigate("/login")

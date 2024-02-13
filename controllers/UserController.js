@@ -30,5 +30,11 @@ UserController.addProfileInfo = async (req, res) => {
 
 }
 
+UserController.getUserData = async (req , res) => {
+    const { authorization } = req.headers;
+    const _id = verifyAuth(authorization)
+    const result = await UserService.getUserData(_id);
+    res.send(result)
+}
 
 module.exports = UserController
