@@ -1,0 +1,377 @@
+.carouselImageMainPage {
+    width: 100%;
+}
+
+.our-collection-heading-mainpage {
+    height: 10%;
+    width: auto;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #263B63;
+    font-size: 100%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+}
+
+.our-collection-heading-mainpage strong {
+    font-size: 250%;
+    font-weight: 500;
+    /* margin-bottom: 10%; */
+}
+
+
+
+
+.card-product {
+    width: 15vw;
+
+    height: 15%;
+    padding: 1%;
+    background: #f5f5f5;
+    position: relative;
+    overflow: visible;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+.card-img-product {
+    /* background-color: #ffcaa6; */
+    height: 50%;
+    width: 100%;
+    background-size: cover;
+    display: flex;
+    /* border-radius: 10px; */
+    justify-content: center;
+    padding: 2%;
+    border-radius: .5rem;
+    transition: .3s ease;
+}
+
+.card-info-product {
+    padding-top: 10%;
+}
+
+.svg-icon-product {
+    width: 20px;
+    height: 20px;
+}
+
+
+.card-footer-product {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 3%;
+    border-top: 1px solid #ddd;
+}
+
+/*Text*/
+.text-title-product {
+    font-weight: 900;
+    font-size: 120%;
+    line-height: 1;
+}
+
+.text-body-product {
+    font-size: 100%;
+    /* padding-bottom: 10px; */
+}
+
+/*Button*/
+.card-button-product {
+    border: 1px solid #252525;
+    display: flex;
+    padding: .3em;
+    cursor: pointer;
+    border-radius: 50px;
+    transition: .3s ease-in-out;
+}
+
+/*Hover*/
+.card-img-product:hover {
+    transform: translateY(-25%);
+    box-shadow: rgba(226, 196, 63, 0.25) 0px 13px 47px -5px, rgba(180, 71, 71, 0.3) 0px 8px 16px -8px;
+}
+
+.card-button-product:hover {
+    border: 1px solid #ffcaa6;
+    background-color: #ffcaa6;
+}
+
+.card-img-product img {
+    border-radius: 10px;
+
+    height: 100%;
+    width: 100%;
+}
+
+.card-product-parent {
+    display: flex;
+    justify-content: space-evenly;
+    /* padding-top: 5%; */
+    padding-bottom: 5%;
+    flex-wrap: wrap;
+}
+
+@media screen and (max-width: 768px) {
+    .card-product {
+        width: 42%;
+        /* Adjust width to fit two cards per row */
+        margin-bottom: 4%;
+        /* Add some margin between cards */
+    }
+
+    .carouselImageMainPage {
+        width: 100%;
+        height: 26vh;
+    }
+
+}
+
+@media screen and (max-width: 576px) {
+    .card-product {
+        width: 42%;
+        margin-bottom: 6%;
+        /* Add more margin between cards */
+
+    }
+
+    .carouselImageMainPage {
+        width: 100%;
+        height: 26vh;
+    }
+}
+
+@media screen and (max-height: 600px) {
+    .card-product {
+        width: 42%;
+        margin-bottom: 6%;
+        /* Add more margin between cards */
+    }
+
+    .carouselImageMainPage {
+        width: 100%;
+        height: 26vh;
+    }
+}
+
+
+
+
+
+
+.btn-flower {
+    height: 4em;
+    width: 12em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: 0px solid black;
+    cursor: pointer;
+    
+}
+
+.btn-flower:nth-child(2){
+    /* margin-top: 10%; */
+    margin-bottom: 15%;
+}
+
+.wrapper-flower {
+    height: 2em;
+    width: 8em;
+    position: relative;
+    background: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.text-flower {
+    font-size: 17px;
+    z-index: 1;
+    color: #000;
+    padding: 4px 12px;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.7);
+    transition: all 0.5s ease;
+}
+
+.flower {
+    display: grid;
+    grid-template-columns: 1em 1em;
+    position: absolute;
+    transition: grid-template-columns 0.8s ease;
+}
+
+.flower1 {
+    top: -12px;
+    left: -13px;
+    transform: rotate(5deg);
+}
+
+.flower2 {
+    bottom: -5px;
+    left: 8px;
+    transform: rotate(35deg);
+}
+
+.flower3 {
+    bottom: -15px;
+    transform: rotate(0deg);
+}
+
+.flower4 {
+    top: -14px;
+    transform: rotate(15deg);
+}
+
+.flower5 {
+    right: 11px;
+    top: -3px;
+    transform: rotate(25deg);
+}
+
+.flower6 {
+    right: -15px;
+    bottom: -15px;
+    transform: rotate(30deg);
+}
+
+.petal {
+    height: 1em;
+    width: 1em;
+    border-radius: 40% 70% / 7% 90%;
+    background: linear-gradient(#07a6d7, #93e0ee);
+    border: 0.5px solid #96d1ec;
+    z-index: 0;
+    transition: width 0.8s ease, height 0.8s ease;
+}
+
+.two {
+    transform: rotate(90deg);
+}
+
+.three {
+    transform: rotate(270deg);
+}
+
+.four {
+    transform: rotate(180deg);
+}
+
+.btn-flower:hover .petal {
+    background: linear-gradient(#0761d7, #93bdee);
+    border: 0.5px solid #96b4ec;
+}
+
+.btn-flower:hover .flower {
+    grid-template-columns: 1.5em 1.5em;
+}
+
+.btn-flower:hover .flower-flower .petal {
+    width: 1.5em;
+    height: 1.5em;
+}
+
+.btn-flower:hover .text-flower {
+    background: rgba(255, 255, 255, 0.4);
+}
+
+.btn-flower:hover div.flower1 {
+    animation: 15s linear 0s normal none infinite running flower1;
+}
+
+@keyframes flower1 {
+    0% {
+        transform: rotate(5deg);
+    }
+
+    100% {
+        transform: rotate(365deg);
+    }
+}
+
+.btn-flower:hover div.flower2 {
+    animation: 13s linear 1s normal none infinite running flower2;
+}
+
+@keyframes flower2 {
+    0% {
+        transform: rotate(35deg);
+    }
+
+    100% {
+        transform: rotate(-325deg);
+    }
+}
+
+.btn-flower:hover div.flower3 {
+    animation: 16s linear 1s normal none infinite running flower3;
+}
+
+@keyframes flower3 {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.btn-flower:hover div.flower4 {
+    animation: 17s linear 1s normal none infinite running flower4;
+}
+
+@keyframes flower4 {
+    0% {
+        transform: rotate(15deg);
+    }
+
+    100% {
+        transform: rotate(375deg);
+    }
+}
+
+.btn-flower:hover div.flower5 {
+    animation: 20s linear 1s normal none infinite running flower5;
+}
+
+@keyframes flower5 {
+    0% {
+        transform: rotate(25deg);
+    }
+
+    100% {
+        transform: rotate(-335deg);
+    }
+}
+
+.btn-flower:hover div.flower6 {
+    animation: 15s linear 1s normal none infinite running flower6;
+}
+
+@keyframes flower6 {
+    0% {
+        transform: rotate(30deg);
+    }
+
+    100% {
+        transform: rotate(390deg);
+    }
+}
+
+
+.flower-parent {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    margin-top: 5%;
+}
+
+
+@media screen and (max-width: 768px) {
+    
+}

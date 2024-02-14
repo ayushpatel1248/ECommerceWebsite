@@ -211,7 +211,7 @@ export default function Header() {
 
     return (
         <Box sx={{ flexGrow: 1 }}>
-            <AppBar position="static" sx={{ backgroundColor: 'rgba(21, 105, 206, 0.8491596467688638)' }}>
+            <AppBar position="static" sx={{background: "linear-gradient(180deg,rgb(140,113,240) 100%, rgba(249, 249, 249, 0.036834716796875) 100%)"}}>
                 <Toolbar>
                     <Typography
                         variant="h6"
