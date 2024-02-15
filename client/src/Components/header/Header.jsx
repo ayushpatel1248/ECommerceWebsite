@@ -13,7 +13,6 @@ import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import MoreIcon from '@mui/icons-material/MoreVert';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import LogoutIcon from '@mui/icons-material/Logout';
@@ -21,6 +20,8 @@ import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import "./header.css";
+import logo from '../../images/header/codiance-high-resolution-logo-white-transparent.png'
+
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -62,8 +63,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
 }));
 
-
-
 export default function Header() {
     var navigate = useNavigate();
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -84,6 +83,7 @@ export default function Header() {
             setAuth("Sign-up/Sign-in")
         }
     }
+
     const handleProfileMenuOpen = (event) => {
         getAuth()
         setAnchorEl(event.currentTarget);
@@ -104,6 +104,7 @@ export default function Header() {
             navigate("/login")
         }
     };
+
     const handleMenuCloser = () => {
         setAnchorEl(null);
         handleMobileMenuClose();
@@ -118,7 +119,6 @@ export default function Header() {
     const menuId = 'primary-search-account-menu';
 
     const renderMenu = (
-
         <Menu
             anchorEl={anchorEl}
             anchorOrigin={{
@@ -135,14 +135,12 @@ export default function Header() {
             onClose={handleMenuClose}
         >
             <MenuItem onClick={handleMenuCloser}>Profile</MenuItem>
-
             <MenuItem onClick={handleMenuClose}>{auth == "Log-Out" ? <p className='logout'>Logout<LogoutIcon /></p> : auth}</MenuItem>
         </Menu>
     );
 
     const mobileMenuId = 'primary-search-account-menu-mobile';
     const renderMobileMenu = (
-
         <Menu
             anchorEl={mobileMoreAnchorEl}
             anchorOrigin={{
@@ -156,10 +154,8 @@ export default function Header() {
                 horizontal: 'right',
             }}
             open={isMobileMenuOpen}
-
             onClose={handleMobileMenuClose}
         >
-
             <MenuItem>
                 <IconButton size="large" aria-label="fav items count" color="inherit">
                     <Badge badgeContent={4} color="error">
@@ -168,7 +164,6 @@ export default function Header() {
                 </IconButton>
                 <p>fav</p>
             </MenuItem>
-
             <Link to="/cart">
                 <MenuItem>
                     <IconButton size="large" aria-label="cart items count" color="inherit">
@@ -206,20 +201,25 @@ export default function Header() {
         </Menu>
     );
 
-
-
-
     return (
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static" sx={{background: "linear-gradient(180deg,rgb(140,113,240) 100%, rgba(249, 249, 249, 0.036834716796875) 100%)"}}>
-                <Toolbar>
+                <Toolbar sx={{width: '100%'}}> {/* Adjusting width here */}
+                    <Typography
+                        variant="h6"
+                        noWrap
+                        component="div"
+                        sx={{ display: { xs: 'block', sm: 'none' } }}
+                    >
+                        <img className='header-logo' src={logo} alt=""/>
+                    </Typography>
                     <Typography
                         variant="h6"
                         noWrap
                         component="div"
                         sx={{ display: { xs: 'none', sm: 'block' } }}
                     >
-                        PeRfUmE
+                        <img className='header-logo' src={logo} alt=""/>
                     </Typography>
 
                     <Box sx={{ flexGrow: 1 }} />
