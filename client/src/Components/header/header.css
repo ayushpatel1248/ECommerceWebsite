@@ -137,6 +137,11 @@ input#search-bar {
         padding-bottom: 1.5%;
     }
 }
+@media screen and (max-width: 600px) {
+    .css-myj8v8-MuiTypography-root {
+        width: 50% !important;
+    }
+}
 
 /* @media screen and (max-width: 1000px) {
     .css-myj8v8-MuiTypography-root {
