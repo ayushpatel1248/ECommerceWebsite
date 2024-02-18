@@ -21,9 +21,14 @@ const Products = () => {
   const handleSelect = (selectedIndex) => {
     setIndex(selectedIndex);
   };
+<<<<<<< HEAD
 setTimeout(()=>{
   setConfetti(false)
 },4000)
+=======
+
+
+>>>>>>> 62eb8d190079a73fb3ca4c3ac48526ff33ff7fed
   return (
     <div>
        <Confetti
@@ -32,7 +37,6 @@ setTimeout(()=>{
       recycle={confetti}
     />
       <Header />
-
       <Carousel activeIndex={index} onSelect={handleSelect} data-bs-theme="dark">
         <Carousel.Item>
           {/* <ExampleCarouselImage text="First slide" /> */}

@@ -59,6 +59,7 @@ UserService.getUserData = async (_id) => {
                 status: "err",
                 msg: "authentication error occured",
                 data: null
+                
             }
         }
     }
