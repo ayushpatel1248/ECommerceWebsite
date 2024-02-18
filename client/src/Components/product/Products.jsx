@@ -16,10 +16,10 @@ const Products = () => {
     setIndex(selectedIndex);
   };
 
+
   return (
     <div>
       <Header />
-
       <Carousel activeIndex={index} onSelect={handleSelect} data-bs-theme="dark">
         <Carousel.Item>
           {/* <ExampleCarouselImage text="First slide" /> */}
