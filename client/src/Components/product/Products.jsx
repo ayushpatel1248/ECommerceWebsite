@@ -5,19 +5,32 @@ import Footer from '../footer/Footer'
 import image from '../../images/loginImg/login.svg'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState } from 'react';
+import {useWindowSize} from 'react-use';
+import Confetti from 'react-confetti'
 // import image from '../../images/loginImg/login.svg'
 import './product.css'
 
 
+
+
 const Products = () => {
   const [index, setIndex] = useState(0);
-
+  const { width, height } = useWindowSize()
+  const [confetti, setConfetti] = useState(true)
+ 
   const handleSelect = (selectedIndex) => {
     setIndex(selectedIndex);
   };
-
+setTimeout(()=>{
+  setConfetti(false)
+},4000)
   return (
     <div>
+       <Confetti
+      width={width}
+      height={height}
+      recycle={confetti}
+    />
       <Header />
 
       <Carousel activeIndex={index} onSelect={handleSelect} data-bs-theme="dark">
