@@ -11,6 +11,7 @@ import Profile from "./Components/profile/Profile"
 
 import Cart from "./Components/cart/Cart";
 import NewPassword from "./Components/newpassword/NewPassword";
+import AllProductsPage from "./Components/allProductsPage/AllProductsPage";
 
 
 
@@ -34,7 +35,8 @@ function App() {
         <Route path="/header" element={isLoading == true ? <Loader /> : <div> <Header /></div>}/>
         <Route path="/profile" element={ <Profile/>}/> 
         <Route path="/cart" element={isLoading == true ? <Loader /> : <div><Cart /></div>} />
-        
+        <Route path="/allProducts" element={isLoading == true ? <Loader /> : <div><AllProductsPage /></div>} />
+
       </Routes>
     </BrowserRouter>
   );

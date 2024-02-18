@@ -8,9 +8,12 @@ const store = configureStore({
     reducer :{
         example : exampleSlice,
         userLoginData : userLoginDataSlice,
+ 
         getProductData : getProductDataSlice,
         showEmailUpdateProfile :  showEmailUpdateProfileSlice,
-        profileUpdattion : profileUpdattionSlice
+        profileUpdattion : profileUpdattionSlice,
+        getProductData : getProductDataSlice 
+
         // cartData : cartDataSlice
         //and more reducer are add here...
     }

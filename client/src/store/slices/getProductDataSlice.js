@@ -3,7 +3,7 @@ import axios from "axios";
 
 const getProductDataSlice = createSlice({
     name: "getProductDataSlice",
-    initialState: { productData: null },
+    initialState: { productData: [] },
     reducers: {
         getProductData(state, action) {
             state.productData = action.payload;
