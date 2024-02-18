@@ -1,0 +1,13 @@
+.email-update-div{
+    position: absolute;
+    z-index: 4;
+    height: 50vh;
+    width: 50vw;
+    background-color: rgba(0, 0, 0, 0.404);
+}
+.none{
+    display: none;
+}
+.block{
+    display: block;
+}
