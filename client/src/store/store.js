@@ -7,6 +7,7 @@ const store = configureStore({
         example : exampleSlice,
         userLoginData : userLoginDataSlice,
         getProductData : getProductDataSlice 
+
         // cartData : cartDataSlice
         //and more reducer are add here...
     }

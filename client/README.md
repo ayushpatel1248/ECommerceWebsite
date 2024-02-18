@@ -13,4 +13,4 @@ font-family: 'Noto Serif', serif;
           value={"sumbit"}
         /> */}
       {/* <i className="fa fa-font-awesome" aria-hidden="true"></i>  -->
-       <!-- total prize ka add akrna hai , cart is going in minus -->
+      <!-- add to cart ko slice me convert krna he      -->

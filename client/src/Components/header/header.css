@@ -1,4 +1,4 @@
-nav{
+.nav{
     /* position: fixed; */
     position: sticky;
     top: 0px;
@@ -14,11 +14,11 @@ nav{
     height: 100%;
     width: 100%;
 }
-body.dark nav{
+body.dark .nav{
     border: 1px solid #393838;
 
 }
-nav .nav-bar {
+.nav .nav-bar {
     position: relative;
     height: 100%;
     width: 100%;
@@ -32,7 +32,7 @@ nav .nav-bar {
     padding-right: 3%;
 }
 
-nav .nav-bar .sidebarOpen{
+.nav .nav-bar .sidebarOpen{
     color: white;
     font-size: 25px;
     padding: 5px;
@@ -40,7 +40,7 @@ nav .nav-bar .sidebarOpen{
     display: none;
 }
 
-nav .nav-bar .logo a{
+.nav .nav-bar .logo a{
     font-size: 25px;
     font-weight: 500;
     color: white;
@@ -221,10 +221,10 @@ body.dark .search-field i{
 }
 
 @media (max-width: 790px) {
-    nav .nav-bar .sidebarOpen{
+    .nav .nav-bar .sidebarOpen{
         display: block;
     }
-    nav{
+    .nav{
         height: 75px;
     }
 
@@ -240,11 +240,11 @@ body.dark .search-field i{
         transition: all 0.4s ease;
     }
 
-    nav.active .menu{
+    .nav.active .menu{
         left: -0%;
     }
 
-    nav.active .nav-bar .navLogo a{
+    .nav.active .nav-bar .navLogo a{
         opacity: 0;
         transition: all 0.3s ease;
     }

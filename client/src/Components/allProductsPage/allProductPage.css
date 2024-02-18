@@ -1,0 +1,9 @@
+.card-product-allproduct{
+    /* margin : 1%; */
+    margin-bottom: 2%;
+}
+
+.pagination-parent{
+    display: flex;
+    justify-content: center;
+}

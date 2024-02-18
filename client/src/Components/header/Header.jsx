@@ -32,7 +32,7 @@ export default function Header() {
     }
 
     return (
-        <nav className={sidebarOpen ? "" : "active"}>
+        <nav className={sidebarOpen ? "nav" : "nav active"}>
             <div class="nav-bar">
                 <i class={sidebarOpen ? "bx bx-menu sidebarOpen" : "bx bx-menu sidebarOpen active"} onClick={handleSidebarOpen} ></i>
                 <span class="logo navLogo"><img src={logo} alt="" /></span>
@@ -46,7 +46,7 @@ export default function Header() {
                     <ul class="nav-links">
                         <li><Link to="/">Home</Link></li>
                         <li><Link to="">Orders</Link></li>
-                        <li><Link to="">All Products</Link></li>
+                        <li><Link to="/allProducts">All Products</Link></li>
                         <li><Link to="">Services</Link></li>
                         <li><Link to="">Contact Us</Link></li>
                     </ul>
