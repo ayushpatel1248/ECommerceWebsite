@@ -220,7 +220,7 @@ body.dark .search-field i{
     color: white;
 }
 
-@media (max-width: 790px) {
+@media (max-width: 900px) {
     .nav .nav-bar .sidebarOpen{
         display: block;
     }
