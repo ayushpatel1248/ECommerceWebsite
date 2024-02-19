@@ -12,6 +12,7 @@ import axios from 'axios';
 import { useEffect } from 'react';
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
 import '../../App.css'
+import UserNotLogin from '../useNotLogin/UserNotLogin';
 const baseUrl = process.env.REACT_APP_BASE_URL
 
 const Cart = () => {
@@ -19,6 +20,7 @@ const Cart = () => {
     const navigate = useNavigate()
     //this is state for storing cart data of user 
     const [cartData, setCartData] = useState([])
+    const [isUserLogin , setIsUserLogin] = useState(false)
     const [totalAmount, setTotalAmount] = useState(0)
 
 
@@ -36,12 +38,12 @@ const Cart = () => {
                 // console.log(viewCartApiHit.data)
             }
             else {
-                navigate('/login')
+                setIsUserLogin(true)
             }
         }
         catch (err) {
             console.log("in catch = ", err)
-            navigate('/login')
+            setIsUserLogin(true)
         }
     }
 
@@ -91,7 +93,8 @@ const Cart = () => {
     return (
         <>
             <Header />
-            <div className='cart-body backgroundWithPurple'>
+           <div>
+            {isUserLogin?<UserNotLogin></UserNotLogin>:<div> <div className='cart-body backgroundWithPurple'>
                 <div className="shopping-cart">
                     <div className="title">
                         Shopping Bag
@@ -150,7 +153,8 @@ const Cart = () => {
                 </button>
 
             </div>
-            {console.log(cartData)}
+            {console.log(cartData)}</div>}
+           </div>
         </>
     );
 }

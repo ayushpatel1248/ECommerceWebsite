@@ -33,7 +33,7 @@ function App() {
         <Route path="/forget-password" element={isLoading == true ? <Loader /> : <div> <ForgetPassword /></div>} />
         <Route path="/forget-password/set-new-password" element={isLoading == true ? <Loader/> : <div> <NewPassword/></div>} />
         <Route path="/header" element={isLoading == true ? <Loader /> : <div> <Header /></div>}/>
-        <Route path="/profile" element={isLoading == true ? <Loader /> : <div> <Profile/></div>}/> 
+        <Route path="/profile" element={ <Profile/>}/> 
         <Route path="/cart" element={isLoading == true ? <Loader /> : <div><Cart /></div>} />
         <Route path="/allProducts" element={isLoading == true ? <Loader /> : <div><AllProductsPage /></div>} />
 

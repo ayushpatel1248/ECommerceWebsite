@@ -41,7 +41,7 @@ const Login = () => {
                     notify(res.data.msg)
                 }
             }).catch((err) => {
-                notify("err in axios in login.jsx")
+                notify(err.message)
                 console.log(err)
             })
         } catch (err) {
