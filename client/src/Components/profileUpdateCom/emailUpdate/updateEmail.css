@@ -1,13 +1,160 @@
-.email-update-div{
-    position: absolute;
-    z-index: 4;
-    height: 50vh;
-    width: 50vw;
-    background-color: rgba(0, 0, 0, 0.404);
-}
+
 .none{
     display: none;
 }
 .block{
     display: block;
 }
+.update-email-div{
+    position: absolute;
+    z-index: 4;
+    height: 300vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.793);
+    
+    display: flex;
+    justify-content: center;
+  
+}
+.update-email-inner-div{
+    width: 30%;
+    height: 26%;
+    border:1px solid white;
+    border-radius: 40px;
+    background-color:grey;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20% 4%;
+    margin-top: 15%;
+}
+
+/* // */
+.button-update-email {
+    --color: #560bad;
+    font-family: inherit;
+    display: inline-block;
+    width: 8em;
+    height: 2.6em;
+    line-height: 2.5em;
+    margin: 20px;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid var(--color);
+    transition: color .5s;
+    z-index: 1;
+    font-size: 17px;
+    border-radius: 6px;
+    font-weight: 500;
+    color: var(--color);
+   }
+   
+   .button-update-email:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    background: var(--color);
+    height: 150px;
+    width: 200px;
+    border-radius: 50%;
+   }
+   
+   .button-update-email:hover {
+    color: #fff;
+   }
+   
+   .button-update-email:before {
+    top: 100%;
+    left: 100%;
+    transition: all .7s;
+   }
+   
+   .button-update-email:hover:before {
+    top: -30px;
+    left: -30px;
+   }
+   
+   .button-update-email:active:before {
+    background: #3a0ca3;
+    transition: background 0s;
+   }
+
+
+   .form-update-email {
+    --width-of-input: 200px;
+    --border-height: 1px;
+    --border-before-color: rgba(221, 221, 221, 0.39);
+    --border-after-color: #5891ff;
+    --input-hovered-color: #4985e01f;
+    position: relative;
+    width: var(--width-of-input);
+    margin-left: 4%;
+   }
+  
+   .input-update-email {
+    color: #fff;
+    font-size: 0.9rem;
+    background-color: transparent;
+    width: 100%;
+    box-sizing: border-box;
+    padding-inline: 0.5em;
+    padding-block: 0.7em;
+    border: none;
+    border-bottom: var(--border-height) solid var(--border-before-color);
+   }
+ 
+   .input-border-update-email {
+    position: absolute;
+    background: var(--border-after-color);
+    width: 0%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    transition: 0.3s;
+   }
+
+   .input-update-email:hover {
+    background: var(--input-hovered-color);
+   }
+   
+   .input-update-email:focus {
+    outline: none;
+   }
+  
+   .input-update-email:focus ~ .input-border-update-email {
+    width: 100%;
+   }
+
+     /* For screens smaller than 576px (phones) */
+  @media only screen  and  (min-width:390px)   and (max-width:574px ) {
+    .update-email-inner-div {
+      width: 90%; /* Adjust the width for even smaller screens */
+      height: 20%;
+      padding: 30% 4%; /* Adjust padding for smaller screens */
+    }
+  }
+
+
+   @media only screen and  (min-width:575px) and (max-width: 768px) {
+    .update-email-inner-div {
+      width: 80%; /* Adjust the width for smaller screens */
+      height: 20%;
+    }
+  }
+  
+  @media only screen and (min-width:769px){
+    .update-email-inner-div {
+      width: 53% ; 
+      height: 18%;
+    
+    }
+  }
+
+
+    
+  /* For screens larger than 1200px (large desktops) */
+  @media only screen and (min-width: 1200px) {
+    .update-email-inner-div {
+      width: 31%;
+    }
+  }

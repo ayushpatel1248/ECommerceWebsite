@@ -6,7 +6,7 @@ import "./profile.css";
 import Footer from "../footer/Footer"
 import { fetchData } from '../../store/slices/userLoginDataSlice';
 import { showEmailSection } from '../../store/slices/showEmailUpdateProfileSlice';
-import { setNameValue , setMobileValue } from '../../store/slices/profileUpdattionSlice';
+import { setNameValue, setMobileValue } from '../../store/slices/profileUpdattionSlice';
 import profileImg from "../../images/profileImg/profile-img.jpg";
 import { object, string, ref } from 'yup';
 import { ToastContainer, toast } from 'react-toastify';
@@ -32,24 +32,26 @@ const Profile = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [disableColor, setDisableColor] = useState("button");
   const [loading, setLoading] = useState(true);
-  const [emailDisplay ,setEmailDisplay] = useState(false)
+  const [emailDisplay, setEmailDisplay] = useState(false)
 
   useEffect(() => {
     dispatch(fetchData(localStorage.getItem("authorization")))
-   
+
   }, [])
   const userData = useSelector((state) => state.userLoginData.userData);
-  const showEmailUpdateProfileSlice = useSelector((state)=>state.showEmailUpdateProfile.value)
-  const profileUpdattion = useSelector((state)=>state.profileUpdattion.name)
-  const profileUpdattionMobile = useSelector((state)=>state.profileUpdattion.mobile)
-  const profileUpdattionAddress = useSelector((state)=>state.profileUpdattion.address)
-  useEffect(()=>{
-    if(userData){
+  const showEmailUpdateProfileSlice = useSelector((state) => state.showEmailUpdateProfile.value)
+  const profileUpdattion = useSelector((state) => state.profileUpdattion.name)
+  const profileUpdattionMobile = useSelector((state) => state.profileUpdattion.mobile)
+  const profileUpdattionAddress = useSelector((state) => state.profileUpdattion.address)
+  useEffect(() => {
+    if (userData) {
+      setLoading(false)
+    }else{
       setLoading(false)
     }
-  },[userData])
+  }, [userData])
 
-  
+
   const resetPassword = () => {
     setIsResetPassword(true)
   }
@@ -99,10 +101,11 @@ const Profile = () => {
     <div>
       {loading ? <Loader></Loader> : <div className='profile-parent'>
         <Header />
-        {showEmailUpdateProfileSlice?<UpdateEmail />:""}
-        {profileUpdattion?<NameUpdate/>:""}
-        {profileUpdattionMobile?<MobileUpdate/>:""}
-        {profileUpdattionAddress?<AddressUpdate/>:""}
+        {showEmailUpdateProfileSlice ? <UpdateEmail /> : ""}
+        {profileUpdattion ? <NameUpdate /> : ""}
+        {profileUpdattionMobile ? <MobileUpdate /> : ""}
+        {profileUpdattionAddress ? <AddressUpdate /> : ""}
+
         {isResetPassword ? <div><div className='set-password-parent'>
           <div className="form_main">
             <p className="heading-password">Set Password</p>
@@ -165,7 +168,7 @@ const Profile = () => {
                   <div id="name">{userData.userName}</div>
                 </div>
                 <div className='btn-update-profile-div'>
-                 <button  className='btn-update-profile' onClick={()=>{dispatch(setNameValue(true))}}> <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                  <button className='btn-update-profile' onClick={() => { dispatch(setNameValue(true)) }}> <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
 
                 </div>
 
@@ -177,7 +180,7 @@ const Profile = () => {
                   <div id="email">{userData.email}</div>
                 </div>
                 <div className='btn-update-profile-div'>
-                  <button className='btn-update-profile'  onClick={()=>{ dispatch(showEmailSection(true))}}><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                  <button className='btn-update-profile' onClick={() => { dispatch(showEmailSection(true)) }}><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
 
                 </div>
 
@@ -189,7 +192,7 @@ const Profile = () => {
                   <div id="mobile">{userData.mobileNumber}</div>
                 </div>
                 <div className='btn-update-profile-div'>
-                <button  className='btn-update-profile' onClick={()=>{dispatch(setMobileValue(true))}}> <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button> 
+                  <button className='btn-update-profile' onClick={() => { dispatch(setMobileValue(true)) }}> <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
 
                 </div>
 
@@ -200,7 +203,7 @@ const Profile = () => {
                   <div id="address">{userData.address}</div>
                 </div>
                 <div className='btn-update-profile-div'>
-                <button className='btn-update-profile' onClick={()=>{dispatch(setAddressValue(true))}}>  <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                  <button className='btn-update-profile' onClick={() => { dispatch(setAddressValue(true)) }}>  <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
 
                 </div>
 
@@ -210,12 +213,12 @@ const Profile = () => {
 
               <div className='reset-btn-profile'>
                 <button className="reset-button-profile" onClick={resetPassword}>Reset Password</button>
-                <button className="reset-button-profile" onClick={()=>{
+                <button className="reset-button-profile" onClick={() => {
                   localStorage.removeItem("authorization")
-                navigate("/")
+                  navigate("/")
                 }
-                  
-                  }>Log Out</button>
+
+                }>Log Out</button>
 
               </div>
             </div>
@@ -233,7 +236,6 @@ const Profile = () => {
         <ToastContainer />
       </div>}
     </div>
-
   )
 };
 const styles = {
