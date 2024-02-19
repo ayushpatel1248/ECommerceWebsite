@@ -9,7 +9,7 @@
     position: absolute;
     z-index: 4;
     height: 300vh;
-    width: 100vw;
+    width: 100%;
     background-color: rgba(0, 0, 0, 0.793);
     
     display: flex;
