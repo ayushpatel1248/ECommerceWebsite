@@ -86,6 +86,58 @@ UserService.updateUserEmail = async (_id, newEmail, role) => {
     }
 }
 
+UserService.updateUserName = async (_id,newUserName, role) =>{
+    if (role == "user" || role == "User") {
+        const result = await User.findOne({ _id })
+        if (result == null) {
+            return ({
+                status: "err",
+                msg: "unauthorized access",
+                data: null
+            })
+        } else {
+            try {
+                let updatedInfo = await User.findOneAndUpdate({ _id }, { userName:newUserName})
+                if (updatedInfo) {
+                    return {
+                        status: "OK",
+                        msg: "userName information updated successfully",
+                        data: null
+                    }
+                }
+                else {
+                    return {
+                        status: "err",
+                        msg: "error occures while updating the userName information",
+                        data: null
+                    }
+                }
+            } catch {
+                return {
+                    status: "err",
+                    msg: "server error in user service",
+                    data: null
+                }
+            }
+        }
+    }else if(role ==undefined){
+        return {
+            status: "err",
+            msg: "role is required field",
+            data: null
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
 UserService.getUserData = async (_id) => {
     const result = await User.findOne({ _id });
     try {

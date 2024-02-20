@@ -5,8 +5,11 @@ import { showEmailSection } from '../../../store/slices/showEmailUpdateProfileSl
 import { object, string, number } from 'yup';
 import { ToastContainer, toast } from 'react-toastify';
 import axios from 'axios';
+
 const UpdateEmail = () => {
   const notify = (mes) => toast.error(mes);
+  const notifySucess = (mes) => toast(mes);
+
   const dispatch = useDispatch();
   const BASE_URL = process.env.REACT_APP_BASE_URL;
   const [email , setEmail] = useState("")
@@ -17,7 +20,23 @@ const UpdateEmail = () => {
 const handelEmailUpdateSubmit =async()=>{
   try{
     await emailUpdateSchema.validate({ email })
-    axios.post(`${BASE_URL}/password/otpForPassword`, { email, role: "user" })
+    const auth = localStorage.getItem("authorization")
+    
+    axios.post(`${BASE_URL}/user/updateUserEmail`, {newEmail: email, role: "user" } ,{headers:{authorization:auth}}).then((res)=>{
+if(res.data.status=="OK"){
+  console.log("res.data=>",res.data)
+  notifySucess(res.data.msg)
+  dispatch(showEmailSection(false))
+  window.location.reload();
+
+}else{
+  console.log(res.data)
+  notify(res.data.msg)
+}
+    }).catch((err)=>{
+      console.log("error in axios at  UpdateEmail.jsx",err)
+      notify("network error")
+    })
      
   }catch(err){
     notify(err.message)

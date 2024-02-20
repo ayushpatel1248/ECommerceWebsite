@@ -36,6 +36,7 @@ UserController.getUserData = async (req , res) => {
     const result = await UserService.getUserData(_id);
     res.send(result)
 }
+
 UserController.updateUserEmail =async (req,res)=>{
     const { authorization } = req.headers;
     const { newEmail, role } = req.body;
@@ -56,5 +57,26 @@ UserController.updateUserEmail =async (req,res)=>{
         })
     }
 
+}
+
+UserController.updateUserName = async (req,res)=>{
+    const { authorization } = req.headers;
+    const { newUserName, role } = req.body;
+    const _id = verifyAuth(authorization)
+    const userNameValidationSchema = Joi.string().min(4).max(40).required();
+    const validationResult = userNameValidationSchema.validate(newUserName);
+
+
+    if (!validationResult.error) {
+        const result = await UserService.updateUserName(_id,newUserName, role)
+        res.send(result)
+    }
+    else{
+        res.send({
+            status:"err",
+            msg:"validation error occured",
+            data:null
+        })
+    }
 }
 module.exports = UserController

@@ -232,7 +232,7 @@ const Profile = () => {
               </div>
             </div>
           </div> : <UserNotLogin></UserNotLogin>}</div>}
-44
+
         <Footer />
         <ToastContainer />
       </div>}
