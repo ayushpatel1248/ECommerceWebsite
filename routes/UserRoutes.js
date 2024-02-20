@@ -4,4 +4,5 @@ const UserController = require("../controllers/UserController")
 
 router.post('/addProfileInfo', UserController.addProfileInfo)
 router.post('/getUserData' , UserController.getUserData)
+router.post("/updateUserEmail",UserController.updateUserEmail)
 module.exports = router 

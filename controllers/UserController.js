@@ -36,5 +36,25 @@ UserController.getUserData = async (req , res) => {
     const result = await UserService.getUserData(_id);
     res.send(result)
 }
+UserController.updateUserEmail =async (req,res)=>{
+    const { authorization } = req.headers;
+    const { newEmail, role } = req.body;
 
+    const _id = verifyAuth(authorization)
+    const emailValidationSchema = Joi.string().regex(/^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/);
+    const validationResult = emailValidationSchema.validate(newEmail);
+
+    if (!validationResult.error) {
+        const result = await UserService.updateUserEmail(_id,newEmail, role)
+        res.send(result)
+    }
+    else{
+        res.send({
+            status:"err",
+            msg:"validation error occured",
+            data:null
+        })
+    }
+
+}
 module.exports = UserController

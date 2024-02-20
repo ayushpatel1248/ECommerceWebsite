@@ -5,7 +5,7 @@ ProductServices.getProduct = async (skip, limit) => {
 
   let numberOfSkip = (skip - 1) * limit;
 
-  return (await Products.aggregate([
+  const productData =  await Products.aggregate([
     {
       $lookup: {
         from: "brands", // The collection to join with
@@ -16,8 +16,19 @@ ProductServices.getProduct = async (skip, limit) => {
     },
     { $skip: numberOfSkip },
     { $limit: limit }
-  ]))
+  ])
+
+ const count =  await Products.aggregate([{$count:"count"}])
+ productData.push(count[0])
+return productData
+  
 }
+
+
+
+
+
+
 ProductServices.getProductByName = async (name) => {
   try {
     console.log(name)

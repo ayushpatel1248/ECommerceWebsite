@@ -156,6 +156,7 @@ const Profile = () => {
             <h1 className='h1-profile'>User Profile</h1>
             <div className="background-photo-profile"></div>
             <div className="profile-photo animated" style={{ backgroundImage: `url(${profileImg})` }}></div>
+            {/* <div className="profile-photo animated" style={{ backgroundImage: `url(https:cdn1.bigassphotos.com/84/7/8471f17ab.jpg)` }}></div> */}
             <div className='upload-profile-img-profile'>
               <span>update profile photo</span>
             </div>
@@ -231,7 +232,7 @@ const Profile = () => {
               </div>
             </div>
           </div> : <UserNotLogin></UserNotLogin>}</div>}
-
+44
         <Footer />
         <ToastContainer />
       </div>}

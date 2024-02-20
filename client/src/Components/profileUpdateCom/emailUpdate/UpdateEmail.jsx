@@ -1,11 +1,28 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "./updateEmail.css"
 import { useDispatch } from 'react-redux';
 import { showEmailSection } from '../../../store/slices/showEmailUpdateProfileSlice';
-
+import { object, string, number } from 'yup';
+import { ToastContainer, toast } from 'react-toastify';
+import axios from 'axios';
 const UpdateEmail = () => {
+  const notify = (mes) => toast.error(mes);
   const dispatch = useDispatch();
+  const BASE_URL = process.env.REACT_APP_BASE_URL;
+  const [email , setEmail] = useState("")
 
+  const emailUpdateSchema = object({
+    email: string().trim().matches(/^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/, "email should be correct").required("email is required field"),
+  })
+const handelEmailUpdateSubmit =async()=>{
+  try{
+    await emailUpdateSchema.validate({ email })
+    axios.post(`${BASE_URL}/password/otpForPassword`, { email, role: "user" })
+     
+  }catch(err){
+    notify(err.message)
+  }
+}
   return (
     <div className='update-email-div'>
       <div className='update-email-inner-div'>
@@ -16,16 +33,17 @@ const UpdateEmail = () => {
          </div>
 
           <div className="form-update-email">
-            <input className="input-update-email" placeholder="Enter New Email" type="text"></input>
+            <input className="input-update-email" onChange={(e)=>{setEmail(e.target.value)}} placeholder="Enter New Email" type="text"></input>
             <span className="input-border-update-email"></span>
           </div>
 
          <div className='d-flex gap-3'>
          <button className='button-update-email' onClick={() => { dispatch(showEmailSection(false)) }}>cancle</button>
-          <button className='button-update-email'>Save Changes</button>
+          <button className='button-update-email' onClick={handelEmailUpdateSubmit}>Save Changes</button>
          </div>
         </div>
       </div>
+      <ToastContainer position="bottom-center"/>
     </div>
   )
 }
