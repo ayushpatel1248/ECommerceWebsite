@@ -33,7 +33,7 @@ const NameUpdate = () => {
           notify(res.data.msg)
         }
             }).catch((err)=>{
-              console.log("error in axios at  UpdateEmail.jsx",err)
+              console.log("error in axios at  UpdateName.jsx",err)
               notify("network error")
             })
 

@@ -79,4 +79,27 @@ UserController.updateUserName = async (req,res)=>{
         })
     }
 }
+
+UserController.updateUserMobileNumber = async (req,res)=>{
+    const { authorization } = req.headers;
+    const { newMobileNumber, role } = req.body;
+    const _id = verifyAuth(authorization)
+
+    const userMobileNumberValidationSchema = Joi.string().regex(/^[0-9]{10}$/).messages({'string.pattern.base': `Phone number must have 10 digits.`}).required();
+    const validationResult = userMobileNumberValidationSchema.validate(newMobileNumber);
+    if (!validationResult.error) {
+        const result = await UserService.updateUserMobileNumber(_id,newMobileNumber, role)
+        res.send(result)
+    }
+    else{
+        res.send({
+            status:"err",
+            msg:"validation error occured",
+            data:null
+        })
+    }
+
+
+
+}
 module.exports = UserController
