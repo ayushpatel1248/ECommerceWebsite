@@ -102,4 +102,16 @@ UserController.updateUserMobileNumber = async (req,res)=>{
 
 
 }
+
+UserController.updateUserAddress = async(req,res)=>{
+    const { authorization } = req.headers;
+    const { street , city , state , postalCode , role } = req.body;
+    const _id = verifyAuth(authorization)
+
+    const result = await UserService.updateUserAddress(_id,street, city , state , postalCode, role)
+    res.send(result)
+
+
+
+}
 module.exports = UserController

@@ -7,4 +7,5 @@ router.post('/getUserData' , UserController.getUserData)
 router.post("/updateUserEmail",UserController.updateUserEmail)
 router.post("/updateUserName",UserController.updateUserName)
 router.post("/updateUserMobileNumber",UserController.updateUserMobileNumber)
+router.post("/updateUserAddress",UserController.updateUserAddress)
 module.exports = router 
