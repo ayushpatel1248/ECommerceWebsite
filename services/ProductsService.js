@@ -19,8 +19,8 @@ ProductServices.getProduct = async (skip, limit) => {
   ])
 
  const count =  await Products.aggregate([{$count:"count"}])
- productData.push(count[0])
-return productData
+//  productData.push(count[0])
+return {productData , count:count[0]}
   
 }
 

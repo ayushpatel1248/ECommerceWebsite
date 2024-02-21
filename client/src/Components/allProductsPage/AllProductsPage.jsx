@@ -116,6 +116,7 @@ const AllProductsPage = () => {
                     </div>
                     {getProductData.productData == null ? <Loader /> : <div className='card-product-parent'>
                         {getProductData.productData.map((el) => {
+                            console.log(el)
                             return <div class="card-product card-product-allproduct">
                                 <div class="card-img-product"><img src={el.images[0]} alt="" srcset="" /></div>
                                 <div class="card-info-product">
