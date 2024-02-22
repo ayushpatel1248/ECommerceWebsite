@@ -215,7 +215,48 @@ UserService.updateUserAddress = async (_id,street, city , state , postalCode, ro
     }
 }
 
-
+UserService.updateUserImage = async (_id ,image , role)=>{
+    if (role == "user" || role == "User") {
+        const result = await User.findOne({ _id })
+        if (result == null) {
+            return ({
+                status: "err",
+                msg: "unauthorized access",
+                data: null
+            })
+        } else {
+            try {
+                let updatedInfo = await User.findOneAndUpdate({ _id }, { image:image})
+                if (updatedInfo) {
+                    return {
+                        status: "OK",
+                        msg: "image information updated successfully",
+                        data: null
+                    }
+                }
+                else {
+                    return {
+                        status: "err",
+                        msg: "error occures while updating the image information",
+                        data: null
+                    }
+                }
+            } catch {
+                return {
+                    status: "err",
+                    msg: "server error in user service",
+                    data: null
+                }
+            }
+        }
+    }else if(role ==undefined){
+        return {
+            status: "err",
+            msg: "role is required field",
+            data: null
+        }
+    }
+}
 
 
 

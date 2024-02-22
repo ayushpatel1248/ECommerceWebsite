@@ -8,4 +8,5 @@ router.post("/updateUserEmail",UserController.updateUserEmail)
 router.post("/updateUserName",UserController.updateUserName)
 router.post("/updateUserMobileNumber",UserController.updateUserMobileNumber)
 router.post("/updateUserAddress",UserController.updateUserAddress)
+router.post("/updateUserImage",UserController.updateUserImage)
 module.exports = router 

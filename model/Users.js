@@ -17,6 +17,9 @@ const UsersSchema = new Schema({
         "type": String,
         required: true
     },
+    "image": {
+        "type": String,
+    },
     "email": {
         "type": String,
         required: true
@@ -39,7 +42,7 @@ const UsersSchema = new Schema({
         },
         "country": {
             "type": String,
-            enum:['india']
+            enum: ['india']
         },
     },
     "role": {

@@ -110,8 +110,28 @@ UserController.updateUserAddress = async(req,res)=>{
 
     const result = await UserService.updateUserAddress(_id,street, city , state , postalCode, role)
     res.send(result)
+}
 
+UserController.updateUserImage = async(req,res)=>{
+    const { authorization } = req.headers;
+    const {image , role} = req.body;
+    const _id = verifyAuth(authorization)
 
+    const userImageValidationSchema = Joi.string().required();
+    const validationResult = userImageValidationSchema.validate(newMobileNumber);
+
+    if (!validationResult.error) {
+        const result = await UserService.updateUserImage(_id ,image , role)
+    res.send(result)
+    }
+    else{
+        res.send({
+            status:"err",
+            msg:"validation error occured",
+            data:null
+        })
+    }
+    
 
 }
 module.exports = UserController
