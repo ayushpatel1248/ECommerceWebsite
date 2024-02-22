@@ -201,7 +201,7 @@ const Profile = () => {
               <div className="profile-info-div">
                 <div className='d-flexx'>
                   <div htmlFor="address" className="profile-fields"><i class="fas fa-map-marker-alt"></i><strong> Address:</strong></div>
-                  <div id="address">{`${userData.address.street}  ${userData.address.city} ${userData.address.state} ${userData.address.postalCode}` }</div>
+                  <div id="address">{`${userData.address.street}  ${userData.address.city} ${userData.address.state} ${userData.address.postalCode}`||"undefined" }</div>
                 </div>
                 <div className='btn-update-profile-div'>
                   <button className='btn-update-profile' onClick={() => { dispatch(setAddressValue(true)) }}>  <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
