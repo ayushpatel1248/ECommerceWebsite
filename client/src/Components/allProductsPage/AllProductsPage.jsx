@@ -17,9 +17,11 @@ import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
+import { storeProductData } from '../../store/slices/productDescSlice';
+import { useNavigate } from 'react-router-dom';
 
 const AllProductsPage = () => {
-
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const { getProductData } = useSelector(state => state);
     const [value, setValue] = React.useState([0, 400]);
@@ -124,7 +126,15 @@ const AllProductsPage = () => {
                         <div className='card-product-parent'>
                             {Array.isArray(getProductData?.productData?.productData) ? (
                                 getProductData?.productData?.productData?.map((el) => (
-                                    <div className="card-product card-product-allproduct" key={el.id}> {/* Ensure each element has a unique key */}
+                                    <div className="card-product card-product-allproduct" key={el.id} 
+                                    
+                                    onClick={(e)=>{
+
+                                        console.log("dec of product" , el)
+                                        dispatch(storeProductData(el))
+                                        navigate("/product-description")
+                                        
+                                    }}> {/* Ensure each element has a unique key */}
                                         <div className="card-img-product"><img src={el.images[0]} alt="" /></div>
                                         <div className="card-info-product">
                                             <p className="text-title-product">{el.name.length > 12 ? `${el.name.substr(0, 12)}...` : el.name}</p>

@@ -4,7 +4,7 @@ const ProductController = {}
 
 ProductController.getProductDetails = async (req, res) => {
   try {
-    const { product_id } = req.body;
+    const { product_id } = req.query;
     if (product_id == undefined || product_id == null) {
       return res.status(400).send({
         status: "err",

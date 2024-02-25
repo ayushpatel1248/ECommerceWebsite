@@ -116,7 +116,7 @@ UserController.updateUserImage = async(req,res)=>{
     const { authorization } = req.headers;
     const {image , role} = req.body;
     const _id = verifyAuth(authorization)
-
+    
     const userImageValidationSchema = Joi.string().required();
     const validationResult = userImageValidationSchema.validate(newMobileNumber);
 

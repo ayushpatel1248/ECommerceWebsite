@@ -7,6 +7,7 @@ import Register from "./Components/register/Register";
 import Products from "./Components/product/Products";
 import ForgetPassword from "./Components/forgetPassword/ForgetPassword";
 import Profile from "./Components/profile/Profile"
+import ProductDescription from "./Components/productDescription/ProductDescription";
 
 
 import Cart from "./Components/cart/Cart";
@@ -36,6 +37,7 @@ function App() {
         <Route path="/profile" element={ <Profile/>}/> 
         <Route path="/cart" element={isLoading == true ? <Loader /> : <div><Cart /></div>} />
         <Route path="/allProducts" element={isLoading == true ? <Loader /> : <div><AllProductsPage /></div>} />
+        <Route path="/product-description" element={isLoading == true ? <Loader /> : <div><ProductDescription /></div>} />
 
       </Routes>
     </BrowserRouter>

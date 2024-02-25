@@ -1,0 +1,143 @@
+.parent-product-desc{
+    background-color: rgba(145, 138, 138, 0.151);
+    height: 100vh;
+    /* background-color:#2c016d; */
+}
+
+.product-desc-div{
+    padding:2% auto ;
+    margin: 2% 3%;
+    height: 31rem;
+  width: 31rem;
+
+    border: 2px solid rgba(128, 128, 128, 0.37);
+    border-radius: 2%;
+    background-color: white ;
+   
+    overflow-x: hidden;
+   
+}
+.product-desc-div:hover{
+    color: #fff;
+    transition-duration:0.3s;
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+}
+.product-desc-div  img{
+    height:100%;
+    width: 100%;
+    padding: 60px 40px;
+    border-bottom:1px solid grey ;
+}
+
+.product-desc-div-scroll {
+    scrollbar-width: thin; /* Width of the scrollbar */
+    scrollbar-color: #888 transparent; /* Color of the thumb and track */
+     background-color: #888; /* Color of the thumb */
+        border-radius: 50px; /* Makes the thumb circular */
+        /* background: transparent;  */
+        
+}
+
+.product-animation{
+    animation: imageTra 1s linear  1;
+    transition: all;
+}
+
+@keyframes imageTra {
+    0%{
+        position: relative;
+        top: 95px;
+        left: 578px;
+        scale: 0.4;
+        opacity: 0;
+    }
+    100%{
+        position: relative;
+        top: 0px;
+        left: 0px;
+        scale:  1;
+        opacity: 1;
+    }
+}
+/*  */
+.description-text{
+    font-weight: bolder;
+}
+.description-text-div{
+    animation: fadeIn 5s linear 1s 1;
+    -webkit-animation: fadeIn 5s ease 1s 1;
+    -moz-animation: fadeIn 5s ease 1s 1;
+    -o-animation: fadeIn 5s ease 1s 1;
+    -ms-animation: fadeIn 5s ease 1s 1;
+    
+}
+@keyframes fadeIn {
+    from{
+        opacity: 0;
+    }to{
+        opacity: 1;
+    }
+}
+@-moz-keyframes fadeIn {
+    0% {
+      opacity:0;
+    }
+    100% {
+      opacity:1;
+    }
+  }
+  
+  @-webkit-keyframes fadeIn {
+    0% {
+      opacity:0;
+    }
+    100% {
+      opacity:1;
+    }
+  }
+  
+  @-o-keyframes fadeIn {
+    0% {
+      opacity:0;
+    }
+    100% {
+      opacity:1;
+    }
+  }
+  
+  @-ms-keyframes fadeIn {
+    0% {
+      opacity:0;
+    }
+    100% {
+      opacity:1;
+  }
+}
+.desc h3 {
+    color: rgba(0, 0, 0, 0.356);
+    
+    overflow: hidden;
+    border-right: .15em solid rgba(255, 166, 0, 0.342); 
+    white-space: nowrap; 
+    margin: 0 auto; 
+    letter-spacing: .04em; 
+    animation: 
+      typing 2.5s steps(30, end) 1s,
+      blink-caret .5s step-end 30 ;
+}
+  
+  /* The typing effect */
+  @keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+  }
+  
+  /* The typewriter cursor effect */
+  @keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% {
+         border-color: orange;
+         
+        }
+  }
+
