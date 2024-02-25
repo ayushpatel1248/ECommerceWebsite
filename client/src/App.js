@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Login from "./Components/login/Login";
 import Loader from "./Components/Loader";
 import Header from "./Components/header/Header";
-import { Route, Routes, BrowserRouter } from "react-router-dom";
+import { Route, Routes, BrowserRouter ,useParams  } from "react-router-dom";
 import Register from "./Components/register/Register";
 import Products from "./Components/product/Products";
 import ForgetPassword from "./Components/forgetPassword/ForgetPassword";
@@ -18,11 +18,12 @@ import AllProductsPage from "./Components/allProductsPage/AllProductsPage";
 
 function App() {
   const [isLoading, setIsloading] = useState(true);
-
+  
   useEffect(() => {
     setTimeout(() => {
       setIsloading(false)
     }, 1000)
+    
   }, [])
   return (
     <BrowserRouter>
@@ -37,7 +38,7 @@ function App() {
         <Route path="/profile" element={ <Profile/>}/> 
         <Route path="/cart" element={isLoading == true ? <Loader /> : <div><Cart /></div>} />
         <Route path="/allProducts" element={isLoading == true ? <Loader /> : <div><AllProductsPage /></div>} />
-        <Route path="/product-description" element={isLoading == true ? <Loader /> : <div><ProductDescription /></div>} />
+        <Route path="/product-description/:product_id" element={isLoading == true ? <Loader /> : <div><ProductDescription /></div>} />
 
       </Routes>
     </BrowserRouter>

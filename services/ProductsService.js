@@ -1,4 +1,5 @@
 const Products = require('../model/Products')
+const mongoose = require('mongoose');
 const ProductServices = {};
 
 ProductServices.getProduct = async (skip, limit) => {
@@ -21,10 +22,30 @@ ProductServices.getProduct = async (skip, limit) => {
  const count =  await Products.aggregate([{$count:"count"}])
 //  productData.push(count[0])
 return {productData , count:count[0]}
-  
 }
 
-
+ProductServices.getProductDesc = async (_id) => {
+  console.log("product id is =>", _id)
+ 
+  const partialRes = await Products.findOne({ _id })
+  const result  = await Products.aggregate([
+    {
+      $match: {
+        _id: partialRes._id // Match by the _id obtained from findOne
+      }
+    },
+    {
+      $lookup: {
+        from: "brands", // The collection to join with
+        localField: "brand", // The field from the input documents (products collection)
+        foreignField: "name", // The field from the documents of the "brands" collection
+        as: "brand" // The alias for the new array field containing the joined documents
+      }
+    }
+  ]);
+    return (result)
+  // return (await Products.findOne({ _id }))
+}
 
 
 
@@ -77,10 +98,7 @@ ProductServices.getProductByName = async (name) => {
     })
   }
 }
-ProductServices.getProductDesc = async (_id) => {
-  console.log("product id is =>", typeof (_id))
-  return (await Products.findOne({ _id }))
-}
+
 ProductServices.getProductById = async (_id) => {
   try {
     const foundedProducts = await Products.findOne({ _id })

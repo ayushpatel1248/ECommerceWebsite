@@ -6,7 +6,7 @@ ProductController.getProductDetails = async (req, res) => {
   try {
     const { product_id } = req.query;
     if (product_id == undefined || product_id == null) {
-      return res.status(400).send({
+      return res.send({
         status: "err",
         msg: "product_id is required field",
         data: null
