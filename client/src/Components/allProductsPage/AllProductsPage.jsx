@@ -17,7 +17,8 @@ import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-
+import useSound from 'use-sound';
+import audio from "./welcome-64347.mp3"
 import { storeProductData } from '../../store/slices/productDescSlice';
 import { useNavigate } from 'react-router-dom';
 
@@ -30,6 +31,7 @@ const baseUrl = process.env.REACT_APP_BASE_URL
  
 
 const AllProductsPage = () => {
+    const [play] = useSound(audio);
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const { getProductData } = useSelector(state => state);
@@ -158,7 +160,8 @@ const AllProductsPage = () => {
                                     className="card-product card-product-allproduct"
                                      key={el.id}
                                      
-                                     onClick={(e)=>{        
+                                     onClick={(e)=>{    
+                                        {play()}    
                                         navigate(`/product-description/${el._id}`)
                                     }}
                                      

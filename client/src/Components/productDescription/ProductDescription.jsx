@@ -14,7 +14,7 @@ const ProductDescription = () => {
     const dispatch = useDispatch();
     const [opacity, setOpacity] = useState(0);
     const [isLoading, setIsLoading] = useState(true)
-    const productData = useSelector((state) => state.productDesc.productDetail)
+    const productData = useSelector((state) => state.productDesc.productDetail[0])
 
     useEffect(() => {
         setTimeout(() => {
@@ -56,6 +56,13 @@ const ProductDescription = () => {
                             {/* brand div */}
                             <div className='mt-5'>
                             <div><h1 className='description-text description-text-div' style={{ opacity: opacity }}>Brand :</h1></div>
+                            <div className='desc '>
+
+                                <h3 className='desc-child' style={{ opacity: opacity }}>
+                                    {productData?.brand[0]?.name}
+                                    
+                                </h3>
+                            </div>
                             </div>
                         </div>
                         

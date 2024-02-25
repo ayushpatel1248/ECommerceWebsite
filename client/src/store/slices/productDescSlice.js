@@ -3,7 +3,7 @@ import axios from "axios";
 
 const productDescSlice = createSlice({
     name :"productDescSlice",
-    initialState : {productDetail:null},  
+    initialState : {productDetail:[]},  
     reducers:{  
 
         storeProductData (state , action){

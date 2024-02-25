@@ -8,8 +8,6 @@ import Products from "./Components/product/Products";
 import ForgetPassword from "./Components/forgetPassword/ForgetPassword";
 import Profile from "./Components/profile/Profile"
 import ProductDescription from "./Components/productDescription/ProductDescription";
-
-
 import Cart from "./Components/cart/Cart";
 import NewPassword from "./Components/newpassword/NewPassword";
 import AllProductsPage from "./Components/allProductsPage/AllProductsPage";
@@ -29,7 +27,7 @@ function App() {
     <BrowserRouter>
       <Routes>
 
-        <Route path="/" element={isLoading == true ? <Loader /> : <div> <Products /></div>} />
+        <Route path="/" element={isLoading == true ?<Loader />: <div> <Products /></div>} />
         <Route path="/login" element={isLoading == true ? <Loader /> : <div> <Login /></div>} />
         <Route path="/register" element={isLoading == true ? <Loader /> : <div> <Register /></div>} />
         <Route path="/forget-password" element={isLoading == true ? <Loader /> : <div> <ForgetPassword /></div>} />
