@@ -161,8 +161,8 @@ const AllProductsPage = () => {
                                      key={el.id}
                                      
                                      onClick={(e)=>{    
-                                        {play()}    
-                                        navigate(`/product-description/${el._id}`)
+                                         navigate(`/product-description/${el._id}`)
+                                         {play()}    
                                     }}
                                      
                                      >
