@@ -4,13 +4,13 @@ const Products = require('../model/Products')
 
 const CartServices = {}
 
-CartServices.addToCart = async (userid, items) => {
+CartServices.addToCart = async (userid, productid) => {
     try {
         console.log("inside add to cart")
-        const { productid, quantity } = items[0];
+        // const { productid, quantity } = items[0];
         console.log("below item")
         console.log(productid)
-        console.log(items)
+
 
         // checking wheather item is available 
         const isItemAvailble = await Products.findOne({ "_id": productid });
@@ -22,6 +22,10 @@ CartServices.addToCart = async (userid, items) => {
                 data: null
             }
         }
+        const items = [{
+            "productid": productid,
+            "quantity": 1
+        }]
 
         // checking if user already have a cart 
         let isCartAvailble = await Cart.findOne({ "userid": userid });
@@ -31,6 +35,7 @@ CartServices.addToCart = async (userid, items) => {
             "userid": userid,
             "items.productid": productid
         }
+        console.log("this is cart detail" ,cartDetail)
 
         if (!isCartAvailble) {
             let cartDetail2 = {
@@ -47,7 +52,7 @@ CartServices.addToCart = async (userid, items) => {
         }
         else {
             console.log("we are in else condition")
-            const updatedCart = await Cart.findOneAndUpdate(cartDetail, { $inc: { "items.$.quantity": quantity } })
+            const updatedCart = await Cart.findOneAndUpdate(cartDetail, { $inc: { "items.$.quantity": 1 } })
             console.log(updatedCart)
             if (updatedCart) {
                 return {
@@ -106,7 +111,7 @@ CartServices.viewCart = async (userid) => {
             return { ...el.toObject(), "product": product };
         }));
 
-        
+
 
         console.log("above items with product length ", itemsWithProducts.length)
         if (itemsWithProducts.length == 0 || itemsWithProducts == null) {
