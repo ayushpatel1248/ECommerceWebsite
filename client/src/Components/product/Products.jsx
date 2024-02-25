@@ -15,6 +15,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchProductData } from '../../store/slices/getProductDataSlice';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import Loader from '../Loader';
 
 
 
@@ -85,9 +86,7 @@ const Products = () => {
       </Carousel>
       <h1 className='our-collection-heading-mainpage'>OUR <br /><strong>Collection</strong></h1>
       <div className='card-product-parent'>
-        {console.log(getProductData.productData.productData)}
-        {getProductData?.productData?.productData?.map((el) => {
-          console.log(el)
+        {getProductData?.productData ? getProductData?.productData.map((el) => {
           return <div class="card-product">
             <div class="card-img-product"><img src={el.images[0]} alt="" srcset="" /></div>
             <div class="card-info-product">
@@ -105,7 +104,7 @@ const Products = () => {
               </div>
             </div>
           </div>
-        })}
+        }): <Loader/>}
       </div>
 
       {/* all product button start  */}

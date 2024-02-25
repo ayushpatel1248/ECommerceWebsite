@@ -22,6 +22,7 @@ const AllProductsPage = () => {
 
     const dispatch = useDispatch();
     const { getProductData } = useSelector(state => state);
+    // console.log("this is data from redux after fetching = ", getProductData)
     const [value, setValue] = React.useState([0, 400]);
     const [sideBarActive, setSideBarActive] = useState(false)
 
@@ -116,14 +117,13 @@ const AllProductsPage = () => {
                             </Box>
                         </div>
                     </div>
-                    {console.log("ayush",getProductData.productData.productData)}
 
-                    {getProductData.productData.productData == null ? (
+                    {getProductData?.productData == null ? (
                         <Loader />
                     ) : (
                         <div className='card-product-parent'>
-                            {Array.isArray(getProductData?.productData?.productData) ? (
-                                getProductData?.productData?.productData?.map((el) => (
+                            {Array.isArray(getProductData?.productData) ? (
+                                getProductData?.productData.map((el) => (
                                     <div className="card-product card-product-allproduct" key={el.id}> {/* Ensure each element has a unique key */}
                                         <div className="card-img-product"><img src={el.images[0]} alt="" /></div>
                                         <div className="card-info-product">
@@ -147,7 +147,8 @@ const AllProductsPage = () => {
             </div>
 
             <div className='pagination-parent'>
-                <Pagination count={10} variant="outlined" color="primary" onChange={(e, value) => { handlePagination(value) }} />
+                {console.log("here present getproduct data  = ", getProductData)}
+                <Pagination count={Math.ceil((getProductData.count.count / 10))} variant="outlined" color="primary" onChange={(e, value) => { handlePagination(value) }} />
             </div>
             <Footer />
             {console.log(value)}
