@@ -5,12 +5,12 @@ const CartController = {}
 
 
 CartController.addToCart = async (req, res) => {
-    const { items } = req.body;
+    const { productid } = req.body;
     const { authorization } = req.headers;
     const userid = verifyAuth(authorization)
     console.log("userid =" ,userid)
     if (userid) {
-        const result = await CartServices.addToCart(userid, items);
+        const result = await CartServices.addToCart(userid, productid);
         console.log(result)
         res.send(result)
     }
