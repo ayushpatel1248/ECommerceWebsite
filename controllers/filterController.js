@@ -13,7 +13,7 @@ filterController.filter = async(req , res)=>{
         })
     }else{
            
-       const filteredData =  await filterServices.filter(lowPrize , highPrize , brand);
+       const filteredData =  await filterServices.filter(parseInt(lowPrize) , parseInt(highPrize), brand);
 
        res.send(filteredData)
     }

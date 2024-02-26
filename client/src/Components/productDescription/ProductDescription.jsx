@@ -59,8 +59,7 @@ const ProductDescription = () => {
                             <div className='desc '>
 
                                 <h3 className='desc-child' style={{ opacity: opacity }}>
-                                    {productData?.brand[0]?.name}
-                                    
+                                    {productData?.brand[0]?.name}     
                                 </h3>
                             </div>
                             </div>
