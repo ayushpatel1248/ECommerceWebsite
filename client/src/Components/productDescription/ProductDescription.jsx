@@ -4,7 +4,6 @@ import "./productDescription.css"
 import { Scrollbars } from 'react-custom-scrollbars';
 import Header from '../header/Header';
 import Footer from '../footer/Footer';
-import { motion } from "framer-motion";
 import { useParams } from "react-router-dom";
 import { fetchProductDetail } from '../../store/slices/productDescSlice';
 import Loader from '../Loader';

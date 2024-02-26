@@ -20,7 +20,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import useSound from 'use-sound';
 import audio from "./welcome-64347.mp3"
 import { storeProductData } from '../../store/slices/productDescSlice';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'
 
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
