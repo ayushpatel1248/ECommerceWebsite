@@ -52,7 +52,7 @@ CartServices.addToCart = async (userid, productid) => {
         }
         else {
             console.log("we are in else condition")
-            const updatedCart = await Cart.findOneAndUpdate(cartDetail, { $inc: { "items.$.quantity": 1 } })
+            var updatedCart = await Cart.findOneAndUpdate(cartDetail, { $inc: { "items.$.quantity": 1 } })
             console.log(updatedCart)
             if (updatedCart) {
                 return {
@@ -61,7 +61,7 @@ CartServices.addToCart = async (userid, productid) => {
                     data: updatedCart
                 }
             }
-            else {
+            else{
                 console.log(" we are in last else condition")
                 updatedCart = await Cart.findOneAndUpdate({ "userid": userid }, { $push: { items: items[0] } })
                 console.log("here = ", updatedCart)
@@ -75,11 +75,11 @@ CartServices.addToCart = async (userid, productid) => {
 
         }
     }
-    catch {
+    catch (err) {
         return {
             status: "500",
             msg: "server error",
-            data: null
+            data: err
         }
     }
 }
