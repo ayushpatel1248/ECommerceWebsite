@@ -7,6 +7,7 @@ const searchDataSlice = createSlice({
   reducers: {
     setSearchData: (state, action) => {
       state.searchData = action.payload;
+      console.log("this is the searched data from slice",state.searchData)
     },
     setLoading: (state, action) => {
       state.isLoading = action.payload;

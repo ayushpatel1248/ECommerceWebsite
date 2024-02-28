@@ -39,7 +39,7 @@ const SearchDataPage = () => {
 
     useEffect(()=>{
         setData(searchData)
-    },[])
+    },[searchData])
 
     const handlePagination = (pageNumber) => {
     }
@@ -88,63 +88,11 @@ const SearchDataPage = () => {
         <div>
 
             <Header />
-            <h1 className='our-collection-heading-mainpage'>OUR <br /><strong>Collection</strong></h1>
+            <h1 className='our-collection-heading-mainpage'>Your <br /><strong>Search Result</strong></h1>
             <div className='d-flex all-product-page-parent'>
-                <Drawer
-                    anchor="left"
-                    open={sideBarActive}
-                    onClose={handleFilteredProductData}
-                >
-                    <div className="left-side-filter-bar">
-                        <h5>CATEGORIES</h5>
-                        <h6>Perfumes</h6>
-                        <p>Combo</p>
-                        <p>Air Fresheners</p>
-                        <p className='last-p-best-seller'>Best Sellers</p>
-                        <h5>PRICE RANGE</h5>
-                        <Box className="slider-allproduct">
-                            <Slider
-                                min={0}
-                                max={400}
-                                getAriaLabel={() => 'price range'}
-                                value={value}
-                                onChange={handleChange}
-                                valueLabelDisplay="auto"
-                                sx={{ color: "grey" }}
-
-                            />
-                        </Box>
-                        <p className='price-range-price'>
-                            Rs. 0.0 - Rs. 400.0
-                        </p>
-
-                    </div>
-                </Drawer>
+             
                 <div>
-                    <div className='sort-by-parent'>
-                        <IconButton onClick={() => setSideBarActive(true)}>
-                            <FilterAltIcon />Filter
-                        </IconButton>
-
-                        <div>
-
-                            <Box sx={{ minWidth: 40 }} className="sort-by-box">
-                                <FormControl sx={{ width: "100%" }}>
-                                    <InputLabel id="demo-simple-select-label">Sort By </InputLabel>
-                                    <Select
-                                        labelId="demo-simple-select-label"
-                                        id="demo-simple-select"
-                                        label="Sort By"
-                                    >
-                                        <MenuItem value={0}>None</MenuItem>
-                                        <MenuItem value={10}>Alphabetically, A-Z</MenuItem>
-                                        <MenuItem value={20}>Price, low to high</MenuItem>
-                                        <MenuItem value={30}>Price, high to low</MenuItem>
-                                    </Select>
-                                </FormControl>
-                            </Box>
-                        </div>
-                    </div>
+                 
                     {console.log("this is data = ", data)}
 
                     {data == null ? (
@@ -164,12 +112,12 @@ const SearchDataPage = () => {
                                      
                                      >
 
-                                        {/* <div className="card-img-product"><img src={el.images[0]} alt="" /></div> */}
+                                        <div className="card-img-product"><img src={el.images[0]} alt="" /></div>
                                         <div className="card-info-product">
                                             <p className="text-title-product">{el.name.length > 12 ? `${el.name.substr(0, 12)}...` : el.name}</p>
-                                            {/* <p className="text-body-product">{el.description.length > 20 ? `${el.description.substr(0, 17)}...` : el.description}</p> */}
+                                            <p className="text-body-product">{el.description.length > 20 ? `${el.description.substr(0, 17)}...` : el.description}</p>
                                         </div>
-                                        {/* <div className="card-footer-product">
+                                        <div className="card-footer-product">
                                             <span className="text-title-product">{el.price}</span>
                                             <div class="card-button-product">
                                                 <svg class="svg-icon-product" viewBox="0 0 20 20"  onClick={(e) => handleAddToCart(el ,e)}>
@@ -178,7 +126,7 @@ const SearchDataPage = () => {
                                                     <path d="M13.972,12.386c-1.022,0-1.855,0.834-1.855,1.856s0.833,1.853,1.855,1.853s1.854-0.83,1.854-1.853S14.994,12.386,13.972,12.386z M13.972,15.116c-0.484,0-0.878-0.393-0.878-0.874c0-0.484,0.394-0.878,0.878-0.878c0.482,0,0.875,0.394,0.875,0.878C14.847,14.724,14.454,15.116,13.972,15.116z"></path>
                                                 </svg>
                                             </div>
-                                        </div> */}
+                                        </div>
                                     </div>
                                 ))
                             ) : (

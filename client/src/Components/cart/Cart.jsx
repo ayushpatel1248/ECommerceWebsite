@@ -105,7 +105,7 @@ const Cart = () => {
                         cartData.map((el, index) => {
                             return <div className="item">
                                 <div className="image">
-                                    <img src={imageof} alt="" />
+                                    <img src={el.product?.images[0]} alt="" />
                                 </div>
                                 <div className="description">
                                     {console.log(el.product)}
