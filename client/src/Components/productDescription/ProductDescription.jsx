@@ -41,8 +41,9 @@ const ProductDescription = () => {
                                         <div {...props} className="product-desc-div-scroll" style={{ ...style }} />
                                     )}
                                 >
-                                    {productData?.images?.map((el) => { return <img src={el} ></img> })}
+                                   
                                 </Scrollbars> */}
+                                 {productData?.images?.map((el) => { return <img src={el} ></img> })}
                             </div>
                             {/* description div */}
                             <div className='mt-5'>
