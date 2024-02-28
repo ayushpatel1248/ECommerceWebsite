@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import "./productDescription.css"
-import { Scrollbars } from 'react-custom-scrollbars';
+// import { Scrollbars } from 'react-custom-scrollbars';
 import Header from '../header/Header';
 import Footer from '../footer/Footer';
 import { useParams } from "react-router-dom";
@@ -32,7 +32,7 @@ const ProductDescription = () => {
                         <div className='d-flex'>
                             {/* image div */}
                             <div className="product-desc-div product-animation">
-                                <Scrollbars
+                                {/* <Scrollbars
                                     autoHide
                                     autoHideTimeout={1000}
                                     autoHideDuration={200}
@@ -42,7 +42,7 @@ const ProductDescription = () => {
                                     )}
                                 >
                                     {productData?.images?.map((el) => { return <img src={el} ></img> })}
-                                </Scrollbars>
+                                </Scrollbars> */}
                             </div>
                             {/* description div */}
                             <div className='mt-5'>
