@@ -3,7 +3,8 @@ const Brand = require("../model/Brand")
 const filterServices = {}
 
 filterServices.filter = async (lowPrize, highPrize, brand) => {
-
+console.log("type of low prize",typeof(lowPrize))
+console.log("type of high prize",typeof(highPrize))
     //this is for if filter is only on prize
     if (lowPrize != undefined && highPrize != undefined && brand == undefined) {
         if (lowPrize < highPrize) {

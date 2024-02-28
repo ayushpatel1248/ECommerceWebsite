@@ -17,6 +17,6 @@ filterController.filter = async(req , res)=>{
 
        res.send(filteredData)
     }
-}
+} 
 
 module.exports = filterController

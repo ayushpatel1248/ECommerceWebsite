@@ -17,8 +17,7 @@ import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-// import useSound from 'use-sound';
-// import audio from "./welcome-64347.mp3"
+
 import { storeProductData } from '../../store/slices/productDescSlice';
 import { useNavigate } from 'react-router-dom'
 
@@ -163,7 +162,7 @@ const AllProductsPage = () => {
                                      
                                      onClick={(e)=>{    
                                          navigate(`/product-description/${el._id}`)
-                                        //  {play()}    
+                                        
                                     }}
                                      
                                      >
