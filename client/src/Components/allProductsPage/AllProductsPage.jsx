@@ -30,7 +30,7 @@ const baseUrl = process.env.REACT_APP_BASE_URL
  
 
 const AllProductsPage = () => {
-    // const [play] = useSound(audio);
+  
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const { getProductData } = useSelector(state => state);
