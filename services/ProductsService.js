@@ -6,7 +6,7 @@ ProductServices.getProduct = async (skip, limit) => {
 
   let numberOfSkip = (skip - 1) * limit;
 
-  const productData =  await Products.aggregate([
+  const productData = await Products.aggregate([
     {
       $lookup: {
         from: "brands", // The collection to join with
@@ -19,16 +19,16 @@ ProductServices.getProduct = async (skip, limit) => {
     { $limit: limit }
   ])
 
- const count =  await Products.aggregate([{$count:"count"}])
-//  productData.push(count[0])
-return {productData , count:count[0]}
+  const count = await Products.aggregate([{ $count: "count" }])
+  //  productData.push(count[0])
+  return { productData, count: count[0] }
 }
 
 ProductServices.getProductDesc = async (_id) => {
   console.log("product id is =>", _id)
- 
+
   const partialRes = await Products.findOne({ _id })
-  const result  = await Products.aggregate([
+  const result = await Products.aggregate([
     {
       $match: {
         _id: partialRes._id // Match by the _id obtained from findOne
@@ -43,7 +43,7 @@ ProductServices.getProductDesc = async (_id) => {
       }
     }
   ]);
-    return (result)
+  return (result)
   // return (await Products.findOne({ _id }))
 }
 
@@ -53,36 +53,36 @@ ProductServices.getProductDesc = async (_id) => {
 ProductServices.getProductByName = async (name) => {
   try {
     console.log(name)
-   
+
     let responseData = await Products.find({ name: { $regex: name, $options: "i" } }, { description: 0, discount: 0, images: 0, ingredients: 0, stock: 0 })
 
     console.log(responseData)
     if (responseData.length == 0) {
-      try{
+      try {
         const regexPattern = new RegExp(`^${name[0]}`, 'i');
-        responseData = await Products.find({name:regexPattern},{description:0 ,discount:0 ,images:0,ingredients:0, stock:0})
-        if (responseData.length == 0){
+        responseData = await Products.find({ name: regexPattern })
+        if (responseData.length == 0) {
           return ({
-              status: "err",
-              msg: "no data found by given nameeeeeee",
-              data: responseData
-            })
-        }else{
+            status: "err",
+            msg: "no data found by given nameeeeeee",
+            data: responseData
+          })
+        } else {
           return ({
             status: "ok",
             msg: "data id found by given name",
             data: responseData
           })
         }
-      }catch(error){
+      } catch (error) {
         return ({
           status: "err",
           msg: "err in server side at ProductService in getProductByName",
           data: error
         })
       }
-   
-   
+
+
     } else {
       return ({
         status: "ok",
