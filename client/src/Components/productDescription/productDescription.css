@@ -1,5 +1,11 @@
 .parent-product-desc{
-    background-color: rgba(145, 138, 138, 0.151);
+    /* background-color: rgba(145, 138, 138, 0.151); */
+    background: url("../../images/productDescriptionPage/descriptionPageBG.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    /* fill-opacity: 0.5; */
+    /* filter:brightness(0.5); */
+    color: #fff !important;
     height: 100%;
     /* background-color:#2c016d; */
 }
@@ -26,7 +32,7 @@
     height:100%;
     width: 100%;
     padding: 60px 40px;
-    border-bottom:1px solid grey ;
+    border-bottom:1.9px solid rgb(17, 17, 17) ;
 }
 
 .product-desc-div-scroll {
@@ -71,7 +77,9 @@
 }
 .desc-gender{
   font-weight: 600;
-  color: rgba(0, 0, 255, 0.548);
+  background-color: yellow;
+ 
+  color: rgba(255, 0, 13, 0.548);
 }
 .desc-gender-parent{
   font-size: larger;
@@ -85,7 +93,7 @@
 }
 .description-text{
     /* font-weight: 600; */
-    color: rgba(0, 0, 0, 0.726);
+    /* color: rgba(0, 0, 0, 0.726); */
 }
 .font-weight-600{
 font-weight: 600;
@@ -141,7 +149,7 @@ font-weight: 600;
   }
 }
 .desc .h {
-    color: rgba(0, 0, 0, 0.356);
+    /* color: rgba(0, 0, 0, 0.356); */
     
     overflow: hidden;
     border-right: .15em solid rgba(255, 166, 0, 0.342); 
@@ -176,6 +184,7 @@ font-weight: 600;
     width: 35%;
     display: flex;
     gap: 2%;
+    padding-bottom: 40px;
   }
   .desc-buy-sell-div .buy-sell-desc{
 width: 49%;
@@ -305,7 +314,7 @@ width: 49%;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition-duration: .5s;
+    transition-duration: .5s; 
     overflow: hidden;
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.103);
     position: relative;
@@ -359,6 +368,14 @@ width: 49%;
     transition-duration: .5s;
   }
   
+/* price */
   
-  
-  
+  .border-top{
+    border-top: 4px solid black;
+  }
+  .price-desc{
+    width: 40%;
+  }
+  .buy-sell-price-parent{
+    width: 100%;
+  }
