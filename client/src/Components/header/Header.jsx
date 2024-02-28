@@ -1,17 +1,22 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import "./header.css";
 import logo from '../../images/header/codiance-high-resolution-logo-white-transparent.png'
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
+import { fetchSearchData } from '../../store/slices/searchDataSlice';
+import { useDispatch, useSelector } from 'react-redux';
 
+const baseUrl = process.env.REACT_APP_BASE_URL
 
 export default function Header() {
     const [searchToggle, setSearchToggle] = useState(false)
     const [sidebarOpen, setSidebarOpen] = useState(true)
-
+    const [search, setSearch] = useState(true)
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     const handleSearchToggle = (e) => {
 
         if (searchToggle == true) {
@@ -29,6 +34,13 @@ export default function Header() {
         else {
             setSidebarOpen(true)
         }
+    }
+
+    // in this function we will use the slice function for search to hit api and store search data in search state and willredirect to serach founded page 
+
+    const handleSearchData = () => {
+        dispatch(fetchSearchData(search));
+        navigate(`/search`)
     }
 
     return (
@@ -61,8 +73,8 @@ export default function Header() {
                         </div>
 
                         <div class="search-field">
-                            <input type="text" placeholder="Search..." />
-                            <i class='bx bx-search'></i>
+                            <input type="text" placeholder="Search..." onChange={(e)=>setSearch(e.target.value)}/>
+                            <i class='bx bx-search' onClick={handleSearchData}></i>
                         </div>
                     </div>
                     <div class="">

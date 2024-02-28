@@ -11,6 +11,7 @@ import ProductDescription from "./Components/productDescription/ProductDescripti
 import Cart from "./Components/cart/Cart";
 import NewPassword from "./Components/newpassword/NewPassword";
 import AllProductsPage from "./Components/allProductsPage/AllProductsPage";
+import SearchDataPage from "./Components/searchDataPage/SearchDataPage";
 
 
 
@@ -37,6 +38,7 @@ function App() {
         <Route path="/cart" element={isLoading == true ? <Loader /> : <div><Cart /></div>} />
         <Route path="/allProducts" element={isLoading == true ? <Loader /> : <div><AllProductsPage /></div>} />
         <Route path="/product-description/:product_id" element={isLoading == true ? <Loader /> : <div><ProductDescription /></div>} />
+        <Route path="/search" element={isLoading == true ? <Loader /> : <div><SearchDataPage/></div>} />
 
       </Routes>
     </BrowserRouter>
