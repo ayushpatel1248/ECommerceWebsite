@@ -10,7 +10,7 @@ import Loader from '../Loader';
 
 const ProductDescription = () => {
     let { product_id } = useParams();
-    const dispatch = useDispatch();
+    const dispatch = useDispatch();  
     const [opacity, setOpacity] = useState(0);
     const [isLoading, setIsLoading] = useState(true)
     const productData = useSelector((state) => state.productDesc.productDetail[0])

@@ -54,7 +54,7 @@ ProductServices.getProductByName = async (name) => {
   try {
     console.log(name)
 
-    let responseData = await Products.find({ name: { $regex: name, $options: "i" } }, { description: 0, discount: 0, images: 0, ingredients: 0, stock: 0 })
+    let responseData = await Products.find({ name: { $regex: name, $options: "i" } })
 
     console.log(responseData)
     if (responseData.length == 0) {
