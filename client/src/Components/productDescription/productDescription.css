@@ -9,7 +9,31 @@
     height: 100%;
     /* background-color:#2c016d; */
 }
-
+.discount-desc-div{
+  height: 50px;
+  width: 50px;
+  background-color: red;
+  position: relative;
+  top: 58px;
+  left: 25px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: saclediscount 2s ease-in-out 0s infinite  ; 
+  transition: all 0.4s;
+}
+@keyframes saclediscount {
+  0%{
+    scale:1;
+  }
+  50%{
+    scale: 0.4;
+  }
+  100%{
+    scale: 1;
+  }
+}
 .product-desc-div{
     padding:2% auto ;
     margin: 2% 3%;
@@ -369,7 +393,40 @@ width: 49%;
   }
   
 /* price */
-  
+  .price-div{
+    display: flex;
+    align-items: center;
+    gap: 4%;
+  }
+.display-none-desc{
+  display: none;
+}
+.red-yellow-animation-desc{
+  /* color: red; */
+  animation: resYellow 2s linear 0s infinite;
+  transform-origin: left;
+  transition: all 0.7s;
+  /* animation: name duration timing-function delay iteration-count direction fill-mode; */
+}
+@keyframes resYellow {
+  0%{
+    scale: 1;
+    transform-origin: left;
+    color: red;
+  }
+  50%{
+    scale:1.1 ;
+    transform-origin: left;
+    color:yellow;
+  }
+  100%{
+    transform-origin: left;
+    color:red ;
+  }
+}
+  .text-decoration-desc{
+    text-decoration: line-through;
+  }
   .border-top{
     border-top: 4px solid black;
   }
@@ -379,3 +436,149 @@ width: 49%;
   .buy-sell-price-parent{
     width: 100%;
   }
+
+.dispay-flex{
+  display: flex;
+}
+  /* responsive */
+
+  @media screen and (max-width: 576px) {
+    .parent-product-desc {
+        background-size: cover;
+        background-repeat: no-repeat;
+        color: #fff !important;
+        height: 100%;
+    }
+.desc-name{
+font-size: medium;
+}
+.dispay-flex{
+  display: block;
+}
+    .product-desc-div {
+      width: 80%;
+      /* height: auto; */
+      margin: 2% auto;
+    }
+.desc-parent{
+  width: 80%;
+  margin: 0 auto;
+}
+    .desc-buy-sell-div {
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .desc-buy-sell-div .buy-sell-desc {
+        width: 80%;
+        margin-bottom: 20px;
+    }
+
+    .price-desc {
+        width: 80%;
+    }
+
+    .button-buy-desc,
+    .CartBtn-add-to-cart-desc {
+        width: 100%;
+    }
+
+    .IconContainer-add-to-cart-desc {
+        left: calc(50% - 15px);
+    }
+
+    .text-add-to-cart-desc {
+        width: calc(100% - 60px);
+        font-size: 0.9em;
+    }
+}
+/* 
+@media only screen and (max-width: 768px) {
+  .parent-product-desc {
+      background-size: cover;
+      background-repeat: no-repeat;
+      color: #fff !important;
+      height: 100%;
+  }
+
+  .product-desc-div {
+      width: 100%;
+      height: auto;
+      margin: 2% 0;
+  }
+
+  .desc-buy-sell-div {
+      width: 100%;
+      flex-direction: column;
+      align-items: center;
+  }
+
+  .desc-buy-sell-div .buy-sell-desc {
+      width: 80%;
+      margin-bottom: 20px;
+  }
+
+  .price-desc {
+      width: 80%;
+  }
+
+  .button-buy-desc,
+  .CartBtn-add-to-cart-desc {
+      width: 100%;
+  }
+
+  .IconContainer-add-to-cart-desc {
+      left: calc(50% - 15px);
+  }
+
+  .text-add-to-cart-desc {
+      width: calc(100% - 60px);
+      font-size: 0.9em;
+  }
+} */
+
+/* For large devices (laptops/desktops, 992px and below) */
+/* @media only screen and (max-width: 992px) {
+  .parent-product-desc {
+      background-size: cover;
+      background-repeat: no-repeat;
+      color: #fff !important;
+      height: 100%;
+  }
+
+  .product-desc-div {
+      width: 100%;
+      height: auto;
+      margin: 2% 0;
+  }
+
+  .desc-buy-sell-div {
+      width: 100%;
+      flex-direction: column;
+      align-items: center;
+  }
+
+  .desc-buy-sell-div .buy-sell-desc {
+      width: 80%;
+      margin-bottom: 20px;
+  }
+
+  .price-desc {
+      width: 80%;
+  }
+
+  .button-buy-desc,
+  .CartBtn-add-to-cart-desc {
+      width: 100%;
+  }
+
+  .IconContainer-add-to-cart-desc {
+      left: calc(50% - 15px);
+  }
+
+  .text-add-to-cart-desc {
+      width: calc(100% - 60px);
+      font-size: 0.9em;
+  }
+} */

@@ -13,6 +13,7 @@ const ProductDescription = () => {
     const dispatch = useDispatch();
     const [opacity, setOpacity] = useState(0);
     const [isLoading, setIsLoading] = useState(true)
+    const [isDiscountAvailable, setIsDiscountAvailable] = useState(false)
     const productData = useSelector((state) => state.productDesc.productDetail[0])
 
     useEffect(() => {
@@ -22,17 +23,26 @@ const ProductDescription = () => {
         dispatch(fetchProductDetail(product_id))
         setIsLoading(false)
     }, [])
+    useEffect(() => {
+        if (productData?.discount) {
+            setIsDiscountAvailable(true)
+        } else {
+            setIsDiscountAvailable(false)
+        }
+    }, [productData])
     return (
         <div>
             {console.log(productData)}
             {isLoading ? <Loader /> :
                 <div className='parent-product-desc'>
                     <Header />
+                    <div className={isDiscountAvailable ? "font-family description-text description-text-div discount-desc-div text-center" : "display-none-desc  font-family"} style={{ opacity: opacity }}>{productData?.discount}% off</div>
                     <div>
-                        <div className='d-flex'>
+                        <div className='dispay-flex'>
                             {/* image div */}
-                            <div className="product-desc-div product-animation">
-                                {/* <Scrollbars
+                            
+                                <div className="product-desc-div product-animation">
+                                    {/* <Scrollbars
                                     autoHide
                                     autoHideTimeout={1000}
                                     autoHideDuration={200}
@@ -40,13 +50,16 @@ const ProductDescription = () => {
                                     renderThumbVertical={({ style, ...props }) => (
                                         <div {...props} className="product-desc-div-scroll" style={{ ...style }} />
                                     )}
-                                >
+                                  >
                                    
-                                </Scrollbars> */}
-                                {productData?.images?.map((el) => { return <img src={el} ></img> })}
-                            </div>
+                                   </Scrollbars> */}
+                                    {productData?.images?.map((el) => { return <img src={el} ></img> })}
 
-                            <div className='mt-5'>
+                                </div>
+                                
+                            
+
+                            <div className='mt-5 desc-parent'>
                                 {/* Name */}
                                 <div className='desc '>
 
@@ -78,13 +91,13 @@ const ProductDescription = () => {
                                 <div className='mt-4 description-text description-text-div' style={{ opacity: opacity }}>
                                     <p className='font-family desc-gender-parent '> fragrance  is best for <span className='desc-gender'>{productData?.gender}</span> !</p>
                                 </div>
-                                {/* price */}
-                               
+
+
 
 
                             </div>
                         </div>
-                        {/* buy sell */}
+                        {/* buy sell */}     {/* price */}
                         <div className='d-flex buy-sell-price-parent'>
                             <div className='desc-buy-sell-div  '>
                                 {/* buy */}
@@ -108,8 +121,14 @@ const ProductDescription = () => {
                                 </button>
                                 {/* add to cart end */}
                             </div>
-                            <div className='pl-4 price-desc'>
-                            <div className=' border-top description-text description-text-div pt-4' style={{ opacity: opacity }}><h1 className='description-text font-weight-600 description-text-div font-family' style={{ opacity: opacity }}>Price :</h1></div>
+                            <div className='pl-4 price-desc '>
+                                <div className='border-top description-text description-text-div pt-4 price-div' style={{ opacity: opacity }}>
+                                    <h2 className='description-text font-weight-600 description-text-div font-family' style={{ opacity: opacity }}>Price :</h2>
+                                    <h1 className={isDiscountAvailable ? 'font-family text-decoration-desc' : "font-family"}>{productData?.price} ₹</h1>
+                                </div>
+                                <div className={isDiscountAvailable ? "font-family description-text description-text-div " : "display-none-desc  font-family"} style={{ opacity: opacity }}>
+                                    <h3 className="description-text red-yellow-animation-desc" style={{ opacity: opacity }}>Now available in only : {(parseInt(productData?.price) - ((parseInt(productData?.price) / 100) * parseInt(productData?.discount)))}₹</h3>
+                                </div>
                             </div>
                         </div>
                     </div>
