@@ -8,7 +8,7 @@ CartController.addToCart = async (req, res) => {
     const { productid } = req.body;
     const { authorization } = req.headers;
     const userid = verifyAuth(authorization)
-    console.log("userid =" ,userid)
+    console.log("userid =", userid)
     if (userid) {
         const result = await CartServices.addToCart(userid, productid);
         console.log(result)
@@ -50,6 +50,17 @@ CartController.updateCart = async (req, res) => {
     const userid = verifyAuth(authorization)
     const result = await CartServices.updateCart(userid, productid, updation);
     res.send(result)
+}
+
+// ------------------------------------------------------------------------------------------------------
+
+
+CartController.cartCount = async (req, res) => {
+    const { authorization } = req.headers;
+    const userid = verifyAuth(authorization)
+    const result = await CartServices.cartCount(userid);
+    res.send(result)
+
 }
 
 

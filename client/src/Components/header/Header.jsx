@@ -8,6 +8,12 @@ import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import { fetchSearchData } from '../../store/slices/searchDataSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import Badge, { BadgeProps } from '@mui/material/Badge';
+import { styled } from '@mui/material/styles';
+import IconButton from '@mui/material/IconButton';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import axios from 'axios';
+import { useEffect } from 'react';
 
 const baseUrl = process.env.REACT_APP_BASE_URL
 
@@ -15,6 +21,7 @@ export default function Header() {
     const [searchToggle, setSearchToggle] = useState(false)
     const [sidebarOpen, setSidebarOpen] = useState(true)
     const [search, setSearch] = useState(true)
+    const [cartCount , setCartCount] = useState(0)
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const handleSearchToggle = (e) => {
@@ -43,6 +50,26 @@ export default function Header() {
         navigate(`/search`)
     }
 
+    const handleCartCount = async ()=>{
+        const authorization = localStorage.getItem("authorization")
+        const res = await axios.post(`${baseUrl}/cart/cartCount`,null, {headers:{authorization}})
+        console.log("this is result of hanlde cart count ", res)
+        setCartCount(res.data.data.count)
+    }
+    const StyledBadge = styled(Badge)(({ theme }) => ({
+        '& .MuiBadge-badge': {
+          right: -3,
+          top: 5,
+          border: `2px solid white`,
+          padding: '0 4px',
+        },
+      }));
+
+
+      useEffect(()=>{
+        handleCartCount()
+      },[])
+
     return (
         <nav className={sidebarOpen ? "nav" : "nav active"}>
             <div class="nav-bar">
@@ -65,7 +92,7 @@ export default function Header() {
                 </div>
 
                 <div class="darkLight-searchBox">
-                    
+
                     <div class="searchBox">
                         <div class={searchToggle ? "searchToggle active" : "searchToggle"} onClick={handleSearchToggle}>
                             <i class='bx bx-x cancel'></i>
@@ -73,15 +100,19 @@ export default function Header() {
                         </div>
 
                         <div class="search-field">
-                            <input type="text" placeholder="Search..." onChange={(e)=>setSearch(e.target.value)}/>
+                            <input type="text" placeholder="Search..." onChange={(e) => setSearch(e.target.value)} />
                             <i class='bx bx-search' onClick={handleSearchData}></i>
                         </div>
                     </div>
                     <div class="">
-                       <Link to="/cart"> <ShoppingCartOutlinedIcon style={{ color: 'white' , marginLeft:'1rem'}}/></Link>
+                        <IconButton aria-label="cart">
+                            <StyledBadge badgeContent={4} style={{ color: 'white'}}>
+                            <Link to="/cart"> <ShoppingCartOutlinedIcon style={{ color: 'white', marginLeft: '0.5rem' }} /></Link>
+                            </StyledBadge>
+                        </IconButton>
                     </div>
                     <div class="">
-                    <Link to="/profile"><AccountCircleOutlinedIcon style={{ color: 'white', marginLeft:'1.4rem' }}/></Link>
+                        <Link to="/profile"><AccountCircleOutlinedIcon style={{ color: 'white', marginLeft: '1.4rem' }} /></Link>
                     </div>
                 </div>
             </div>

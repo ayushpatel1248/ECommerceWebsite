@@ -28,7 +28,7 @@ export const fetchFilteredProductData = (lowPrize, highPrize) => async (dispatch
     try {
         const BASE_URL = process.env.REACT_APP_BASE_URL;
         const response = await axios.get(`${BASE_URL}/filter`, { params: { "lowPrize": lowPrize, "highPrize": highPrize } });
-        const data = {productData : response.data.data, count:{count:1}};
+        const data = {productData : response.data.data, count:{count:0}};
         // console.log("ayush bhai =",getProductData(data))
         dispatch(getProductData(data));
     } catch (error) {

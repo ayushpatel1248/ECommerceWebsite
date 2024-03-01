@@ -281,4 +281,7 @@ body.dark .search-field i{
         display: block;
         margin-top: 20px;
     }
+    .searchBox .search-field{
+        width: 200px;
+    }
 }

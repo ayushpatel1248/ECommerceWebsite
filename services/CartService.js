@@ -243,4 +243,33 @@ CartServices.updateCart = async (userid, productid, updation) => {
 
 }
 
+
+// ---------------------------------------this gives the cart count --------------------------------------------------------------------------
+
+CartServices.cartCount =  async (userid)=>{
+    try{
+        const cartFound = await Cart.findOne({userid})
+        if(!cartFound){
+            return{
+                status:"err",
+                msg:"no cart found",
+                data: {count:0}
+            }
+        } 
+        else{
+            return{
+                status:"OK",
+                msg:"cart found with following items count",
+                data:{count:cartFound.items.length}
+            }
+        }
+    }
+    catch(err){
+        return{
+            status:"err",
+            msg:"server error",
+            data:{count:0}
+        }
+    }
+}
 module.exports = CartServices

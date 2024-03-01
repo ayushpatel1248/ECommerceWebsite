@@ -13,7 +13,9 @@
     height: 100vh;
     /* z-index: 1; */
     width: 100%;
-    background: linear-gradient(90deg, rgb(19, 103, 204) 0%, rgba(21, 105, 206, 0.8491596467688638) 4%, rgba(249, 249, 249, 0.036834716796875) 96%, rgba(21, 105, 206, 0) 100%);
+    background: rgb(145,117,249, 0.3);
+    /* background: rgba(183, 183, 183, 0.3); */
+    /* background: linear-gradient(90deg, rgb(102 ,51 ,153 ,1) 0%, rgba(102, 51, 153, 0.8491596467688638) 4%, rgba(249, 249, 249, 0.036834716796875) 96%, rgba(21, 105, 206, 0) 100%); */
 
 }
 
@@ -238,6 +240,7 @@
 
     .image img {
         width: 50%;
+        /* height: 50%; */
     }
 
     .image,
@@ -269,7 +272,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 11px 25px;
-    background-color: #387FD5;
+    background-color: #9175F9;
     /* position: sticky; */
     /* bottom: 0; */
     position: fixed;

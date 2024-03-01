@@ -102,8 +102,9 @@
 
 .card-img-product img {
     border-radius: 10px;
-    height: 20vh;
-    width: 100%;
+    height: 16vh;
+    width: 80%;
+    padding: 2%;
 }
 
 .card-product-parent {
@@ -382,7 +383,7 @@
 
 
 .button-allproducts {
-    height: 8vh;
+    height: 9vh;
     width: 15vw;
     position: relative;
     background-color: transparent;
@@ -434,8 +435,8 @@
 
 @media screen and (max-width: 900px) {
     .button-allproducts {
-        height: 6vh;
-        width: 55vw;
+        height: 7vh;
+        width: 60vw;
         margin-bottom: 8%;
     }
 }
