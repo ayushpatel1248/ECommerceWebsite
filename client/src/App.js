@@ -12,7 +12,7 @@ import Cart from "./Components/cart/Cart";
 import NewPassword from "./Components/newpassword/NewPassword";
 import AllProductsPage from "./Components/allProductsPage/AllProductsPage";
 import SearchDataPage from "./Components/searchDataPage/SearchDataPage";
-
+import "./Components/global.css"
 
 
 function App() {
