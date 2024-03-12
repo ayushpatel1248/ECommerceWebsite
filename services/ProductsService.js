@@ -116,6 +116,60 @@ ProductServices.getProductById = async (_id) => {
   }
 
 }
+
+ProductServices.addProduct = async (_id, productInfo) => {
+  try {
+    // here we have added product info id of user which is named as per the model as addded by 
+    const productInfoWithAddedBy = { addedBy: _id, ...productInfo };
+    const productObjectWithoutStock = {...productInfoWithAddedBy}
+    delete productObjectWithoutStock.stock
+    // now we will check if user have previously added same product if yes then we will just increase the stock
+    const productFound = await Products.findOne(productObjectWithoutStock);
+
+    if (productFound) {
+      const stockUpdated = await Products.findOneAndUpdate(productObjectWithoutStock, { $inc: { "stock": productInfoWithAddedBy.stock } })
+      if (stockUpdated) {
+        return {
+          status: "ok",
+          msg: "stock of the product updated successfully",
+          data: stockUpdated
+        }
+      }
+      else {
+        return {
+          status: "err",
+          msg: "error while updating the stock",
+          data: null
+        }
+      }
+    }
+    else {
+      const isProductAdded = await Products.create(productInfoWithAddedBy)
+      if (isProductAdded) {
+        return {
+          status: "ok",
+          msg: "product added succcessfully ",
+          data: isProductAdded
+        }
+      }
+      else {
+        return {
+          status: "err",
+          msg: "error occured while adding the product",
+          data: null
+        }
+      }
+    }
+  }
+  catch (err) {
+    return {
+      status: "ok",
+      msg: "server error",
+      data: err
+    }
+  }
+
+}
 module.exports = ProductServices;
 
 
