@@ -72,17 +72,16 @@ export default function Header() {
 
     return (
         <nav className={sidebarOpen ? "nav" : "nav active"}>
-            <div class="nav-bar">
-                <i class={sidebarOpen ? "bx bx-menu sidebarOpen" : "bx bx-menu sidebarOpen active"} onClick={handleSidebarOpen} ></i>
-                <span class="logo navLogo"><img src={logo} alt="" /></span>
-
-                <div class="menu">
-                    <div class="logo-toggle">
-                        <span class="logo"><a href="#">Codiance</a></span>
-                        <i class='bx bx-x siderbarClose' onClick={handleSidebarOpen}></i>
+            <div className="nav-bar">
+                <i className={sidebarOpen ? "bx bx-menu sidebarOpen" : "bx bx-menu sidebarOpen active"} onClick={handleSidebarOpen} ></i>
+                <span className="logo navLogo"><img src={logo} alt="" /></span>
+                <div className="menu">
+                    <div className="logo-toggle">
+                        <span className="logo"><a href="#">Codiance</a></span>
+                        <i className='bx bx-x siderbarClose' onClick={handleSidebarOpen}></i>
                     </div>
 
-                    <ul class="nav-links">
+                    <ul className="nav-links">
                         <li><Link to="/">Home</Link></li>
                         <li><Link to="">Orders</Link></li>
                         <li><Link to="/allProducts">All Products</Link></li>
@@ -91,27 +90,27 @@ export default function Header() {
                     </ul>
                 </div>
 
-                <div class="darkLight-searchBox">
+                <div className="darkLight-searchBox">
 
-                    <div class="searchBox">
-                        <div class={searchToggle ? "searchToggle active" : "searchToggle"} onClick={handleSearchToggle}>
-                            <i class='bx bx-x cancel'></i>
-                            <i class='bx bx-search search'></i>
+                    <div className="searchBox">
+                        <div className={searchToggle ? "searchToggle active" : "searchToggle"} onClick={handleSearchToggle}>
+                            <i className='bx bx-x cancel'></i>
+                            <i className='bx bx-search search'></i>
                         </div>
 
-                        <div class="search-field">
+                        <div className="search-field">
                             <input type="text" placeholder="Search..." onChange={(e) => setSearch(e.target.value)} />
-                            <i class='bx bx-search' onClick={handleSearchData}></i>
+                            <i className='bx bx-search' onClick={handleSearchData}></i>
                         </div>
                     </div>
-                    <div class="">
+                    <div className="">
                         <IconButton aria-label="cart">
-                            <StyledBadge badgeContent={4} style={{ color: 'white'}}>
+                            <StyledBadge badgeContent={cartCount} style={{ color: 'white'}}>
                             <Link to="/cart"> <ShoppingCartOutlinedIcon style={{ color: 'white', marginLeft: '0.5rem' }} /></Link>
                             </StyledBadge>
                         </IconButton>
                     </div>
-                    <div class="">
+                    <div className="">
                         <Link to="/profile"><AccountCircleOutlinedIcon style={{ color: 'white', marginLeft: '1.4rem' }} /></Link>
                     </div>
                 </div>
