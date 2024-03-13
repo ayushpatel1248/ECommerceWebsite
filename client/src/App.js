@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Login from "./Components/login/Login";
+import LoginAdmin from "./Components/login/LoginAdmin";
 import Loader from "./Components/Loader";
 import Header from "./Components/header/Header";
 import { Route, Routes, BrowserRouter ,useParams  } from "react-router-dom";
 import Register from "./Components/register/Register";
+import RegisterAdmin from "./Components/register/RegisterAdmin";
 import Products from "./Components/product/Products";
 import ForgetPassword from "./Components/forgetPassword/ForgetPassword";
 import Profile from "./Components/profile/Profile"
@@ -30,7 +32,9 @@ function App() {
 
         <Route path="/" element={isLoading == true ?<Loader />: <div> <Products /></div>} />
         <Route path="/login" element={isLoading == true ? <Loader /> : <div> <Login /></div>} />
+        <Route path="/loginAdmin" element={isLoading == true ? <Loader /> : <div> <LoginAdmin/></div>} />
         <Route path="/register" element={isLoading == true ? <Loader /> : <div> <Register /></div>} />
+        <Route path="/registerAdmin" element={isLoading == true ? <Loader /> : <div> <RegisterAdmin/></div>} />
         <Route path="/forget-password" element={isLoading == true ? <Loader /> : <div> <ForgetPassword /></div>} />
         <Route path="/forget-password/set-new-password" element={isLoading == true ? <Loader/> : <div> <NewPassword/></div>} />
         <Route path="/header" element={isLoading == true ? <Loader /> : <div> <Header /></div>}/>
