@@ -65,6 +65,12 @@ const AdminRoutes =  require('./routes/AdminRoutes')
 app.use("/admin", AdminRoutes)
 
 
+//--------------------product routes-----------------
+const ProductRoutes =  require('./routes/ProductRoutes')
+app.use("/", ProductRoutes)
+
+
+
 app.listen(9999, ()=>{
   console.log("server is running on port : ", 9999)
 });
