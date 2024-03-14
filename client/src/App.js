@@ -13,6 +13,7 @@ import ProductDescription from "./Components/productDescription/ProductDescripti
 import Cart from "./Components/cart/Cart";
 import NewPassword from "./Components/newpassword/NewPassword";
 import AllProductsPage from "./Components/allProductsPage/AllProductsPage";
+import AddProduct  from "./Components/AddProduct/AddProduct";
 import SearchDataPage from "./Components/searchDataPage/SearchDataPage";
 import "./Components/global.css"
 
@@ -43,7 +44,7 @@ function App() {
         <Route path="/allProducts" element={isLoading == true ? <Loader /> : <div><AllProductsPage /></div>} />
         <Route path="/product-description/:product_id" element={isLoading == true ? <Loader /> : <div><ProductDescription /></div>} />
         <Route path="/search" element={isLoading == true ? <Loader /> : <div><SearchDataPage/></div>} />
-
+        <Route path="/AddProduct" element={isLoading == true ? <Loader /> : <div><AddProduct/></div>} />
       </Routes>
     </BrowserRouter>
   );
