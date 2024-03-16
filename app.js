@@ -11,6 +11,9 @@ require("./db/db")
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
+// -------------------------------router for wake a server------------------
+const healthRoute = require("./routes/healthRoute")
+app.use("/health",healthRoute)
 
 //-----------------------Register Route----------------------------------------
 const UserRegrestrationRoute = require("./routes/UserRegrestrationRoute")

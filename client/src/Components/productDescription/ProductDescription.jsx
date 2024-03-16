@@ -6,7 +6,12 @@ import Header from '../header/Header';
 import Footer from '../footer/Footer';
 import { useParams } from "react-router-dom";
 import { fetchProductDetail } from '../../store/slices/productDescSlice';
+import Rating from '@mui/material/Rating';
+import Typography from '@mui/material/Typography';
+import * as Yup from 'yup';
+import { ToastContainer, toast } from 'react-toastify';
 import Loader from '../Loader';
+import axios from 'axios';
 
 const ProductDescription = () => {
     let { product_id } = useParams();
@@ -14,6 +19,11 @@ const ProductDescription = () => {
     const [opacity, setOpacity] = useState(0);
     const [isLoading, setIsLoading] = useState(true)
     const [isDiscountAvailable, setIsDiscountAvailable] = useState(false)
+    const [giveRatingVisbility, setGiveRatingVisbility] = useState(false)
+    const [comment, setComment] = useState("")
+    const [value, setValue] = useState(0);
+    const notify = (mes) => toast.error(mes);
+    const BASE_URL = process.env.REACT_APP_BASE_URL;
     const productData = useSelector((state) => state.productDesc.productDetail[0])
 
     useEffect(() => {
@@ -29,7 +39,33 @@ const ProductDescription = () => {
         } else {
             setIsDiscountAvailable(false)
         }
+
     }, [productData])
+    const ratingSchema = Yup.object().shape({
+        rating: Yup.number().required('rating is required'),
+        comment: Yup.string().required('comment is required'),
+    
+      });
+    const handelSubmitRating = async(e)=>{
+        console.log(value ,comment)
+        try{
+            await ratingSchema.validate({rating:value , comment})
+            const auth = localStorage.getItem("authorization")
+            if(auth){
+axios.post(`${BASE_URL}/review/set-review`,{productID:product_id, rating:toString(value), comment},{headers:{authorization:auth}}).then((res)=>{
+console.log(res)
+}).catch((err)=>{
+    console.log("error in productdescription on set review",err)
+    notify(err.message)
+})
+            }else{
+                notify("unauthorized user , please login first")
+            }
+
+        }catch(err){
+            notify(err.message)
+        }
+    }
     return (
         <div>
             {console.log(productData)}
@@ -40,9 +76,9 @@ const ProductDescription = () => {
                     <div>
                         <div className='dispay-flex'>
                             {/* image div */}
-                            
-                                <div className="product-desc-div product-animation">
-                                    {/* <Scrollbars
+
+                            <div className="product-desc-div product-animation">
+                                {/* <Scrollbars
                                     autoHide
                                     autoHideTimeout={1000}
                                     autoHideDuration={200}
@@ -53,11 +89,11 @@ const ProductDescription = () => {
                                   >
                                    
                                    </Scrollbars> */}
-                                    {productData?.images?.map((el) => { return <img src={el} ></img> })}
+                                {productData?.images?.map((el) => { return <img src={el} ></img> })}
 
-                                </div>
-                                
-                            
+                            </div>
+
+
 
                             <div className='mt-5 desc-parent'>
                                 {/* Name */}
@@ -131,9 +167,32 @@ const ProductDescription = () => {
                                 </div>
                             </div>
                         </div>
+                        {/* rating */}
+                        <div className='rating-div'>
+                            <h2 className='description-text font-weight-600 description-text-div font-family' style={{ opacity: opacity }}>Average Rating Of PRODUCT :</h2>
+                            <div><Rating name="read-only" size="large" value={productData?.rating == undefined ? 0 : productData?.rating} readOnly />  </div>
+                            <div className='btn-rating'>   <button className='button-rating ' onClick={() => { setGiveRatingVisbility(true) }}> <span>rate product </span></button></div>
+
+                        </div>
+                        <div className={giveRatingVisbility ? 'visibal give-rating-div' : "not-visibal give-rating-div"}>
+                            <div className=''>
+                                <div className='rating-inner-div'>
+                                   <div ><textarea rows="3" cols="35" placeholder='enter comment on product'
+                                   onChange={(e)=>{setComment(e.target.value)}}
+                                   value={comment}
+                                   ></textarea></div> 
+                                    <div className='btn-rating'><Rating name="simple-controlled" size="large" value={value} onChange={(event, newValue)=>{setValue(newValue);}}/></div>
+                                  <div className='rating-btn-div'>
+                                  <div className='btn-rating'> <button className='button-rating'onClick={()=>{setGiveRatingVisbility(false)}}><span>cancle</span></button></div>
+                                   <div className='btn-rating'> <button className='button-rating' onClick={handelSubmitRating}><span>submit rating</span></button></div>
+                                  </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                 </div>}
+                <ToastContainer />
         </div>
 
     )

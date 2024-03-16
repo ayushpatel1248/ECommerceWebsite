@@ -16,11 +16,21 @@ import AllProductsPage from "./Components/allProductsPage/AllProductsPage";
 import AddProduct  from "./Components/AddProduct/AddProduct";
 import SearchDataPage from "./Components/searchDataPage/SearchDataPage";
 import "./Components/global.css"
-
+import axios from 'axios';
 
 function App() {
   const [isLoading, setIsloading] = useState(true);
-  
+// for wake up server
+const BASE_URL = process.env.REACT_APP_BASE_URL;
+  setInterval(()=>{
+    console.log("wakeup call")
+    axios.get(`${BASE_URL}/health/health`).then((res)=>{
+      console.log("in then")
+    }).catch((err)=>{
+      console.log("in err")
+    })
+  },800000)
+
   useEffect(() => {
     setTimeout(() => {
       setIsloading(false)

@@ -7,7 +7,7 @@ const ReviewController = {}
 
 const schema = joi.object({
     productID: joi.string().required(),
-    rating: joi.string().min(0).max(5).required(),
+    rating: joi.string().required(),
     comment: joi.string().min(1).required(),
 })
 ReviewController.setReview = async (req, res) => {
