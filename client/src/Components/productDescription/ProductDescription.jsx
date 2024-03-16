@@ -23,6 +23,7 @@ const ProductDescription = () => {
     const [comment, setComment] = useState("")
     const [value, setValue] = useState(0);
     const notify = (mes) => toast.error(mes);
+    const notifySucess = (mes) => toast(mes);
     const BASE_URL = process.env.REACT_APP_BASE_URL;
     const productData = useSelector((state) => state.productDesc.productDetail[0])
 
@@ -44,25 +45,33 @@ const ProductDescription = () => {
     const ratingSchema = Yup.object().shape({
         rating: Yup.number().required('rating is required'),
         comment: Yup.string().required('comment is required'),
-    
-      });
-    const handelSubmitRating = async(e)=>{
-        console.log(value ,comment)
-        try{
-            await ratingSchema.validate({rating:value , comment})
+
+    });
+    const handelSubmitRating = async (e) => {
+        console.log(value, comment)
+
+        try {
+            await ratingSchema.validate({ rating: value, comment })
             const auth = localStorage.getItem("authorization")
-            if(auth){
-axios.post(`${BASE_URL}/review/set-review`,{productID:product_id, rating:toString(value), comment},{headers:{authorization:auth}}).then((res)=>{
-console.log(res)
-}).catch((err)=>{
-    console.log("error in productdescription on set review",err)
-    notify(err.message)
-})
-            }else{
+            if (auth) {
+                axios.post(`${BASE_URL}/review/set-review`, { productID: product_id, rating: value.toString(), comment }, { headers: { authorization: auth } }).then((res) => {
+                    console.log(res)
+                    if (res.data.status == "ok") {
+                        notifySucess(res.data.msg)
+                        setGiveRatingVisbility(false) 
+                    } else {
+                        notify(res.data.msg)
+                        setGiveRatingVisbility(false) 
+                    }
+                }).catch((err) => {
+                    console.log("error inaxios of productdescription on set review", err)
+                    notify(err.message)
+                })
+            } else {
                 notify("unauthorized user , please login first")
             }
 
-        }catch(err){
+        } catch (err) {
             notify(err.message)
         }
     }
@@ -177,22 +186,22 @@ console.log(res)
                         <div className={giveRatingVisbility ? 'visibal give-rating-div' : "not-visibal give-rating-div"}>
                             <div className=''>
                                 <div className='rating-inner-div'>
-                                   <div ><textarea rows="3" cols="35" placeholder='enter comment on product'
-                                   onChange={(e)=>{setComment(e.target.value)}}
-                                   value={comment}
-                                   ></textarea></div> 
-                                    <div className='btn-rating'><Rating name="simple-controlled" size="large" value={value} onChange={(event, newValue)=>{setValue(newValue);}}/></div>
-                                  <div className='rating-btn-div'>
-                                  <div className='btn-rating'> <button className='button-rating'onClick={()=>{setGiveRatingVisbility(false)}}><span>cancle</span></button></div>
-                                   <div className='btn-rating'> <button className='button-rating' onClick={handelSubmitRating}><span>submit rating</span></button></div>
-                                  </div>
+                                    <div ><textarea rows="3" cols="35" placeholder='enter comment on product'
+                                        onChange={(e) => { setComment(e.target.value) }}
+                                        value={comment}
+                                    ></textarea></div>
+                                    <div className='btn-rating'><Rating name="simple-controlled" size="large" value={value} onChange={(event, newValue) => { setValue(newValue); }} /></div>
+                                    <div className='rating-btn-div'>
+                                        <div className='btn-rating'> <button className='button-rating' onClick={() => { setGiveRatingVisbility(false) }}><span>cancle</span></button></div>
+                                        <div className='btn-rating'> <button className='button-rating' onClick={handelSubmitRating}><span>submit rating</span></button></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                 </div>}
-                <ToastContainer />
+            <ToastContainer />
         </div>
 
     )
