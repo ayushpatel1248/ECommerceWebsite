@@ -5,7 +5,7 @@ const ReviewServices = {}
 ReviewServices.createReview = async(userID,productID,rating,comment)=>{
 try{
     // console.log(userID," ",productID," ",typeof(rating)," ",comment)
-    const createdReview = await  Review.create({userID:ObjectID(userID),productID,rating,comment});
+    const createdReview = await  Review.create({userID,productID,rating,comment});
     let totalReviewOnProduct = await Review.find({productID})
     console.log("toal review=>",totalReviewOnProduct)
     let sumOfRating = 0;
