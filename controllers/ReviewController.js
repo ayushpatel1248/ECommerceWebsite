@@ -61,4 +61,10 @@ ReviewController.setReview = async (req, res) => {
     }
 }
 
+ReviewController.getReview = async(req,res)=>{
+    const{product_id} = req.body;
+    const response = await ReviewServices.getReviewByProductId(product_id)
+    res.send(response)
+}
+
 module.exports = ReviewController

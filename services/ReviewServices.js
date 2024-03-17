@@ -59,6 +59,18 @@ ReviewServices.getReviewByUserIdAndProductId = async(userID,productID)=>{
    }
 }
 
+ReviewServices.getReviewByProductId = async(product_id)=>{
+    try{
+        
+
+    }catch(err){
+        return({
+            status:"err in review service",
+            msg:err,
+            data:null
+        })
+    }
+}
 
 
 module.exports = ReviewServices
