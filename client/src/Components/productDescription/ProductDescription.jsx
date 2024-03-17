@@ -54,6 +54,7 @@ const ProductDescription = () => {
             await ratingSchema.validate({ rating: value, comment })
             const auth = localStorage.getItem("authorization")
             if (auth) {
+                
                 axios.post(`${BASE_URL}/review/set-review`, { productID: product_id, rating: value.toString(), comment }, { headers: { authorization: auth } }).then((res) => {
                     console.log(res)
                     if (res.data.status == "ok") {
