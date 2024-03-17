@@ -156,7 +156,7 @@ const Profile = () => {
           <div>{userData ? <div className="container-profile">
             <h1 className='h1-profile'>User Profile</h1>
             <div className="background-photo-profile"></div>
-            <div className="profile-photo animated" style={{ backgroundImage: `url(${userData?.image} || ${profileImg})` }}></div>
+            <div className="profile-photo animated" style={{ backgroundImage: `url(${profileImg})`}}></div>
             {/* <div className="profile-photo animated" style={{ backgroundImage: `url(https:cdn1.bigassphotos.com/84/7/8471f17ab.jpg)` }}></div> */}
             <div className='upload-profile-img-profile'>
               {/* upload profile photo starts*/}
