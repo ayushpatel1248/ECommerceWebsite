@@ -37,7 +37,7 @@ const LoginAdmin = () => {
                     localStorage.setItem("authorization" , res.data.authToken)
                     console.log("ok", res.data)
                     dispatch(addData(res.data.data));
-                    navigate("/adminHomePage")
+                    navigate("/addproduct")
                 } else {
                     notify(res.data.msg)
                 }
