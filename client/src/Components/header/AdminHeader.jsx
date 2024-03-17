@@ -64,7 +64,7 @@ export default function AdminHeader() {
                         <li><Link to="">Orders</Link></li>
                         <li><Link to="/allProducts">Add Product</Link></li>
                         <li><Link to="">Shipping Info</Link></li>
-                        <li><Link to=""> Stock Managment</Link></li>
+                        <li><Link to=""> Stock Edit</Link></li>
                     </ul>
                 </div>
 
