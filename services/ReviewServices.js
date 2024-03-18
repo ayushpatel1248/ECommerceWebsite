@@ -1,10 +1,11 @@
 const Review = require("../model/Review")
 const Product = require("../model/Products")
+const mongoose = require("mongoose");
 const ReviewServices = {}
 
 ReviewServices.createReview = async(userID,productID,rating,comment)=>{
 try{
-    // console.log(userID," ",productID," ",typeof(rating)," ",comment)
+    console.log(typeof(userID)," ",typeof(productID)," ",typeof(rating)," ",comment)
     const createdReview = await  Review.create({userID,productID,rating,comment});
     let totalReviewOnProduct = await Review.find({productID})
     console.log("toal review=>",totalReviewOnProduct)
@@ -61,12 +62,33 @@ ReviewServices.getReviewByUserIdAndProductId = async(userID,productID)=>{
 
 ReviewServices.getReviewByProductId = async(product_id)=>{
     try{
-
+        const objectId =new mongoose.Types.ObjectId(product_id);
+       return( {
+        status:"ok",
+        msg:"data",
+        data:await Review.aggregate([
+            {
+                $match:{
+                    productID:objectId
+                }
+            },
+                {
+                    $lookup:{
+                        from: "users", // Specify the name of the users collection
+                        localField: "userID", // Field from the input documents
+                        foreignField: "_id", // Field from the documents of the "users" collection
+                        as: "user" // Output array field
+                    }
+                }
+              
+            ])
+       }
+       )
 
     }catch(err){
         return({
             status:"err in review service",
-            msg:err,
+            msg:err.message,
             data:null
         })
     }

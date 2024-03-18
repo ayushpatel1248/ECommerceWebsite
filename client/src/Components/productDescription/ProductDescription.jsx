@@ -27,11 +27,19 @@ const ProductDescription = () => {
     const BASE_URL = process.env.REACT_APP_BASE_URL;
     const productData = useSelector((state) => state.productDesc.productDetail[0])
 
+    const fetchReview = (product_id)=>{
+        axios.post(`${BASE_URL}/review/get-review`,{product_id}).then((res)=>{
+console.log("res on fetch rerview",res.data)
+        }).catch((err)=>{
+            console.log(err, "on fetch review")
+        })
+    }
     useEffect(() => {
         setTimeout(() => {
             setOpacity(1)
         }, 1100)
         dispatch(fetchProductDetail(product_id))
+        fetchReview(product_id)
         setIsLoading(false)
     }, [])
     useEffect(() => {
