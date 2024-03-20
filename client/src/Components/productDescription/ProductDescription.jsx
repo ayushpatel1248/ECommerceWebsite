@@ -4,7 +4,7 @@ import "./productDescription.css"
 // import { Scrollbars } from 'react-custom-scrollbars';
 import Header from '../header/Header';
 import Footer from '../footer/Footer';
-import { useParams } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 import { fetchProductDetail } from '../../store/slices/productDescSlice';
 import Rating from '@mui/material/Rating';
 import Typography from '@mui/material/Typography';
@@ -12,8 +12,11 @@ import * as Yup from 'yup';
 import { ToastContainer, toast } from 'react-toastify';
 import Loader from '../Loader';
 import axios from 'axios';
+import { setCheckOutData } from '../../store/slices/checkoutSlice';
+import { useNavigate } from 'react-router-dom';
 
 const ProductDescription = () => {
+    const navigate = useNavigate();
     let { product_id } = useParams();
     const dispatch = useDispatch();
     const [opacity, setOpacity] = useState(0);
@@ -158,7 +161,14 @@ const ProductDescription = () => {
                         <div className='d-flex buy-sell-price-parent'>
                             <div className='desc-buy-sell-div  '>
                                 {/* buy */}
-                                <div data-tooltip={`Price:₹${productData?.price}`} className="button-buy-desc buy-sell-desc">
+                                <div 
+                                data-tooltip={`Price:₹${productData?.price}`} className="button-buy-desc buy-sell-desc"
+                                onClick={()=>{
+                                    dispatch(setCheckOutData([{product:productData , quantity:1}]))
+                                    navigate("/check-out")
+                                }}
+                                
+                                >
                                     <div className="button-wrapper-buy-desc">
                                         <div className="text-buy-desc">Buy Now</div>
                                         <span className="icon-buy-desc">

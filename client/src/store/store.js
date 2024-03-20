@@ -6,6 +6,7 @@ import showEmailUpdateProfileSlice from "./slices/showEmailUpdateProfileSlice";
 import profileUpdattionSlice from "./slices/profileUpdattionSlice";
 import productDescSilce from "./slices/productDescSlice"
 import searchDataSlice from "./slices/searchDataSlice"
+import checkoutSlice from "./slices/checkoutSlice";
 
 const store = configureStore({
     reducer: {
@@ -18,6 +19,7 @@ const store = configureStore({
         getProductData: getProductDataSlice,
         productDesc: productDescSilce,
         searchData: searchDataSlice,
+        checkout : checkoutSlice
 
         // cartData : cartDataSlice
         //and more reducer are add here...
