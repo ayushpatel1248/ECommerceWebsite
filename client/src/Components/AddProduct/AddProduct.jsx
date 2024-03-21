@@ -5,6 +5,44 @@ import "./addProduct.css"
 const AddProduct = () => {
 
   const [toggle, setToggle] = useState(1);
+  const [description, setDescription] = useState("")
+  const [brand, setBrand] = useState("")
+  const [name, setName] = useState("")
+  const [price, setPrice] = useState(0)
+  const [discount, setDiscount] = useState(0)
+  const [stock, setStock] = useState(0)
+  const [volume, setVolume] = useState(0)
+  const [gender, setGender] = useState("")
+  const [thumbnail, setThumbnail] = useState("")
+  const [images, setImages] = useState()
+  const [ingredients, setIngredients] = useState([])
+
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+  
+    reader.onload = (event) => {
+      const imageUrl = event.target.result;
+      console.log('Image URL:', imageUrl);
+      setImages([imageUrl]); 
+    };
+  
+    reader.readAsDataURL(file);
+  };
+
+  const handleThumbnailUpload = (e) => {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+  
+    reader.onload = (event) => {
+      const imageUrl = event.target.result;
+      console.log('Thumbnail URL:', imageUrl , typeof(imageUrl));
+      setThumbnail(imageUrl); 
+    };
+  
+    reader.readAsDataURL(file);
+  };
+  
   console.log(toggle)
 
   return (
@@ -26,19 +64,19 @@ const AddProduct = () => {
               <div className='product-identity-addproduct'>
                 <div>
                   <label htmlFor="product-image">Product Image</label>
-                  <input type="file" name='product-image' />
+                  <input type="file" name='product-image' onChange={handleImageUpload} />
                 </div>
                 <div>
                   <label htmlFor="ProductName">Product Name</label>
-                  <input name="ProductName" placeholder='Enter Your Product Name' type="text" />
+                  <input name="ProductName" placeholder='Enter Your Product Name' type="text" onChange={e=>setName(e.target.value)}/>
                 </div>
                 <div>
                   <label htmlFor="Description-addProduct">Description</label>
-                  <input name="Description-addProduct" placeholder='Enter Product Description' type="text" />
+                  <input name="Description-addProduct" placeholder='Enter Product Description' type="text" onChange={e=>setDescription(e.target.value)} />
                 </div>
                 <div>
                   <label htmlFor="brand">Brand Name</label>
-                  <input name="brand" placeholder='Enter Your Brand Name' type="text" />
+                  <input name="brand" placeholder='Enter Your Brand Name' type="text" onChange={e=>setBrand(e.target.value)}/>
                 </div>
               </div>
 
@@ -64,19 +102,19 @@ const AddProduct = () => {
                 <div className='product-identity-addproduct'>
                   <div>
                     <label htmlFor="product-price">Product Price</label>
-                    <input type="text" name='product-price' placeholder='Enter Price Of Product' />
+                    <input type="text" name='product-price' placeholder='Enter Price Of Product' onChange={e=>setPrice(e.target.value)} />
                   </div>
                   <div>
-                    <label htmlFor="productDiscount">Product Name</label>
-                    <input name="productDiscount" placeholder='Enter Your Price Discount' type="text" />
+                    <label htmlFor="productDiscount">Product Discount</label>
+                    <input name="productDiscount" placeholder='Enter Your Price Discount' type="text" onChange={e=>setDiscount(e.target.value)}/>
                   </div>
                   <div>
                     <label htmlFor="stock">Stock</label>
-                    <input name="stock" placeholder='Enter Product stock' type="text" />
+                    <input name="stock" placeholder='Enter Product stock' type="text" onChange={e=>setStock(e.target.value)}/>
                   </div>
                   <div>
                     <label htmlFor="volume">Enter Volume</label>
-                    <input name="volume" placeholder='Enter Volume Of Product' type="text" />
+                    <input name="volume" placeholder='Enter Volume Of Product' type="text" onChange={e=>setVolume(e.target.value)}/>
                   </div>
                 </div>
 
@@ -100,15 +138,15 @@ const AddProduct = () => {
                 <div className='product-identity-addproduct'>
                   <div>
                     <label htmlFor="thumbnail">Product thumbnail</label>
-                    <input type="file" name='thumbnail' />
+                    <input type="file" name='thumbnail' onChange={handleThumbnailUpload}/>
                   </div>
                   <div>
                     <label htmlFor="Gender">Product Gender</label>
-                    <input name="Gender" placeholder='Enter Product Gender' type="text" />
+                    <input name="Gender" placeholder='Enter Product Gender' type="text" onChange={e=>setGender(e.target.value)}/>
                   </div>
                   <div>
                     <label htmlFor="Ingredients">Product Ingredients</label>
-                    <input name="Ingredients" placeholder='Enter Product Ingredients' type="text" />
+                    <input name="Ingredients" placeholder='Enter Product Ingredients' type="text" onChange={e=>setIngredients(e.target.value)}/>
                   </div>
                 </div>
 
@@ -129,7 +167,7 @@ const AddProduct = () => {
         }
 
 
-
+        {console.log(name, images, thumbnail)}
 
       </div>
     </div>
