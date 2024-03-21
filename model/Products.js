@@ -55,7 +55,7 @@ const ProductSchema = new Schema({
     "images" : {
         "type":["String"]
     },
-    "ingredients": {
+    " ": {
         "type": ["String"],
     }
 })
