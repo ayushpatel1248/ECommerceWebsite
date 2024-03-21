@@ -65,7 +65,7 @@ const RegisterAdmin = () => {
         // console.log("harshit data",apiFetched.data.data.userdata)
         dispatch(addData(apiFetched.data.data.userdata));
         notify(apiFetched.data.msg)
-        navigate("/adminHomePage")
+        navigate("/AddProduct")
       }else{
         notify(apiFetched.data.msg)
       }

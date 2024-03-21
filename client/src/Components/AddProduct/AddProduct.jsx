@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react'
 import AdminHeader from "../header/AdminHeader"
 import "./addProduct.css"
 import axios from 'axios';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify';
+
 
 const baseUrl = process.env.REACT_APP_BASE_URL
 
@@ -12,15 +15,18 @@ const AddProduct = () => {
   const [description, setDescription] = useState("")
   const [brand, setBrand] = useState("")
   const [name, setName] = useState("")
-  const [price, setPrice] = useState(0)
-  const [discount, setDiscount] = useState(0)
-  const [stock, setStock] = useState(0)
-  const [volume, setVolume] = useState(0)
+  const [price, setPrice] = useState()
+  const [discount, setDiscount] = useState()
+  const [stock, setStock] = useState()
+  const [volume, setVolume] = useState()
   const [gender, setGender] = useState("")
   const [thumbnail, setThumbnail] = useState("")
   const [images, setImages] = useState()
   const [ingredients, setIngredients] = useState([])
+  const [isLoading, setIsLoading] = useState(false)
 
+
+  const notify = (notifyMessage) => toast(notifyMessage);
 
 
   const handleAddProduct = async () => {
@@ -39,11 +45,16 @@ const AddProduct = () => {
     }
     console.log(data)
     try{
-    const res = await axios.post(`${baseUrl}/addProduct`, {data}, {headers:{authorization}})
+    setIsLoading(true)
+    const res = await axios.post(`${baseUrl}/addProduct`, data, {headers:{authorization}})
     console.log("product added successs fully", res)
+    notify(res.data.msg)
     }
     catch(err){
       console.log("some error occured")
+    }
+    finally{
+      setIsLoading(false)
     }
   }
 
@@ -185,7 +196,7 @@ const AddProduct = () => {
                 <button class="continue-button-addProduct" onClick={(e) => { setToggle(toggle - 1) }} >
                   <span>Go Back</span>
                 </button>
-                <button class="continue-button-addProduct" onClick={handleAddProduct} >
+                <button class="continue-button-addProduct" disabled={isLoading} onClick={handleAddProduct} >
                   <span >Add Product</span>
                   <svg width="34" height="34" viewBox="0 0 74 74" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <circle cx="37" cy="37" r="35.5" stroke="black" stroke-width="3"></circle>
@@ -198,7 +209,7 @@ const AddProduct = () => {
 
 
         {console.log(name, images, thumbnail)}
-
+        <ToastContainer />
       </div>
     </div>
   )

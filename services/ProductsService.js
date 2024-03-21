@@ -170,6 +170,34 @@ ProductServices.addProduct = async (_id, productInfo) => {
   }
 
 }
+
+ProductServices.getProductsByUserId = async (addedBy) => {
+  try{
+  const productResult = await Products.find({addedBy}, {images:0, thumbnail:0})
+  console.log("product result =", productResult)
+  if(productResult){
+    return{
+      status:"ok",
+      msg:"products send successfully",
+      data:productResult
+    }
+  }
+  else{
+    return {
+      status:"err",
+      msg:"No products added yet",
+      data:null
+    }
+  }
+  }
+  catch(err){
+    return {
+      status:"err",
+      msg:"server error",
+      data:err
+    }
+  }
+}
 module.exports = ProductServices;
 
 

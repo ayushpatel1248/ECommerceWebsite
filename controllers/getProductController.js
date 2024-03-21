@@ -1,4 +1,6 @@
 const ProductServices = require("../services/ProductsService")
+const verifyAdminAuth = require("../reUseAbleFunctions/decryptAdminAuth")
+
 const getProductController =  {}
 
  getProductController.getProduct = async (req , res)=>{
@@ -21,6 +23,15 @@ const getProductController =  {}
         data:null
     })
    }
+}
+
+getProductController.getProductsByUserId =  async (req, res)=>{
+    const { authorization } = req.headers;
+    console.log("authorization is ", authorization)
+    const _id = verifyAdminAuth(authorization)
+    const result = await ProductServices.getProductsByUserId(_id)
+    console.log(result)
+    res.send(result)
 }
 
 

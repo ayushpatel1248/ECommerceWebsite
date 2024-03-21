@@ -60,9 +60,9 @@ export default function AdminHeader() {
                     </div>
 
                     <ul className="nav-links">
-                        <li><Link to="/">Dashboard</Link></li>
+                        <li><Link to="/admin-dashboard">Dashboard</Link></li>
                         <li><Link to="">Orders</Link></li>
-                        <li><Link to="/allProducts">Add Product</Link></li>
+                        <li><Link to="/AddProduct">Add Product</Link></li>
                         <li><Link to="">Shipping Info</Link></li>
                         <li><Link to=""> Stock Edit</Link></li>
                     </ul>
