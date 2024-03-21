@@ -98,15 +98,15 @@ const AddProduct = () => {
                 </div>
                 <div>
                   <label htmlFor="ProductName">Product Name</label>
-                  <input name="ProductName" placeholder='Enter Your Product Name' type="text" onChange={e => setName(e.target.value)} />
+                  <input value={name} name="ProductName" placeholder='Enter Your Product Name' type="text" onChange={e => setName(e.target.value)} />
                 </div>
                 <div>
                   <label htmlFor="Description-addProduct">Description</label>
-                  <input name="Description-addProduct" placeholder='Enter Product Description' type="text" onChange={e => setDescription(e.target.value)} />
+                  <input value={description} name="Description-addProduct" placeholder='Enter Product Description' type="text" onChange={e => setDescription(e.target.value)} />
                 </div>
                 <div>
                   <label htmlFor="brand">Brand Name</label>
-                  <input name="brand" placeholder='Enter Your Brand Name' type="text" onChange={e => setBrand(e.target.value)} />
+                  <input name="brand" value={brand} placeholder='Enter Your Brand Name' type="text" onChange={e => setBrand(e.target.value)} />
                 </div>
               </div>
 
@@ -132,19 +132,19 @@ const AddProduct = () => {
                 <div className='product-identity-addproduct'>
                   <div>
                     <label htmlFor="product-price">Product Price</label>
-                    <input type="number" name='product-price' placeholder='Enter Price Of Product' onChange={e => setPrice(e.target.value)} />
+                    <input type="number" value={price} name='product-price' placeholder='Enter Price Of Product' onChange={e => setPrice(e.target.value)} />
                   </div>
                   <div>
                     <label htmlFor="productDiscount">Product Discount</label>
-                    <input name="productDiscount" placeholder='Enter Your Price Discount' type="number" onChange={e => setDiscount(e.target.value)} />
+                    <input name="productDiscount" value={discount} placeholder='Enter Your Price Discount' type="number" onChange={e => setDiscount(e.target.value)} />
                   </div>
                   <div>
                     <label htmlFor="stock">Stock</label>
-                    <input name="stock" placeholder='Enter Product stock' type="number" onChange={e => setStock(e.target.value)} />
+                    <input name="stock" placeholder='Enter Product stock' value={stock} type="number" onChange={e => setStock(e.target.value)} />
                   </div>
                   <div>
                     <label htmlFor="volume">Enter Volume</label>
-                    <input name="volume" placeholder='Enter Volume Of Product' type="number" onChange={e => setVolume(e.target.value)} />
+                    <input name="volume" placeholder='Enter Volume Of Product' type="number" value={volume} onChange={e => setVolume(e.target.value)} />
                   </div>
                 </div>
 
@@ -172,11 +172,11 @@ const AddProduct = () => {
                   </div>
                   <div>
                     <label htmlFor="Gender">Product Gender</label>
-                    <input name="Gender" placeholder='Enter Product Gender' type="text" onChange={e => setGender(e.target.value)} />
+                    <input name="Gender" value={gender} placeholder='Enter Product Gender' type="text" onChange={e => setGender(e.target.value)} />
                   </div>
                   <div>
                     <label htmlFor="Ingredients">Product Ingredients</label>
-                    <input name="Ingredients" placeholder='Enter Product Ingredients' type="text" onChange={e => setIngredients([e.target.value])} />
+                    <input name="Ingredients" value={ingredients} placeholder='Enter Product Ingredients' type="text" onChange={e => setIngredients([e.target.value])} />
                   </div>
                 </div>
 

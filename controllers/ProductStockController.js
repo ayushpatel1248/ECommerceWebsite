@@ -10,8 +10,8 @@ ProductStockController.addProduct = async (req, res) => {
     const { authorization } = req.headers;
     console.log("authorization is ", authorization)
     const _id = verifyAdminAuth(authorization)
-    const {name, description, brand, price, discount, stock, volume, gender, rating, thumbnail, images, ingredients} = req.body;
-    const productInfo = {name, description, brand, price, discount, stock, volume, gender, rating, thumbnail, images, ingredients}
+    const {name, description, brand, price, discount, stock, volume, gender, thumbnail, images, ingredients} = req.body;
+    const productInfo = {name, description, brand, price, discount, stock, volume, gender, thumbnail, images, ingredients}
     if (_id){
       const result = await ProductsService.addProduct(_id, productInfo)
       res.send(result)
