@@ -17,6 +17,7 @@ import AddProduct  from "./Components/AddProduct/AddProduct";
 import SearchDataPage from "./Components/searchDataPage/SearchDataPage";
 import "./Components/global.css"
 import axios from 'axios';
+import CheckOut from "./Components/checkoutPage/CheckOut";
 
 function App() {
   const [isLoading, setIsloading] = useState(true);
@@ -55,6 +56,7 @@ const BASE_URL = process.env.REACT_APP_BASE_URL;
         <Route path="/product-description/:product_id" element={isLoading == true ? <Loader /> : <div><ProductDescription /></div>} />
         <Route path="/search" element={isLoading == true ? <Loader /> : <div><SearchDataPage/></div>} />
         <Route path="/AddProduct" element={isLoading == true ? <Loader /> : <div><AddProduct/></div>} />
+        <Route path="/check-out" element={isLoading == true ? <Loader /> : <div><CheckOut/></div>} />
       </Routes>
     </BrowserRouter>
   );

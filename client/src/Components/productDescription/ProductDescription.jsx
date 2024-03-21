@@ -4,7 +4,7 @@ import "./productDescription.css"
 // import { Scrollbars } from 'react-custom-scrollbars';
 import Header from '../header/Header';
 import Footer from '../footer/Footer';
-import { useParams } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 import { fetchProductDetail } from '../../store/slices/productDescSlice';
 import Rating from '@mui/material/Rating';
 import Typography from '@mui/material/Typography';
@@ -12,14 +12,18 @@ import * as Yup from 'yup';
 import { ToastContainer, toast } from 'react-toastify';
 import Loader from '../Loader';
 import axios from 'axios';
+import { setCheckOutData } from '../../store/slices/checkoutSlice';
+import { useNavigate } from 'react-router-dom';
 
 const ProductDescription = () => {
+    const navigate = useNavigate();
     let { product_id } = useParams();
     const dispatch = useDispatch();
     const [opacity, setOpacity] = useState(0);
     const [isLoading, setIsLoading] = useState(true)
     const [isDiscountAvailable, setIsDiscountAvailable] = useState(false)
     const [giveRatingVisbility, setGiveRatingVisbility] = useState(false)
+    const [allReviews , setAllReviews] = useState([])
     const [comment, setComment] = useState("")
     const [value, setValue] = useState(0);
     const notify = (mes) => toast.error(mes);
@@ -27,11 +31,20 @@ const ProductDescription = () => {
     const BASE_URL = process.env.REACT_APP_BASE_URL;
     const productData = useSelector((state) => state.productDesc.productDetail[0])
 
+    const fetchReview = (product_id) => {
+        axios.post(`${BASE_URL}/review/get-review`, { product_id }).then((res) => {
+            console.log("res on fetch rerview", res.data.data)
+            setAllReviews(res.data.data)
+        }).catch((err) => {
+            console.log(err, "on fetch review")
+        })
+    }
     useEffect(() => {
         setTimeout(() => {
             setOpacity(1)
         }, 1100)
         dispatch(fetchProductDetail(product_id))
+        fetchReview(product_id)
         setIsLoading(false)
     }, [])
     useEffect(() => {
@@ -54,14 +67,15 @@ const ProductDescription = () => {
             await ratingSchema.validate({ rating: value, comment })
             const auth = localStorage.getItem("authorization")
             if (auth) {
+
                 axios.post(`${BASE_URL}/review/set-review`, { productID: product_id, rating: value.toString(), comment }, { headers: { authorization: auth } }).then((res) => {
                     console.log(res)
                     if (res.data.status == "ok") {
                         notifySucess(res.data.msg)
-                        setGiveRatingVisbility(false) 
+                        setGiveRatingVisbility(false)
                     } else {
                         notify(res.data.msg)
-                        setGiveRatingVisbility(false) 
+                        setGiveRatingVisbility(false)
                     }
                 }).catch((err) => {
                     console.log("error inaxios of productdescription on set review", err)
@@ -134,7 +148,8 @@ const ProductDescription = () => {
                                 </div>
                                 {/* genderr */}
                                 <div className='mt-4 description-text description-text-div' style={{ opacity: opacity }}>
-                                    <p className='font-family desc-gender-parent '> fragrance  is best for <span className='desc-gender'>{productData?.gender}</span> !</p>
+                                    <p className='font-family desc-gender-parent '>fragrance  is best for <span className='desc-gender'>{productData?.gender}</span> !</p>
+                                    <p className='font-family desc-gender-parent '>fragrance  is available in <span className='desc-gender'>{productData?.volume}ml</span> Bottel</p>
                                 </div>
 
 
@@ -146,7 +161,14 @@ const ProductDescription = () => {
                         <div className='d-flex buy-sell-price-parent'>
                             <div className='desc-buy-sell-div  '>
                                 {/* buy */}
-                                <div data-tooltip={`Price:₹${productData?.price}`} className="button-buy-desc buy-sell-desc">
+                                <div 
+                                data-tooltip={`Price:₹${productData?.price}`} className="button-buy-desc buy-sell-desc"
+                                onClick={()=>{
+                                    dispatch(setCheckOutData([{product:productData , quantity:1}]))
+                                    navigate("/check-out")
+                                }}
+                                
+                                >
                                     <div className="button-wrapper-buy-desc">
                                         <div className="text-buy-desc">Buy Now</div>
                                         <span className="icon-buy-desc">
@@ -178,9 +200,18 @@ const ProductDescription = () => {
                         </div>
                         {/* rating */}
                         <div className='rating-div'>
-                            <h2 className='description-text font-weight-600 description-text-div font-family' style={{ opacity: opacity }}>Average Rating Of PRODUCT :</h2>
-                            <div><Rating name="read-only" size="large" value={productData?.rating == undefined ? 0 : productData?.rating} readOnly />  </div>
-                            <div className='btn-rating'>   <button className='button-rating ' onClick={() => { setGiveRatingVisbility(true) }}> <span>rate product </span></button></div>
+                            <div className='rating-main-div'>
+                                <h2 className='description-text font-weight-600 description-text-div font-family' style={{ opacity: opacity }}>Average Rating Of PRODUCT :</h2>
+                                <div><Rating name="read-only" size="large" value={productData?.rating == undefined ? 0 : productData?.rating} readOnly />  </div>
+                                <div className='btn-rating'>   <button className='button-rating ' onClick={() => { setGiveRatingVisbility(true) }}> <span>rate product </span></button></div>
+                            </div>
+                            <div className='frag-available'>
+                                <h2 className='description-text-div font-family' style={{ opacity: opacity }}>Available Frangrence </h2>
+                                <div className='mt-4 description-text description-text-div' style={{ opacity: opacity }}>
+                                    {productData?.ingredients?.map((el) => { return (<p className='font-family desc-gender-parent '>-&gt; {el}</p>) })}
+
+                                </div>
+                            </div>
 
                         </div>
                         <div className={giveRatingVisbility ? 'visibal give-rating-div' : "not-visibal give-rating-div"}>
@@ -198,8 +229,24 @@ const ProductDescription = () => {
                                 </div>
                             </div>
                         </div>
-                    </div>
+                        <div>
+                        {allReviews?.map((el)=>{
+                            return(
+                               <div className='reviewShow'>
+                               <div> 
+                               <h3>{el?.user[0]?.userName }</h3>
+                                <p><Rating name="read-only"  value={el?.rating == undefined ? 0 : el?.rating} readOnly />  </p>
+                                <p className='comment'>Comment On Product : {el?.comment}</p>
+                               </div>
+                               </div>
 
+                            )
+                        })}
+                        </div>
+                    </div>
+{/* <div className='footer'>
+<Footer/>
+</div> */}
                 </div>}
             <ToastContainer />
         </div>

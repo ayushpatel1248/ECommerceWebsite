@@ -4,8 +4,8 @@ const { Schema } = mongoose;
 
 const ReviewSchema = new Schema({
     userID: {
-        // type: mongoose.Schema.Types.ObjectId,
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
+        // type: String,
         required: true,
       },
       productID: {

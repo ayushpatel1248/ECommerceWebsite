@@ -15,6 +15,7 @@ ReviewController.setReview = async (req, res) => {
     const { authorization } = req.headers;
     const { productID, rating, comment } = req.body;
     const authData = decryptAuth(authorization)
+
     try {
         if (authData != null) {
             try {
@@ -59,6 +60,12 @@ ReviewController.setReview = async (req, res) => {
             data: err
         }))
     }
+}
+
+ReviewController.getReview = async(req,res)=>{
+    const{product_id} = req.body;
+    const response = await ReviewServices.getReviewByProductId(product_id)
+    res.send(response)
 }
 
 module.exports = ReviewController

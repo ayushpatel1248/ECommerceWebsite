@@ -584,9 +584,21 @@ font-size: medium;
 } */
 
 /* rating */
+.rating-main-div{
+  padding: 0 3%;
+  border-right: 4px solid black;
 
+}
 .rating-div{
-  margin: 0 3%;
+ 
+  display: flex;
+  /* justify-content: space-around; */
+}
+.frag-available{
+  /* margin-left: 200px; */
+  width: 40%;
+  padding-left: 3.5rem;
+
 }
 .rating-btn-div{
   display: flex;
@@ -608,14 +620,18 @@ padding: 50px;
 
 
 }
+.comment{
+  /* overflow: hidden; */
+  overflow-wrap: break-word;
+  width: 100%;
+}
 .visibal{
-  visibility: visible;
+  display: block;
   width: fit-content;
 }
 .not-visibal{
-  visibility: hidden;
+  display: none;
   width: fit-content;
-
 }
 
 .button-rating {
@@ -667,4 +683,20 @@ padding: 50px;
   color: #03045e;
   font-size: 18px;
   transition: all 0.3s ease-in;
+ }
+
+ .reviewShow{
+  margin: 3% 0 0% 3%;
+  
+  width: 50%;
+  background-color: rgba(255, 255, 255, 0.534);
+  color: black;
+  border-radius: 40px;
+  border-bottom: 2px solid black;
+ }
+ .reviewShow div{
+padding-left: 40px;
+ }
+ .footer{
+  margin-top: 3%;
  }

@@ -12,10 +12,13 @@ import axios from 'axios';
 import { useEffect } from 'react';
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
 import '../../App.css'
+import { useSelector, useDispatch } from 'react-redux'
+import { setCheckOutData } from '../../store/slices/checkoutSlice';
 import UserNotLogin from '../useNotLogin/UserNotLogin';
 const baseUrl = process.env.REACT_APP_BASE_URL
 
 const Cart = () => {
+    const dispatch = useDispatch();
     var authorization = localStorage.getItem("authorization")
     const navigate = useNavigate()
     //this is state for storing cart data of user 
@@ -147,7 +150,11 @@ const Cart = () => {
             </div>
             <div className="cart-footer">
                 <div className="total-cart-price">Total = <CurrencyRupeeIcon className="font24px" />{Math.round(totalAmount)}</div>
-                <button className="checkout-button">
+                <button className="checkout-button"
+                onClick={()=>{
+                    dispatch(setCheckOutData(cartData))
+                }}
+                >
                     <span className="button-content">CHECKOUT </span>
                 </button>
 
