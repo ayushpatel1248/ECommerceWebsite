@@ -151,8 +151,10 @@ const Cart = () => {
             <div className="cart-footer">
                 <div className="total-cart-price">Total = <CurrencyRupeeIcon className="font24px" />{Math.round(totalAmount)}</div>
                 <button className="checkout-button"
-                onClick={()=>{
+                onClick={async()=>{
                     dispatch(setCheckOutData(cartData))
+                   await axios.post(`${baseUrl}/checkout/update-checkout-details`,{checkoutDetails:cartData},{headers:{'authorization': authorization}})
+                    navigate("/check-out")
                 }}
                 >
                     <span className="button-content">CHECKOUT </span>

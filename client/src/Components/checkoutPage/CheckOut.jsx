@@ -64,11 +64,16 @@ useEffect(()=>{
 
                                 </div>
                                 <hr></hr>
-                                <div className="">
+                                <div className="d-flex gap-4">
                                    {/* product */}
                                     {checkoutProductDetails.map((el)=>{
                                         return(<div>
-                                            <img src={`${el?.product?.thumbnail}`} alt="hello" />
+                                            {console.log(el.product)}
+                                           <div className='img-div'> <img src={`${el?.product?.images[0]}`} alt="loading image ..." /></div>
+                                            <h6>{el?.product?.name}</h6>
+                                            <p>price : {el?.product?.price}</p>
+                                            
+
                                         </div>)
                                     })}
                                 </div>

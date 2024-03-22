@@ -72,7 +72,10 @@ app.use("/admin", AdminRoutes)
 const ProductRoutes =  require('./routes/ProductRoutes')
 app.use("/", ProductRoutes)
 
+//--------------------------checkOut route----------------
 
+const checkOutRoute = require('./routes/checkOutRoute')
+app.use("/checkout",checkOutRoute)
 
 app.listen(9999, ()=>{
   console.log("server is running on port : ", 9999)
