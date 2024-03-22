@@ -19,6 +19,7 @@ import "./Components/global.css"
 import axios from 'axios';
 import CheckOut from "./Components/checkoutPage/CheckOut";
 import AdminDashboard from "./Components/AdminDashboard/AdminDashboard";
+import StockEditAdmin from "./Components/StockEditAdmin/StockEditAdmin";
 
 function App() {
   const [isLoading, setIsloading] = useState(true);
@@ -58,7 +59,9 @@ const BASE_URL = process.env.REACT_APP_BASE_URL;
         <Route path="/search" element={isLoading == true ? <Loader /> : <div><SearchDataPage/></div>} />
         <Route path="/AddProduct" element={isLoading == true ? <Loader /> : <div><AddProduct/></div>} />
         <Route path="/check-out" element={isLoading == true ? <Loader /> : <div><CheckOut/></div>} />
-        <Route path="/admin-dashboard" element={isLoading == true ? <Loader /> : <div><AdminDashboard/></div>} />        
+        <Route path="/admin-dashboard" element={isLoading == true ? <Loader /> : <div><AdminDashboard/></div>} />   
+        <Route path="/stock-edit-admin" element={isLoading == true ? <Loader /> : <div><StockEditAdmin/></div>} />        
+    
       </Routes>
     </BrowserRouter>
   );

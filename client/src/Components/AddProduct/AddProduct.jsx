@@ -147,7 +147,7 @@ const AddProduct = () => {
                   </div>
                   <div>
                     <label htmlFor="productDiscount">Product Discount</label>
-                    <input name="productDiscount" value={discount} placeholder='Enter Your Price Discount' type="number" onChange={e => setDiscount(e.target.value)} />
+                    <input name="productDiscount" value={discount} placeholder='Enter Your Price Discount in Percentage' type="number" onChange={e => setDiscount(e.target.value)} />
                   </div>
                   <div>
                     <label htmlFor="stock">Stock</label>

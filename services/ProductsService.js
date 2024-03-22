@@ -47,9 +47,6 @@ ProductServices.getProductDesc = async (_id) => {
   // return (await Products.findOne({ _id }))
 }
 
-
-
-
 ProductServices.getProductByName = async (name) => {
   try {
     console.log(name)
@@ -121,7 +118,7 @@ ProductServices.addProduct = async (_id, productInfo) => {
   try {
     // here we have added product info id of user which is named as per the model as addded by 
     const productInfoWithAddedBy = { addedBy: _id, ...productInfo };
-    const productObjectWithoutStock = {...productInfoWithAddedBy}
+    const productObjectWithoutStock = { ...productInfoWithAddedBy }
     delete productObjectWithoutStock.stock
     // now we will check if user have previously added same product if yes then we will just increase the stock
     const productFound = await Products.findOne(productObjectWithoutStock);
@@ -172,32 +169,98 @@ ProductServices.addProduct = async (_id, productInfo) => {
 }
 
 ProductServices.getProductsByUserId = async (addedBy) => {
-  try{
-  const productResult = await Products.find({addedBy}, {images:0, thumbnail:0})
-  console.log("product result =", productResult)
-  if(productResult){
-    return{
-      status:"ok",
-      msg:"products send successfully",
-      data:productResult
+  try {
+    const productResult = await Products.find({ addedBy }, { images: 0, thumbnail: 0 })
+    console.log("product result =", productResult)
+    if (productResult) {
+      return {
+        status: "ok",
+        msg: "products send successfully",
+        data: productResult
+      }
+    }
+    else {
+      return {
+        status: "err",
+        msg: "No products added yet",
+        data: null
+      }
     }
   }
-  else{
+  catch (err) {
     return {
-      status:"err",
-      msg:"No products added yet",
-      data:null
-    }
-  }
-  }
-  catch(err){
-    return {
-      status:"err",
-      msg:"server error",
-      data:err
+      status: "err",
+      msg: "server error",
+      data: err
     }
   }
 }
+
+ProductServices.productStockEdit = async (addedBy, _id, editNo) => {
+  try {
+    const res = await Products.findOne({ _id, addedBy })
+
+    if (res) {
+      if (editNo == 1 || editNo == -1 || editNo == 0) {
+        let res2;
+        if (editNo == 0) {
+          res2 = await Products.findOneAndUpdate({ addedBy, _id }, { "stock": editNo })
+        }
+        else {
+          res2 = await Products.findOneAndUpdate({ addedBy, _id }, { $inc: { "stock": editNo } })
+        }
+        if (res2) {
+          return {
+            status: "ok",
+            msg: "product updated successfully",
+            data: res2
+          }
+        }
+        else {
+          return {
+            status: "err",
+            msg: "error occuered due to product unavailablity",
+            data: null
+          }
+        }
+      }
+      else {
+        const res2 = await Products.deleteOne({ _id, addedBy })
+        if (res2) {
+          return {
+            status: "ok",
+            msg: "product deleted successfully",
+            data: null
+          }
+        }
+        else {
+          return {
+            status: "err",
+            msg: "product deletion failed",
+            data: null
+          }
+        }
+      }
+
+    }
+    else {
+      return {
+        status: "err",
+        msg: "no product found",
+        data: null
+      }
+    }
+  }
+  catch (err) {
+    return {
+      status: "err",
+      msg: "server error",
+      data: err
+    }
+  }
+
+}
+
 module.exports = ProductServices;
 
 
