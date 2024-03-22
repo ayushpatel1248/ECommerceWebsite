@@ -23,14 +23,13 @@ const CheckOut = () => {
     }, [])
 
     let data = useSelector((state) => state.userLoginData.userData?.address) // fetch address of user
-    let checkOutDetails = useSelector((state)=>state.checkout.checkoutProductArray)
-    console.log("checkout details = ",checkOutDetails)
-useEffect(()=>{
-    setCheckoutProductDetails(checkOutDetails)
-},[checkOutDetails])
     useEffect(() => {
         setUserData(data);
+
     }, [data])
+
+    
+
     return (
         <div>
             {UserNotLogi == true ? <div><UserNotLogin /></div> :
@@ -64,11 +63,16 @@ useEffect(()=>{
 
                                 </div>
                                 <hr></hr>
-                                <div className="">
+                                <div className="d-flex gap-4">
                                    {/* product */}
                                     {checkoutProductDetails.map((el)=>{
                                         return(<div>
-                                            <img src={`${el?.product?.thumbnail}`} alt="hello" />
+                                            {console.log(el.product)}
+                                           <div className='img-div'> <img src={`${el?.product?.images[0]}`} alt="loading image ..." /></div>
+                                            <h6>{el?.product?.name}</h6>
+                                            <p>price : {el?.product?.price}</p>
+                                            
+
                                         </div>)
                                     })}
                                 </div>

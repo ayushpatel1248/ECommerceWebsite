@@ -163,8 +163,9 @@ const ProductDescription = () => {
                                 {/* buy */}
                                 <div 
                                 data-tooltip={`Price:₹${productData?.price}`} className="button-buy-desc buy-sell-desc"
-                                onClick={()=>{
+                                onClick={async()=>{
                                     dispatch(setCheckOutData([{product:productData , quantity:1}]))
+                                    await axios.post(`${BASE_URL}/checkout/update-checkout-details`,{checkoutDetails:[{product:productData , quantity:1}]},{headers:{'authorization': localStorage.getItem("authorization")}})
                                     navigate("/check-out")
                                 }}
                                 
