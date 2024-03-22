@@ -23,14 +23,13 @@ const CheckOut = () => {
     }, [])
 
     let data = useSelector((state) => state.userLoginData.userData?.address) // fetch address of user
-    let checkOutDetails = useSelector((state)=>state.checkout.checkoutProductArray)
-    console.log("checkout details = ",checkOutDetails)
-useEffect(()=>{
-    setCheckoutProductDetails(checkOutDetails)
-},[checkOutDetails])
     useEffect(() => {
         setUserData(data);
+
     }, [data])
+
+    
+
     return (
         <div>
             {UserNotLogi == true ? <div><UserNotLogin /></div> :

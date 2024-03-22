@@ -39,4 +39,24 @@ console.log("foundedUser",foundedUser)
 
 }
 
+CheckOutServices.getCheckoutList = async(authData)=>{
+  try{
+    const objectId =new mongoose.Types.ObjectId(authData);
+    const foundedUser = await Checkout.findOne({userID:objectId })
+    return({
+      status:"ok",
+      msg:"sucessfully checkcout list fetched",
+      data:foundedUser
+    })
+
+  }catch(err){
+    return ({
+      status: "err",
+      msg: "err at server side at checkoutservice",
+      data: err
+  })
+  }
+
+}
+
 module.exports = CheckOutServices;
