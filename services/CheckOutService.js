@@ -89,4 +89,34 @@ CheckOutServices.changeQuantity = async (productId, authData, quantity) => {
   }
 }
 
+CheckOutServices.chengeIngredients = async (productId, authData,ingredients)=>{
+  try {
+    const objectId = new mongoose.Types.ObjectId(authData);
+    const response = await Checkout.findOneAndUpdate(
+    {
+      userID: authData,
+      "checkoutDetails":
+       {
+        $elemMatch: { "product._id": productId }
+      }
+    }, 
+    {
+      $set: { "checkoutDetails.$.ingredients": ingredients } // corrected "quantity" field
+    })
+
+    return ({
+      status: "ok",
+      msg: "sucessfully ingredients changed",
+      data: response
+    })
+
+  } catch (err) {
+    return ({
+      status: "err",
+      msg: "err at server side at checkoutservice",
+      data: err
+    })
+  }
+}
+
 module.exports = CheckOutServices;

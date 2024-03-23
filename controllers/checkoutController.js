@@ -117,4 +117,32 @@ checkoutController.changeQuantity = async (req,res)=>{
     }
 
 }
+
+checkoutController.ingredients =async (req,res)=>{
+    const {productId , ingredients } = req.body;
+    const { authorization } = req.headers;
+    const authData = decryptAuth(authorization)
+
+    try{
+        if(authData){
+            const returnData = await CheckOutServices.changeIngredients(productId,authData,ingredients)
+            res.send(returnData)
+
+
+        }else{
+            res.send({
+                status: "err ",
+                msg: "invalid token",
+                data: null
+            })
+        }
+
+    }catch(err){
+        res.send({
+            status: "err",
+            msg: "err at server side at checkout controller",
+            data: null
+        })
+    }
+}
 module.exports = checkoutController
