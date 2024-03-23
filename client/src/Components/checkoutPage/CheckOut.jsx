@@ -169,7 +169,17 @@ const CheckOut = () => {
                                                 frangrence type: 
                                                 <select 
                                                 name="" id=""
-                                                onChange={(e)=>{console.log(e.target.value)}}
+                                                onChange={async(e)=>{
+                                                   await axios.post(`${BASE_URL}/checkout/update-checkout-change-ingredients`,
+                                                    {
+                                                        "productId": el?.product._id,
+                                                        "ingredients": e.target.value
+                                                    }, {
+                                                    headers: { "authorization": localStorage.getItem("authorization") }
+                                                }
+                                                    )
+
+                                                }}
                                                 >
                                                     {el?.product?.ingredients.map((ingre)=>{return(<option value={ingre}>{ingre}</option>)})}
                                                 </select>
