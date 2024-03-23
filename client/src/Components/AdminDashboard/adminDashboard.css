@@ -1,11 +1,18 @@
-td, th {
-    border: 2px solid #dddddd;
-    text-align: left;
-    padding: 8px;
-  }
-
-.Admin-dashboard-table{
-    width: 90%;
-    margin: 0px auto;
+td,
+th {
+  border: 2px solid #dddddd;
+  text-align: left;
+  padding: 8px;
 }
 
+.Admin-dashboard-table {
+  width: 90%;
+  margin: 0px auto;
+}
+
+
+@media (max-width:700px) {
+  .Admin-dashboard-table {
+    font-size: x-small;
+  }
+}
