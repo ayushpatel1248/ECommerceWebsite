@@ -443,6 +443,23 @@ width: 49%;
   /* responsive */
 
   @media screen and (max-width: 576px) {
+.rating-div{
+  display: block !important;
+}
+.description-text{
+  font-size: 20px;
+}
+.frag-available{
+  margin-bottom: 90px;
+}
+.rating-main-div{
+ 
+  border-right: none;
+}
+    .buy-sell-price-parent{
+      display: block !important;
+      padding:50px 0px;
+    }
     .parent-product-desc {
         background-size: cover;
         background-repeat: no-repeat;
@@ -590,7 +607,6 @@ font-size: medium;
 
 }
 .rating-div{
- 
   display: flex;
   /* justify-content: space-around; */
 }

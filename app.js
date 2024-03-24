@@ -78,6 +78,11 @@ app.use("/", ProductRoutes)
 const checkOutRoute = require('./routes/checkOutRoute')
 app.use("/checkout",checkOutRoute)
 
+// -----------------payment----------------
+
+const paymentRoute = require('./routes/paymentRoute')
+app.use("/payment",paymentRoute)
+
 app.listen(9999, ()=>{
   console.log("server is running on port : ", 9999)
 });

@@ -39,12 +39,15 @@ const CheckOut = () => {
         })
     }
 
-    const handelProceedToCheck = () => {
+    const handelProceedToCheck = async () => {
         if (!userData) {
             notify("please give shipping address ")
         }
         if (paymentMethod == "") {
             notify("please select payment meethod")
+        } else {
+         const order = await axios.post(`${BASE_URL}/payment/payment`,{"amount": subTotal,"currency":"INR","receipt": "kfhdh"} )
+         console.log("order",order)
         }
     }
 
@@ -125,63 +128,63 @@ const CheckOut = () => {
                                                 <img src={`${el?.product?.images[0]}`} alt="loading image ..." />
                                             </div>
                                             <div className='card__wrapper-checkout-list'>
-                                            <div className='card__price-list'>{el?.product?.price}₹</div>
+                                                <div className='card__price-list'>{el?.product?.price}₹</div>
 
-                                            <div className='card__counter-checkout-list'>
-                                                <button
-                                                    className="card__btn-checkout-list card__btn-plus-checkout-list"
-                                                    onClick={(async () => {
-                                                        await axios.post(`${BASE_URL}/checkout/update-checkout-change-quantity`,
-                                                            {
-                                                                "productId": el?.product._id,
-                                                                "quantity": el?.quantity + 1
-                                                            }, {
-                                                            headers: { "authorization": localStorage.getItem("authorization") }
+                                                <div className='card__counter-checkout-list'>
+                                                    <button
+                                                        className="card__btn-checkout-list card__btn-plus-checkout-list"
+                                                        onClick={(async () => {
+                                                            await axios.post(`${BASE_URL}/checkout/update-checkout-change-quantity`,
+                                                                {
+                                                                    "productId": el?.product._id,
+                                                                    "quantity": el?.quantity + 1
+                                                                }, {
+                                                                headers: { "authorization": localStorage.getItem("authorization") }
+                                                            }
+                                                            )
+                                                            getCheckoutList()
+                                                        })
                                                         }
-                                                        )
-                                                        getCheckoutList()
-                                                    })
-                                                    }
-                                                >+</button>
-                                                <div className='card__counter-score-checkout-list'>{el?.quantity}</div>
-                                                <button disabled={el?.quantity == 1 ? true : false}
-                                                    className="card__btn-checkout-list"
-                                                    onClick={(async () => {
-                                                        await axios.post(`${BASE_URL}/checkout/update-checkout-change-quantity`,
-                                                            {
-                                                                "productId": el?.product._id,
-                                                                "quantity": el?.quantity - 1
-                                                            }, {
-                                                            headers: { "authorization": localStorage.getItem("authorization") }
+                                                    >+</button>
+                                                    <div className='card__counter-score-checkout-list'>{el?.quantity}</div>
+                                                    <button disabled={el?.quantity == 1 ? true : false}
+                                                        className="card__btn-checkout-list"
+                                                        onClick={(async () => {
+                                                            await axios.post(`${BASE_URL}/checkout/update-checkout-change-quantity`,
+                                                                {
+                                                                    "productId": el?.product._id,
+                                                                    "quantity": el?.quantity - 1
+                                                                }, {
+                                                                headers: { "authorization": localStorage.getItem("authorization") }
+                                                            }
+                                                            )
+                                                            getCheckoutList()
+                                                        })
                                                         }
-                                                        )
-                                                        getCheckoutList()
-                                                    })
-                                                    }
-                                                >-</button>
-                                            </div>
+                                                    >-</button>
+                                                </div>
                                             </div>
                                             {el?.product?.discount ? <div>
                                                 <p>discount:{el?.product?.discount}%</p>
                                                 <p>price after discount: {el?.product?.price - ((el?.product?.price / 100) * el?.product?.discount)}</p>
                                             </div> : ""}
                                             <div>
-                                                frangrence type: 
-                                                <select 
-                                                name="" id=""
-                                                onChange={async(e)=>{
-                                                   await axios.post(`${BASE_URL}/checkout/update-checkout-change-ingredients`,
-                                                    {
-                                                        "productId": el?.product._id,
-                                                        "ingredients": e.target.value
-                                                    }, {
-                                                    headers: { "authorization": localStorage.getItem("authorization") }
-                                                }
-                                                    )
+                                                frangrence type:
+                                                <select
+                                                    name="" id=""
+                                                    onChange={async (e) => {
+                                                        await axios.post(`${BASE_URL}/checkout/update-checkout-change-ingredients`,
+                                                            {
+                                                                "productId": el?.product._id,
+                                                                "ingredients": e.target.value
+                                                            }, {
+                                                            headers: { "authorization": localStorage.getItem("authorization") }
+                                                        }
+                                                        )
 
-                                                }}
+                                                    }}
                                                 >
-                                                    {el?.product?.ingredients.map((ingre)=>{return(<option value={ingre}>{ingre}</option>)})}
+                                                    {el?.product?.ingredients.map((ingre) => { return (<option value={ingre}>{ingre}</option>) })}
                                                 </select>
                                             </div>
 
