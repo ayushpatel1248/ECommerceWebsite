@@ -34,7 +34,7 @@ const LoginAdmin = () => {
             axios.post(`${BASE_URL}/admin/login`, { email, password }).then((res) => {
                 console.log(res.data.status)
                 if (res.data.status == "ok" || res.data.status == "OK") {
-                    localStorage.setItem("authorization" , res.data.authorization)
+                    localStorage.setItem("authorization" , res.data.data.authorization)
                     console.log("ok", res.data)
                     dispatch(addData(res.data.data));
                     navigate("/addproduct")
