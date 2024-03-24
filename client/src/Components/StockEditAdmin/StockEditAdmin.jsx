@@ -9,7 +9,9 @@ import Loader from '../Loader'
 import DeleteIcon from '@mui/icons-material/Delete';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
-
+import CircularProgress from '@mui/material/CircularProgress';
+import { useNavigate } from 'react-router-dom';
+import UserNotLogin from '../useNotLogin/UserNotLogin';
 
 const baseUrl = process.env.REACT_APP_BASE_URL;
 
@@ -17,6 +19,10 @@ const StockEditAdmin = () => {
     const authorization = localStorage.getItem("authorization");
     const [productData, setProductData] = useState([]);
     const [isLoading, setIsLoading] = useState(false)
+    const [isStockUpadting, setIsStockUpdating] = useState(0)
+    const [isUserLogin, setIsUserLogin] = useState(false)
+
+    const navigate = useNavigate()
 
     const notify = (notifyMessage) => toast(notifyMessage);
 
@@ -28,7 +34,7 @@ const StockEditAdmin = () => {
                     authorization: authorization
                 }
             });
-            setProductData(res.data.data); 
+            setProductData(res.data.data);
             console.log("this is product data", res.data.data);
         } catch (error) {
             console.error("Error fetching product data:", error);
@@ -39,55 +45,67 @@ const StockEditAdmin = () => {
     };
 
 
-    const handleStockUpdate = async (editNo, productid) => {
+    const handleStockUpdate = async (editNo, productId) => {
         try {
-            console.log(editNo , productid)
-            const res = await axios.post(`${baseUrl}/productStockEdit`, { productid, editNo }, { headers: { authorization } })
-            notify(res.data.mess)
+            console.log(editNo, productId)
+            const res = await axios.post(`${baseUrl}/productStockEdit`, { productId, editNo }, { headers: { authorization } })
+            notify(res.data)
         }
         catch (err) {
-            notify(err.message) 
+            notify(err.message)
             console.log("some error occured", err)
+        }
+        finally {
+            setIsStockUpdating(isStockUpadting + 1)
         }
 
     }
 
     useEffect(() => {
-        handleProductData();
-        console.log("use effect worked ")
-    }, []); // Empty dependency array to run the effect only once
+        if (!authorization) {
+            setIsUserLogin(true)
+        }
+        else {
+            handleProductData();
+            console.log("use effect worked ")
+        }
+    }, [isStockUpadting]);
 
     return (
         <div>
             <AdminHeader />
-            <h2 className='text-align-center mt-5 mb-5'>Stock Edit</h2>
-            {isLoading ? <Loader /> :
-                <table className='Admin-dashboard-table' border={1}>
-                    <thead>
-                        <tr>
-                            <th className='text-align-center'>S.No</th>
-                            <th className='text-align-center'>Product Name</th>
-                            <th className='text-align-center'>Price</th>
-                            <th className='text-align-center'>Volume</th>
-                            <th className='text-align-center'>Stock</th>
-                            <th className='text-align-center'>Delete Product</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {Array.isArray(productData) && productData.map((el, index) => (
-                            <tr key={index}>
-                                <td className='text-align-center'>{index + 1}</td>
-                                <td className='text-align-center'>{el.name}</td>
-                                <td className='text-align-center'>{el.price}</td>
-                                <td className='text-align-center'>{el.volume} ml</td>
-                                <td className='text-align-center'><button className='button-invisible' onClick={() => handleStockUpdate("-1", el._id)}><RemoveIcon /></button><span className='me-3 ms-3'>{el.stock}</span><button className='button-invisible' onClick={() => handleStockUpdate("1", el._id)}><AddIcon /></button></td>
-                                <td className='text-align-center'><button className='button-invisible' onClick={() => handleStockUpdate("0", el._id)}><DeleteIcon /></button></td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
+            {isUserLogin ? <UserNotLogin /> :
+                <div>
+                    <h2 className='text-align-center mt-5 mb-5'>Stock Edit</h2>
+                    {isLoading ? <Loader /> :
+                        <table className='Admin-dashboard-table' border={1}>
+                            <thead>
+                                <tr>
+                                    <th className='text-align-center'>S.No</th>
+                                    <th className='text-align-center'>Product Name</th>
+                                    <th className='text-align-center'>Price</th>
+                                    <th className='text-align-center'>Volume</th>
+                                    <th className='text-align-center'>Stock</th>
+                                    <th className='text-align-center'>Delete Product</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {Array.isArray(productData) && productData.map((el, index) => (
+                                    <tr key={index}>
+                                        <td className='text-align-center'>{index + 1}</td>
+                                        <td className='text-align-center'>{el.name}</td>
+                                        <td className='text-align-center'>{el.price}</td>
+                                        <td className='text-align-center'>{el.volume} ml</td>
+                                        <td className='text-align-center'><button className='button-invisible' onClick={() => handleStockUpdate("-1", el._id)}><RemoveIcon /></button><span className='me-3 ms-3'>{el.stock}</span><button className='button-invisible' onClick={() => handleStockUpdate("1", el._id)}><AddIcon /></button></td>
+                                        <td className='text-align-center'>{<button className='button-invisible' onClick={() => handleStockUpdate("2", el._id)}><DeleteIcon /></button>}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    }
+                    <ToastContainer />
+                </div>
             }
-            <ToastContainer />
         </div>
     )
 }

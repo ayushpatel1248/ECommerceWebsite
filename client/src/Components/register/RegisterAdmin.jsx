@@ -61,7 +61,7 @@ const RegisterAdmin = () => {
       console.log("api answer = ", apiFetched)
       console.log(apiFetched.data.data)
       if (apiFetched.data.status == "OK" || apiFetched.data.status == "ok") {
-        localStorage.setItem("authorization", apiFetched.data.data.authToken)
+        localStorage.setItem("authorization", apiFetched.data.data.authorization)
         // console.log("harshit data",apiFetched.data.data.userdata)
         dispatch(addData(apiFetched.data.data.userdata));
         notify(apiFetched.data.msg)
@@ -117,7 +117,7 @@ const RegisterAdmin = () => {
           </div>
 
           <div class="text">
-            <h3>Already have an account? <Link to="/login">Login now</Link></h3>
+            <h3>Already have an account? <Link to="/loginAdmin">Login now</Link></h3>
           </div>
         </form>
       </div>

@@ -3,6 +3,7 @@ import "./adminDashboard.css";
 import AdminHeader from "../header/AdminHeader";
 import axios from 'axios';
 import Loader from '../Loader'
+import UserNotLogin from '../useNotLogin/UserNotLogin';
 
 const baseUrl = process.env.REACT_APP_BASE_URL;
 
@@ -10,7 +11,15 @@ const AdminDashboard = () => {
     const authorization = localStorage.getItem("authorization");
     const [productData, setProductData] = useState([]);
     const [isLoading, setIsLoading] = useState(false)
+    const [isUserLogin, setIsUserLogin] = useState(false)
 
+
+    useEffect(() => {
+        if (!authorization) {
+            setIsUserLogin(true)
+        }
+    }, []);
+    
     const handleProductData = async () => {
         try {
             setIsLoading(true)
@@ -19,7 +28,7 @@ const AdminDashboard = () => {
                     authorization: authorization
                 }
             });
-            setProductData(res.data.data); 
+            setProductData(res.data.data);
             console.log("this is product data", res.data.data);
         } catch (error) {
             console.error("Error fetching product data:", error);
@@ -32,13 +41,14 @@ const AdminDashboard = () => {
     useEffect(() => {
         handleProductData();
         console.log("use effect worked ")
-    }, []); 
+    }, []);
 
     return (
         <div>
             <AdminHeader />
-            <h2 className='text-align-center mt-5 mb-5'>Admin Dashboard</h2>
-            {isLoading ? <Loader /> :
+            {isUserLogin? <UserNotLogin/> : <div>
+           <h2 className='text-align-center mt-5 mb-5'>Admin Dashboard</h2>
+           {isLoading ? <Loader /> :
                 <table className='Admin-dashboard-table' border={1}>
                     <thead>
                         <tr>
@@ -53,7 +63,7 @@ const AdminDashboard = () => {
                     <tbody>
                         {Array.isArray(productData) && productData.map((el, index) => (
                             <tr key={index}>
-                                <td>{index+1}</td>
+                                <td>{index + 1}</td>
                                 <td>{el.name}</td>
                                 <td>{el.description}</td>
                                 <td>{el.price}</td>
@@ -64,6 +74,8 @@ const AdminDashboard = () => {
                     </tbody>
                 </table>
             }
+           </div>}
+           
         </div>
     );
 };

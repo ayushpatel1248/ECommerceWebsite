@@ -4,6 +4,7 @@ import "./addProduct.css"
 import axios from 'axios';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
+import UserNotLogin from '../useNotLogin/UserNotLogin';
 
 
 const baseUrl = process.env.REACT_APP_BASE_URL
@@ -24,7 +25,13 @@ const AddProduct = () => {
   const [images, setImages] = useState()
   const [ingredients, setIngredients] = useState([])
   const [isLoading, setIsLoading] = useState(false)
+  const [isUserLogin, setIsUserLogin] = useState(false)
 
+  useEffect(() => {
+    if (!authorization) {
+        setIsUserLogin(true)
+    }
+}, []);
 
   const notify = (notifyMessage) => toast(notifyMessage);
 
@@ -89,7 +96,7 @@ const AddProduct = () => {
   return (
     <div className='main-parent-addproduct'>
       <AdminHeader />
-      <div className='addProduct-parent'>
+      {isUserLogin? <UserNotLogin/> : <div className='addProduct-parent'>
         <div className='sub-header-addproduct'>
           <ul className='decoration-none d-flex justify-content-between align-items-center ul-addproduct' type="none">
             <li className={toggle == 1 ? "border-bottom-purple text-align-center" : "text-align-center"} onClick={(e) => setToggle(1)}>Product Identity</li>
@@ -210,7 +217,7 @@ const AddProduct = () => {
 
         {console.log(name, images, thumbnail)}
         <ToastContainer />
-      </div>
+      </div>}
     </div>
   )
 }
