@@ -132,3 +132,99 @@
   .img-div img{
     height: 100%;
   }
+
+
+  .card-checkout-list {
+    --main-color: #000;
+    --bg-color: #fff;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    position: relative;
+    padding: 20px;
+    width: 320px;
+    background: var(--bg-color);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    border-right: 1px solid black;
+    border-left: 1px solid black;
+  }
+  
+  .card__back-checkout-list svg, .card__menu-checkout-list svg {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .card__wrapper-checkout-list {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .card__img-checkout-list {
+    width: 170px;
+    height: 170px;
+    background: linear-gradient(90deg, #FFF8F7, #F0F7DF);
+    border-radius: 100%;
+    margin-inline: auto;
+  }
+  
+  .card__img-checkout-list svg {
+    height: 150px;
+    transform: rotate(-45deg) translate(15px, 0px);
+  }
+  
+  .card__title-checkout-list {
+    font-weight: 600;
+    font-size: 25px;
+    color: var(--main-color);
+  }
+  
+  .card__subtitle-checkout-list {
+    font-weight: 400;
+    font-size: 15px;
+    color: var(--main-color);
+    letter-spacing: 0.5px;
+  }
+  
+  .card__price-checkout-list {
+    font-weight: 600;
+    font-size: 22px;
+    color: var(--main-color);
+  }
+  
+  .card__counter-checkout-list {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+    padding: 5px;
+    background: #F7F7F7;
+    border-radius: 50px;
+  }
+  
+  .card__counter-score-checkout-list, .card__btn-checkout-list {
+    font-weight: 700;
+    font-size: 22px;
+    color: var(--main-color);
+  }
+  
+  .card__btn-checkout-list {
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    border: none;
+    background: transparent;
+  }
+  
+  .card__btn-plus-checkout-list {
+    background: var(--bg-color);
+  }
+
+  .card-checkout-list-parent{
+    display: flex;
+    gap: 50px;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }

@@ -23,7 +23,7 @@ const ProductDescription = () => {
     const [isLoading, setIsLoading] = useState(true)
     const [isDiscountAvailable, setIsDiscountAvailable] = useState(false)
     const [giveRatingVisbility, setGiveRatingVisbility] = useState(false)
-    const [allReviews , setAllReviews] = useState([])
+    const [allReviews, setAllReviews] = useState([])
     const [comment, setComment] = useState("")
     const [value, setValue] = useState(0);
     const notify = (mes) => toast.error(mes);
@@ -161,14 +161,14 @@ const ProductDescription = () => {
                         <div className='d-flex buy-sell-price-parent'>
                             <div className='desc-buy-sell-div  '>
                                 {/* buy */}
-                                <div 
-                                data-tooltip={`Price:₹${productData?.price}`} className="button-buy-desc buy-sell-desc"
-                                onClick={async()=>{
-                                    dispatch(setCheckOutData([{product:productData , quantity:1}]))
-                                    await axios.post(`${BASE_URL}/checkout/update-checkout-details`,{checkoutDetails:[{product:productData , quantity:1}]},{headers:{'authorization': localStorage.getItem("authorization")}})
-                                    navigate("/check-out")
-                                }}
-                                
+                                <div
+                                    data-tooltip={`Price:₹${productData?.price}`} className="button-buy-desc buy-sell-desc"
+                                    onClick={async () => {
+                                        dispatch(setCheckOutData([{ product: productData, quantity: 1 }]))
+                                        await axios.post(`${BASE_URL}/checkout/update-checkout-details`, { checkoutDetails: [{ product: productData, quantity: 1, ingredients: productData?.ingredients[0] }] }, { headers: { 'authorization': localStorage.getItem("authorization") } })
+                                        navigate("/check-out")
+                                    }}
+
                                 >
                                     <div className="button-wrapper-buy-desc">
                                         <div className="text-buy-desc">Buy Now</div>
@@ -201,11 +201,7 @@ const ProductDescription = () => {
                         </div>
                         {/* rating */}
                         <div className='rating-div'>
-                            <div className='rating-main-div'>
-                                <h2 className='description-text font-weight-600 description-text-div font-family' style={{ opacity: opacity }}>Average Rating Of PRODUCT :</h2>
-                                <div><Rating name="read-only" size="large" value={productData?.rating == undefined ? 0 : productData?.rating} readOnly />  </div>
-                                <div className='btn-rating'>   <button className='button-rating ' onClick={() => { setGiveRatingVisbility(true) }}> <span>rate product </span></button></div>
-                            </div>
+
                             <div className='frag-available'>
                                 <h2 className='description-text-div font-family' style={{ opacity: opacity }}>Available Frangrence </h2>
                                 <div className='mt-4 description-text description-text-div' style={{ opacity: opacity }}>
@@ -213,6 +209,14 @@ const ProductDescription = () => {
 
                                 </div>
                             </div>
+
+
+                            <div className='rating-main-div'>
+                                <h2 className='description-text font-weight-600 description-text-div font-family' style={{ opacity: opacity }}>Average Rating Of PRODUCT :</h2>
+                                <div><Rating name="read-only" size="large" value={productData?.rating == undefined ? 0 : productData?.rating} readOnly />  </div>
+                                <div className='btn-rating'>   <button className='button-rating ' onClick={() => { setGiveRatingVisbility(true) }}> <span>rate product </span></button></div>
+                            </div>
+
 
                         </div>
                         <div className={giveRatingVisbility ? 'visibal give-rating-div' : "not-visibal give-rating-div"}>
@@ -231,21 +235,21 @@ const ProductDescription = () => {
                             </div>
                         </div>
                         <div>
-                        {allReviews?.map((el)=>{
-                            return(
-                               <div className='reviewShow'>
-                               <div> 
-                               <h3>{el?.user[0]?.userName }</h3>
-                                <p><Rating name="read-only"  value={el?.rating == undefined ? 0 : el?.rating} readOnly />  </p>
-                                <p className='comment'>Comment On Product : {el?.comment}</p>
-                               </div>
-                               </div>
+                            {allReviews?.map((el) => {
+                                return (
+                                    <div className='reviewShow'>
+                                        <div>
+                                            <h3>{el?.user[0]?.userName}</h3>
+                                            <p><Rating name="read-only" value={el?.rating == undefined ? 0 : el?.rating} readOnly />  </p>
+                                            <p className='comment'>Comment On Product : {el?.comment}</p>
+                                        </div>
+                                    </div>
 
-                            )
-                        })}
+                                )
+                            })}
                         </div>
                     </div>
-{/* <div className='footer'>
+                    {/* <div className='footer'>
 <Footer/>
 </div> */}
                 </div>}
