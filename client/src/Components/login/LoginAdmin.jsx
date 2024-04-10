@@ -35,7 +35,7 @@ const LoginAdmin = () => {
                 console.log(res.data.status)
                 if (res.data.status == "ok" || res.data.status == "OK") {
                     localStorage.setItem("authorization" , res.data.data.authorization)
-                    console.log("ok", res.data)
+                    console.log("ok", res.data) 
                     dispatch(addData(res.data.data));
                     navigate("/addproduct")
                 } else {
