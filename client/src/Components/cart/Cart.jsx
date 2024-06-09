@@ -56,6 +56,7 @@ const Cart = () => {
                 headers: {
                     'authorization': authorization
                 }
+                
             })
             viewCart();
             console.log("item deleted successfully")

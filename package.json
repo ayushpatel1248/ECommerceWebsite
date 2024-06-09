@@ -11,6 +11,7 @@
     "nodemailer": "^6.9.8",
     "razorpay": "^2.9.2",
     "react-custom-scrollbars": "^4.2.1",
+    "react-router-dom": "^6.23.1",
     "use-sound": "^4.0.1"
   },
   "devDependencies": {
