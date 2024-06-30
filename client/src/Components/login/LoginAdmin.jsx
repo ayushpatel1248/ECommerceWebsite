@@ -80,6 +80,7 @@ const LoginAdmin = () => {
                             Create a new account -
                         </label><Link to={"/registerAdmin"} className="sign-up">Sign Up</Link>
                     </div>
+                    
                     <button
                         className="form--submit"
                         onClick={sumbitLoginHandle}
