@@ -77,7 +77,7 @@ const LoginAdmin = () => {
                     <div className="forget-password"><Link to={"/forget-password"}>~Forget Password </Link></div>
                     <div className="form--marketing">
                         <label htmlFor="okayToEmail" className="checkbox">
-                            Create a new account -
+                          Create a new account -
                         </label><Link to={"/registerAdmin"} className="sign-up">Sign Up</Link>
                     </div>
                     <button
