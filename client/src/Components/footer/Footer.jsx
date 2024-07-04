@@ -53,7 +53,7 @@ const Footer = () => {
                                 <div class="f_social_icon">
                                     <a href="#" class="fab fa-facebook"></a>
                                     <a href="#" class="fab fa-twitter"></a>
-                                    <Link to="https://www.linkedin.com/in/harshit-nagar-7aa701251/" class="fab fa-linkedin" target='_block'></Link>
+                                    <Link to="" class="fab fa-linkedin" target='_block'></Link>
                                     <a href="#" class="fab fa-pinterest"></a>
                                 </div>
                             </div>
