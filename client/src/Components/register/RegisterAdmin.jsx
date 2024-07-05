@@ -68,7 +68,6 @@ const RegisterAdmin = () => {
       }else{
         notify(apiFetched.data.msg)
       }
-
     }
     catch (err) {
       notify(err.message)
