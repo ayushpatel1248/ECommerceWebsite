@@ -249,9 +249,6 @@ const ProductDescription = () => {
                             })}
                         </div>
                     </div>
-                    {/* <div className='footer'>
-<Footer/>
-</div> */}
                 </div>}
             <ToastContainer />
         </div>
