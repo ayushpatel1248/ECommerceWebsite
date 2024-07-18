@@ -21,7 +21,6 @@ const Cart = () => {
     const dispatch = useDispatch();
     var authorization = localStorage.getItem("authorization")
     const navigate = useNavigate()
-    //this is state for storing cart data of user 
     const [cartData, setCartData] = useState([])
     const [isUserLogin , setIsUserLogin] = useState(false)
     const [totalAmount, setTotalAmount] = useState(0)
