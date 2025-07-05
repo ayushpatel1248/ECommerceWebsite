@@ -320,8 +320,6 @@ const Products = () => {
         </button>
 
       </div>
-      {/* {console.log(getProductData.productData)} */}
-
 
       <Footer />
       <ToastContainer />

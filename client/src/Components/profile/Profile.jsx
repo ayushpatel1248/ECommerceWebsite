@@ -96,7 +96,6 @@ const Profile = () => {
       setDisableColor("button")
 
     }
-    // setIsLoading(false)
   }
   return (
     <div>
